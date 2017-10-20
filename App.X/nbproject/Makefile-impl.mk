@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Moltres_App.X
+PROJECTNAME=App.X
 
 # Active Configuration
 DEFAULTCONF=default

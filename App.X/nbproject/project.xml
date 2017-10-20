@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>Moltres_App</name>
-            <creation-uuid>46b1ce99-e801-45b5-9621-6a7fba0c7743</creation-uuid>
+            <name>App</name>
+            <creation-uuid>db12ab6b-7dec-49f9-aee0-9a384bff4860</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions/>
             <cpp-extensions/>
