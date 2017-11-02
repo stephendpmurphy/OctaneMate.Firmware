@@ -24,14 +24,14 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=App.X
+PROJECTNAME=Bootloader.X
 
 # Active Configuration
-DEFAULTCONF=Combined
+DEFAULTCONF=NO_CONFIG
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=Offset_App Standalone Combined 
+ALLCONFS=NO_CONFIG WITH_CONFIG 
 
 
 # build
@@ -45,17 +45,15 @@ ALLCONFS=Offset_App Standalone Combined
 
 # clobber
 .clobber-impl: .clobber-pre .depcheck-impl
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Offset_App clean
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Standalone clean
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Combined clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=NO_CONFIG clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=WITH_CONFIG clean
 
 
 
 # all
 .all-impl: .all-pre .depcheck-impl
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Offset_App build
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Standalone build
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Combined build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=NO_CONFIG build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=WITH_CONFIG build
 
 
 
