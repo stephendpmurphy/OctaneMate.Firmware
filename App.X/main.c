@@ -44,6 +44,10 @@
 */
 
 #include "mcc_generated_files/mcc.h"
+#include "main.h"
+#include "NonVolatileMemory.h"
+#include "Timeout.h"
+
 #define RESET_VECTOR 0x76A
 #define FLASH_MEM_SIZE 0x20000
 const char NVFlag @ (FLASH_MEM_SIZE - 2) = 0x55;
