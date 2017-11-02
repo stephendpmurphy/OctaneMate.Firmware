@@ -21,10 +21,10 @@ typedef struct TIMEOUT_STRUCT
 } TIMEOUT_t;
 
 //Global Variables
-extern TIMEOUT_t DEVICE_TIMEOUTS[MAX_TIMER];
-extern uint16_t _timer_tick = 0;
+extern uint16_t _timer_tick;
 
 //Function Prototypes
+void timer_init(void);
 
 #endif	/* TIMEOUT_H */
 

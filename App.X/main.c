@@ -45,8 +45,8 @@
 
 #include "mcc_generated_files/mcc.h"
 #include "main.h"
-#include "NonVolatileMemory.h"
 #include "Timeout.h"
+#include "NonVolatileMemory.h"
 
 #define RESET_VECTOR 0x76A
 #define FLASH_MEM_SIZE 0x20000
@@ -56,9 +56,13 @@ const char NVFlag @ (FLASH_MEM_SIZE - 2) = 0x55;
  */
 void main(void)
 {
+    uint8_t tempConfig = 0;
     // Initialize the device
     SYSTEM_Initialize();
-
+    timer_init();
+    Config_init();
+    
+    tempConfig = GET_DEVICE_CONFIG(temp1);
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts
     // If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global and Peripheral Interrupts
     // Use the following macros to:

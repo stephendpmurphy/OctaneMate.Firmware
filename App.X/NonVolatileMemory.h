@@ -9,6 +9,7 @@
 #define	NONVOLATILEMEMORY_H
 
 //DEFINITIONS
+#define GET_DEVICE_CONFIG(foo) DEVICE_CONFIG.foo
 #define MAX_PID_CHANNELS 20
 #define PSEUDO_UNUSED_PID_VAL 0xFF
 
@@ -32,13 +33,17 @@ typedef struct PID_CHANNEL_CONFIG_STRUCT
 
 typedef struct DEVICE_CONFIG_STRUCT
 {
-    uint8_t temp;
+    uint8_t temp1;
+    uint8_t temp2;
+    uint8_t temp3;
 } DEVICE_CONFIG_t;
 
 //GLOBAL VARIABLES
-extern PID_CHANNEL_CONFIG_t PID_CHANNEL_CONFIG[MAX_PID_CHANNELS];
+extern PID_CHANNEL_CONFIG_t PID_CHANNEL_CONFIG[];
 extern DEVICE_CONFIG_t DEVICE_CONFIG;
+
 //FUNCTION PROTOTYPES
+void Config_init(void);
 
 #endif	/* NONVOLATILEMEMORY_H */
 
