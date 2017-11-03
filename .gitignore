@@ -27,5 +27,7 @@ funclist
 nbproject/Makefile-*
 disassembly/
 *.map
+App.X/nbproject/*
+Bootloader.X/nbproject/*
 
 # End of https://www.gitignore.io/api/mplabx

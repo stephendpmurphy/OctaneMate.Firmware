@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   NonVolatileMemory.h
  * Author: smurphy
  *
@@ -39,11 +39,10 @@ typedef struct DEVICE_CONFIG_STRUCT
 } DEVICE_CONFIG_t;
 
 //GLOBAL VARIABLES
-extern PID_CHANNEL_CONFIG_t PID_CHANNEL_CONFIG[];
+extern PID_CHANNEL_CONFIG_t PID_CHANNEL_CONFIG[MAX_PID_CHANNELS];
 extern DEVICE_CONFIG_t DEVICE_CONFIG;
 
 //FUNCTION PROTOTYPES
-void Config_init(void);
+void InitDeviceConfig(void);
 
 #endif	/* NONVOLATILEMEMORY_H */
-
