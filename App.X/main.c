@@ -94,6 +94,8 @@ void main(void)
 
     while (1)
     {
+        ServiceTimers(void);
+        SetLED_State(MCU_LED, LED_STATE_ON)
         // Add your application code
     }
 }
