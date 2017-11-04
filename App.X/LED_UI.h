@@ -11,13 +11,12 @@
 #define BLUETOOTH_STATUS_LED 0x00
 #define MCU_STATUS_LED = 0x01
 
-#define LED_OFF_DUR 0x0000
-#define LED_ON_DUR 0x0001
+#define LED_OFF_DUR 0x0000 //Periodic of Zero - Essentially a one shot. Turns the LED OFF and then disables the timer
+#define LED_ON_DUR 0x0000 //Periodic of Zero - Essentially a one shot. Turns the LED ON and then disables the timer
 #define LED_FAST_DUR 0x00FA
 #define LED_SLOW_DUR 0x01FA
 
 typedef struct STATUS_LED {
-    uint8_t LED_NAME;
     LED_STATE_t LED_STATE;
     TIMEOUT_HANDLE_t TIMEOUT_HANDLE;
 } STATUS_LED_t;

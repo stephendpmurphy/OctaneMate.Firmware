@@ -6,8 +6,8 @@
 #include "NonVolatileMemory.h"
 #include "LED_UI.h"
 
-STATUS_LED_t MCU_LED = {.LED_NAME = MCU_STATUS_LED, .LED_STATE = LED_STATE_OFF, .TIMEOUT_HANDLE = MCU_LED_TIMEOUT};
-STATUS_LED_t BLUETOOTH_LED = {.LED_NAME = BLUETOOTH_STATUS_LED. .LED_STATE = LED_STATE_OFF, .TIMEOUT_HANDLE = BLUETOOTH_LED_TIMEOUT};
+STATUS_LED_t MCU_LED = {.LED_STATE = LED_STATE_OFF, .TIMEOUT_HANDLE = MCU_LED_TIMEOUT};
+STATUS_LED_t BLUETOOTH_LED = {.LED_STATE = LED_STATE_OFF, .TIMEOUT_HANDLE = BLUETOOTH_LED_TIMEOUT};
 
 void InitLED_UI(void)
 {
@@ -45,13 +45,20 @@ static void UpdateBluetooth_LED(void)
     switch(BLUETOOTH_LED.LED_STATE)
     {
         case LED_STATE_OFF:
+            BLUETOOTH_STATUS_LED_SetLow()
             break;
+
         case LED_STATE_ON:
+            BLUETOOTH_STATUS_LED_SetHigh()
             break;
+
         case LED_STATE_BLINK_SLOW:
         case LED_STATE_BLINK_FAST:
+            BLUETOOTH_STATUS_LED_Toggle()
             break;
+
         default:
+            BLUETOOTH_STATUS_LED_SetLow()
             break;
     }
 }
@@ -60,4 +67,5 @@ void SetLED_State(STATUS_LED_t LED, LED_STATE_t state)
 {
     LED.LED_STATE = state;
     SetTimerPeriodic(LED.TIMEOUT_HANDLE, state);
+    SetTimerStatus(LED.TIMEOUT_HANDLE, TRUE);
 }

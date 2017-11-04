@@ -9,7 +9,7 @@
 #define	TIMEOUT_H
 
 //Definitions
-#define MAX_TIMER 10
+#define MAX_TIMER 4
 
 //Timeout handles
 
@@ -25,7 +25,7 @@ typedef struct TIMEOUT_STRUCT
 
 typedef enum TIMEOUT_HANDLE
 {
-    MCU_LED_TIMEOUT,
+    MCU_LED_TIMEOUT = 0x00,
     BLUETOOTH_LED_TIMEOUT,
     TEN_HZ_LOG_TIMEOUT,
     TWENTY_HZ_LOG_TIMEOUT
