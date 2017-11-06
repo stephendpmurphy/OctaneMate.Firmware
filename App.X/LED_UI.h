@@ -1,36 +1,30 @@
-/*
- * File:   LED_UI.h
- * Author: Steve
- *
- * Created on November 3, 2017, 10:53 AM
- */
-
+/**********************************************************
+* Copyright 2017, Murphy Technology, All rights reserved. *
+***********************************************************/
 #ifndef LED_UI_H
 #define	LED_UI_H
 
-#define BLUETOOTH_STATUS_LED 0x00
-#define MCU_STATUS_LED = 0x01
-
-#define LED_OFF_DUR 0x0000 //Periodic of Zero - Essentially a one shot. Turns the LED OFF and then disables the timer
-#define LED_ON_DUR 0x0000 //Periodic of Zero - Essentially a one shot. Turns the LED ON and then disables the timer
-#define LED_FAST_DUR 0x00FA
-#define LED_SLOW_DUR 0x01FA
-
+/************** TYPEDEFS ****************/
 typedef struct STATUS_LED {
-    LED_STATE_t LED_STATE;
+    uint16_t LED_STATE;
     TIMEOUT_HANDLE_t TIMEOUT_HANDLE;
 } STATUS_LED_t;
 
-typedef enum LED_STATE
-{
-    LED_STATE_OFF = LED_OFF_DUR,
-    LED_STATE_ON = LED_ON_DUR,
-    LED_STATE_BLINK_SLOW = LED_SLOW_DUR,
-    LED_STATE_BLINK_FAST = LED_FAST_DUR
-} LED_STATE_t;
+enum LED_STATE_enum {
+    LED_ON = 0x00,
+    LED_OFF = 0x03E8,
+    LED_FAST_FLASH = 0x00FA,
+    LED_SLOW_FLASH = 0x01FA
+};
 
-//Function Prototypes
+/********* FUNCTION PROTOTYPES **********/
+void InitLED_UI(void);
 static void UpdateMCU_LED(void);
 static void UpdateBluetooth_LED(void);
+void SetLED_State(STATUS_LED_t, uint16_t);
+
+/******* EXTERN / GLOBAL VARIABLE *******/
+extern STATUS_LED_t MCU_LED;
+extern STATUS_LED_t BLUETOOTH_LED;
 
 #endif	/* LED_UI_H */

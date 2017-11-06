@@ -1,19 +1,13 @@
-/*
- * File:   Timeout.h
- * Author: smurphy
- *
- * Created on November 2, 2017, 1:55 PM
- */
-
+/**********************************************************
+* Copyright 2017, Murphy Technology, All rights reserved. *
+***********************************************************/
 #ifndef TIMEOUT_H
 #define	TIMEOUT_H
 
-//Definitions
+/************ DEFINITIONS ***************/
 #define MAX_TIMER 4
 
-//Timeout handles
-
-//Typedefs
+/************** TYPEDEFS ****************/
 typedef struct TIMEOUT_STRUCT
 {
     uint8_t enabled;
@@ -31,13 +25,14 @@ typedef enum TIMEOUT_HANDLE
     TWENTY_HZ_LOG_TIMEOUT
 } TIMEOUT_HANDLE_t;
 
-//Global Variables
-extern uint16_t _timer_tick;
-
-//Function Prototypes
+/********* FUNCTION PROTOTYPES **********/
 void InitTimer(void);
 void AddTimer(TIMEOUT_HANDLE_t handle, uint8_t enabled, uint16_t timeout_ms, uint16_t periodic, void(*callback)(void), void *arg);
 void SetTimerStatus(TIMEOUT_HANDLE_t handle, uint8_t enabled);
 void SetTimerPeriodic(TIMEOUT_HANDLE_t handle, uint16_t periodic);
+void ServiceTimers(void);
+
+/******* EXTERN / GLOBAL VARIABLE *******/
+extern uint16_t _timer_tick;
 
 #endif	/* TIMEOUT_H */

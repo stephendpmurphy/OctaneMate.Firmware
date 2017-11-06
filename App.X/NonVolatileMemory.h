@@ -1,19 +1,15 @@
-/*
- * File:   NonVolatileMemory.h
- * Author: smurphy
- *
- * Created on November 2, 2017, 1:38 PM
- */
-
+/**********************************************************
+* Copyright 2017, Murphy Technology, All rights reserved. *
+***********************************************************/
 #ifndef NONVOLATILEMEMORY_H
 #define	NONVOLATILEMEMORY_H
 
-//DEFINITIONS
+/************ DEFINITIONS ***************/
 #define GET_DEVICE_CONFIG(foo) DEVICE_CONFIG.foo
 #define MAX_PID_CHANNELS 20
 #define PSEUDO_UNUSED_PID_VAL 0xFF
 
-//TYPEDEFS
+/************** TYPEDEFS ****************/
 typedef enum DISPLAY_TYPE_ENUM {
     NONE,
     LOG,
@@ -38,11 +34,11 @@ typedef struct DEVICE_CONFIG_STRUCT
     uint8_t temp3;
 } DEVICE_CONFIG_t;
 
-//GLOBAL VARIABLES
+/********* FUNCTION PROTOTYPES **********/
+void InitDeviceConfig(void);
+
+/******* EXTERN / GLOBAL VARIABLE *******/
 extern PID_CHANNEL_CONFIG_t PID_CHANNEL_CONFIG[MAX_PID_CHANNELS];
 extern DEVICE_CONFIG_t DEVICE_CONFIG;
-
-//FUNCTION PROTOTYPES
-void InitDeviceConfig(void);
 
 #endif	/* NONVOLATILEMEMORY_H */

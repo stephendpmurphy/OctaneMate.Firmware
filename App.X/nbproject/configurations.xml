@@ -14,6 +14,7 @@
       <itemPath>NonVolatileMemory.h</itemPath>
       <itemPath>Timeout.h</itemPath>
       <itemPath>LED_UI.h</itemPath>
+      <itemPath>Logger.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -32,6 +33,7 @@
       <itemPath>NonVolatileMemory.c</itemPath>
       <itemPath>Timeout.c</itemPath>
       <itemPath>LED_UI.c</itemPath>
+      <itemPath>Logger.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -257,7 +259,7 @@
         <property key="undefine-macros" value=""/>
         <property key="use-cci" value="false"/>
         <property key="use-iar" value="false"/>
-        <property key="verbose" value="false"/>
+        <property key="verbose" value="true"/>
         <property key="warning-level" value="-3"/>
         <property key="what-to-do" value="ignore"/>
       </HI-TECH-COMP>

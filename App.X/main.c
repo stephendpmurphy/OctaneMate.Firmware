@@ -1,69 +1,60 @@
-/**
-  Generated Main Source File
-
-  Company:
-    Microchip Technology Inc.
-
-  File Name:
-    main.c
-
-  Summary:
-    This is the main file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
-
-  Description:
-    This header file provides implementations for driver APIs for all modules selected in the GUI.
-    Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs  - 1.45
-        Device            :  PIC18F27K40
-        Driver Version    :  2.00
-    The generated drivers are tested against the following:
-        Compiler          :  XC8 1.35
-        MPLAB             :  MPLAB X 3.40
-*/
-
-/*
-    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
-    software and any derivatives exclusively with Microchip products.
-
-    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
-    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
-    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
-    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
-    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
-
-    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
-    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
-    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
-    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
-    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
-    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
-    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
-
-    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
-    TERMS.
-*/
-
+/**********************************************************
+* Copyright 2017, Murphy Technology, All rights reserved. *
+***********************************************************/
+#include <stdint.h>
+#include <string.h>
 #include "mcc_generated_files/mcc.h"
 #include "main.h"
 #include "Timeout.h"
 #include "NonVolatileMemory.h"
 #include "LED_UI.h"
+#include "Logger.h"
 
+/************ DEFINITIONS ***************/
 #define RESET_VECTOR 0x76A
 #define FLASH_MEM_SIZE 0x20000
+
+/*********** LOCAL VARIABLES ************/
 const char NVFlag @ (FLASH_MEM_SIZE - 2) = 0x55;
-/*
-                         Main application
- */
+
+/********* FUNCTION PROTOTYPES **********/
+void enableInterrupts(void);
+void Signal_BL_Requested(void);
+void EraseResetVector(void);
+
+/****************************************
+* Name: main
+* Arg: Void
+* Return: Void
+* Notes: Main loops where all the magic happens
+*
+*****************************************/
 void main(void)
 {
-    uint8_t tempConfig = 0;
     // Initialize the device
     SYSTEM_Initialize();
     InitTimer();
     InitDeviceConfig();
 
-    tempConfig = GET_DEVICE_CONFIG(temp1);
+    SetLED_State(MCU_LED, LED_ON);
+    SetLED_State(BLUETOOTH_LED, LED_ON);
+
+    while (1)
+    {
+        ServiceTimers(); //This handles all LED UI as well as the 10hz and 20hz PID logging
+
+    }
+}
+
+/****************************************
+* Name: enableInterrupts
+* Arg: Void
+* Return: Void
+* Notes: Enable interrupts at MCU startup
+*
+*****************************************/
+void enableInterrupts(void)
+{
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts
     // If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global and Peripheral Interrupts
     // Use the following macros to:
@@ -91,13 +82,28 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
+}
 
-    while (1)
-    {
-        ServiceTimers(void);
-        SetLED_State(MCU_LED, LED_STATE_ON)
-        // Add your application code
-    }
+void Signal_BL_Requested(void)
+{
+    NVMADRL  = (uint8_t) (FLASH_MEM_SIZE-2) & 0x00FF;
+    NVMADRH  = ((FLASH_MEM_SIZE-2)) >> 8;
+    NVMDAT  = 0x00;
+    NVMCON1 = 0x14;  // WREN & FREE
+    NVMCON2 = 0x55;
+    NVMCON2 = 0xAA;
+    NVMCON1bits.WR = 1;
+}
+
+void EraseResetVector(void)
+{
+    NVMADRL = (uint8_t) (RESET_VECTOR & 0x00FF);
+    NVMADRH = (uint8_t) ((RESET_VECTOR & 0xFF00) >> 8);
+    NVMDAT  = 0x00;
+    NVMCON1 = 0x14;  // WREN & FREE
+    NVMCON2 = 0x55;
+    NVMCON2 = 0xAA;
+    NVMCON1bits.WR = 1;
 }
 /**
  End of File
