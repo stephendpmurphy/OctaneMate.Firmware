@@ -49,6 +49,7 @@ static void UpdateMCU_LED(void)
             MCU_STATUS_LED_SetHigh();
             break;
 
+        case LED_FAST_FLASH:
         case LED_SLOW_FLASH:
             MCU_STATUS_LED_Toggle();
             break;
@@ -78,6 +79,7 @@ static void UpdateBluetooth_LED(void)
             BLUETOOTH_STATUS_LED_SetHigh();
             break;
 
+        case LED_FAST_FLASH:
         case LED_SLOW_FLASH:
             BLUETOOTH_STATUS_LED_Toggle();
             break;
