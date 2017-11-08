@@ -42,10 +42,12 @@ static void UpdateMCU_LED(void)
     switch(MCU_LED.LED_STATE)
     {
         case LED_OFF:
+            SetTimerStatus(MCU_LED_TIMEOUT, FALSE);
             MCU_STATUS_LED_SetLow();
             break;
 
         case LED_ON:
+            SetTimerStatus(MCU_LED_TIMEOUT, FALSE);
             MCU_STATUS_LED_SetHigh();
             break;
 
@@ -72,10 +74,12 @@ static void UpdateBluetooth_LED(void)
     switch(BLUETOOTH_LED.LED_STATE)
     {
         case LED_OFF:
+            SetTimerStatus(BLUETOOTH_LED_TIMEOUT, FALSE);
             BLUETOOTH_STATUS_LED_SetLow();
             break;
 
         case LED_ON:
+            SetTimerStatus(BLUETOOTH_LED_TIMEOUT, FALSE);
             BLUETOOTH_STATUS_LED_SetHigh();
             break;
 

@@ -6,12 +6,13 @@
 
 /************ DEFINITIONS ***************/
 #define MAX_TIMER 4
+#define TIME_ROLLOVER 60000 //ms or 1 minute
 
 /************** TYPEDEFS ****************/
 typedef struct TIMEOUT_STRUCT
 {
     uint8_t enabled;
-    uint16_t timeout_ms;
+    uint16_t timeout_ref;
     uint16_t periodic;
     void(*callback)(void);
     void *arg;
@@ -27,7 +28,7 @@ typedef enum TIMEOUT_HANDLE
 
 /********* FUNCTION PROTOTYPES **********/
 void InitTimer(void);
-void AddTimer(TIMEOUT_HANDLE_t handle, uint8_t enabled, uint16_t timeout_ms, uint16_t periodic, void(*callback)(void), void *arg);
+void AddTimer(TIMEOUT_HANDLE_t handle, uint8_t enabled, uint16_t periodic, void(*callback)(void), void *arg);
 void SetTimerStatus(TIMEOUT_HANDLE_t handle, uint8_t enabled);
 void SetTimerPeriodic(TIMEOUT_HANDLE_t handle, uint16_t periodic);
 void ServiceTimers(void);

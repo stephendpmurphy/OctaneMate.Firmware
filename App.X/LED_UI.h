@@ -12,7 +12,7 @@ typedef struct STATUS_LED {
 
 enum LED_STATE_enum {
     LED_ON = 0x00,
-    LED_OFF = 0x03E8,
+    LED_OFF = 0x01,
     LED_FAST_FLASH = 0x00FA,
     LED_SLOW_FLASH = 0x01FA
 };
