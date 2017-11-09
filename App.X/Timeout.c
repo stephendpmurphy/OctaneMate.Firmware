@@ -86,15 +86,15 @@ void ServiceTimers(void)
 		if((TRUE == DEVICE_TIMEOUTS[handle].enabled) && (absoluteTimeDifference(DEVICE_TIMEOUTS[handle].timeout_ref, _timer_tick) > DEVICE_TIMEOUTS[handle].periodic))
 		{
 			DEVICE_TIMEOUTS[handle].callback();
-		}
-
-		if(DEVICE_TIMEOUTS[handle].periodic > 0)
-		{
-			DEVICE_TIMEOUTS[handle].timeout_ref = _timer_tick;
-		}
-		else
-		{
-			SetTimerStatus(handle, FALSE);
+            
+    		if(DEVICE_TIMEOUTS[handle].periodic > 0)
+    		{
+    			DEVICE_TIMEOUTS[handle].timeout_ref = _timer_tick;
+    		}
+    		else
+    		{
+    			SetTimerStatus(handle, FALSE);
+    		}
 		}
 	}
 }
