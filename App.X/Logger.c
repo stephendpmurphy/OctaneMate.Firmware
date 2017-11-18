@@ -26,8 +26,8 @@ void InitLogger(void)
 {
     void(*ptrFunc1)(void) = LogTenHz;
     void(*ptrFunc2)(void) = LogTwentyHz;
-    AddTimer(TEN_HZ_LOG.TIMEOUT_HANDLE, FALSE, 0, TEN_HZ_INTERVAL, ptrFunc1, NULL);
-    AddTimer(TWENTY_HZ_LOG.TIMEOUT_HANDLE, FALSE, 0, TWENTY_HZ_INTERVAL, ptrFunc2, NULL);
+    AddTimer(TEN_HZ_LOG.TIMEOUT_HANDLE, FALSE, TEN_HZ_INTERVAL, ptrFunc1, NULL);
+    AddTimer(TWENTY_HZ_LOG.TIMEOUT_HANDLE, FALSE, TWENTY_HZ_INTERVAL, ptrFunc2, NULL);
 }
 
 /****************************************

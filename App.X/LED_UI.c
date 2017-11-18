@@ -26,8 +26,8 @@ void InitLED_UI(void)
 {
     void(*ptrFunc1)(void) = UpdateMCU_LED;
     void(*ptrFunc2)(void) = UpdateBluetooth_LED;
-    AddTimer(MCU_LED.TIMEOUT_HANDLE, FALSE, 0, 0, ptrFunc1, NULL);
-    AddTimer(BLUETOOTH_LED.TIMEOUT_HANDLE, FALSE, 0, 0, ptrFunc2, NULL);
+    AddTimer(MCU_LED.TIMEOUT_HANDLE, FALSE, 0, ptrFunc1, NULL);
+    AddTimer(BLUETOOTH_LED.TIMEOUT_HANDLE, FALSE, 0, ptrFunc2, NULL);
 }
 
 /****************************************

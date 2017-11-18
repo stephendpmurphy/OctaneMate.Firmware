@@ -15,6 +15,7 @@
       <itemPath>Timeout.h</itemPath>
       <itemPath>LED_UI.h</itemPath>
       <itemPath>Logger.h</itemPath>
+      <itemPath>RN42.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -34,6 +35,7 @@
       <itemPath>Timeout.c</itemPath>
       <itemPath>LED_UI.c</itemPath>
       <itemPath>Logger.c</itemPath>
+      <itemPath>RN42.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

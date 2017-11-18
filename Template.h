@@ -1,3 +1,6 @@
+#ifndef TEMPLATE_H
+#define TEMPLATE_H
+
 /**********************************************************
 * Copyright 2017, Murphy Technology, All rights reserved. *
 ***********************************************************/
@@ -7,13 +10,14 @@
 /************** TYPEDEFS ****************/
 
 /****************************************
-* Name: enableInterrupts
-* Arg: Void
-* Return: Void
-* Notes: Enable interrupts at MCU startup
-*
+* Name:
+* Arg:
+* Return:
+* Notes:
 *****************************************/
 
 /********* FUNCTION PROTOTYPES **********/
 
 /******* EXTERN / GLOBAL VARIABLE *******/
+
+#endif /* TEMPLATE_H */
