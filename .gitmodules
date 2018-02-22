@@ -1,3 +1,0 @@
-[submodule "App/App/FreeRTOS"]
-	path = App/App/FreeRTOS
-	url = https://github.com/murphtech/FreeRTOS.git
