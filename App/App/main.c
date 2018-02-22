@@ -6,22 +6,18 @@
 
 #define TASK_EXAMPLE_STACK_SIZE (128 / sizeof(portSTACK_TYPE))
 #define TASK_EXAMPLE_STACK_PRIORITY (tskIDLE_PRIORITY + 1)
-static TaskHandle_t      xCreatedExampleTask;
+static TaskHandle_t xCreatedExampleTask;
 
 int main(void);
-static void example_task(void *p);
+static void task_statusUI(void *p);
 
 int main(void)
 {
 	/* Initializes MCU, drivers and middleware */
 	system_init();
 
-	if (xTaskCreate(
-	example_task, "Example", TASK_EXAMPLE_STACK_SIZE, NULL, TASK_EXAMPLE_STACK_PRIORITY, xCreatedExampleTask)
-	!= pdPASS) {
-		while (1) {
-			;
-		}
+	if (xTaskCreate(task_statusUI, "Example", TASK_EXAMPLE_STACK_SIZE, NULL, TASK_EXAMPLE_STACK_PRIORITY, xCreatedExampleTask) != pdPASS) {
+		while (1) {;}
 	}
 
 	vTaskStartScheduler();
@@ -31,11 +27,11 @@ int main(void)
 	}
 }
 
-static void example_task(void *p)
+static void task_statusUI(void *p)
 {
 	(void)p;
 	while (1) {
 		gpio_toggle_pin_level(MCU_STATUS_LED);
-		vTaskDelay(100/portTICK_PERIOD_MS);
+		vTaskDelay(1000/portTICK_PERIOD_MS);
 	}
 }

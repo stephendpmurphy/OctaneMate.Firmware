@@ -20,6 +20,23 @@ struct usart_sync_descriptor USART_BLE;
 
 struct usart_sync_descriptor USART_STN;
 
+void USART_EDBG_PORT_init(void)
+{
+
+}
+
+void USART_EDBG_CLOCK_init(void)
+{
+
+
+}
+
+void USART_EDBG_init(void)
+{
+
+
+}
+
 void USART_BLE_PORT_init(void)
 {
 
