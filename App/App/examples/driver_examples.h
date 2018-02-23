@@ -6,6 +6,7 @@
  * to avoid losing it when reconfiguring.
  */
 
+#ifdef EXAMPLE_CODE
 #include "utils.h"
 
 #ifndef DRIVER_EXAMPLES_H_INCLUDED
@@ -24,3 +25,4 @@ void USART_STN_example(void);
 #endif
 
 #endif // DRIVER_EXAMPLES_H_INCLUDEDD
+#endif

@@ -28,15 +28,15 @@
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <AsfFrameworkConfig>
       <framework-data xmlns="">
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.31.0" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.31.0" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
     <GpdscFilePath>.atmelstart\AtmelStart.gpdsc</GpdscFilePath>
     <atStartFilePath>.atmelstart\atmel_start_config.atstart</atStartFilePath>
@@ -196,6 +196,8 @@
       <ToolName>EDBG</ToolName>
     </com_atmel_avrdbg_tool_edbg>
     <avrtoolinterfaceclock>2000000</avrtoolinterfaceclock>
+    <ResetRule>0</ResetRule>
+    <EraseKey />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -228,8 +230,8 @@
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value>
-      <Value>%24(PackRepoDir)\arm\cmsis\4.2.0\CMSIS\Include\</Value>
-      <Value>%24(PackRepoDir)\Atmel\SAMG_DFP\2.0.92\samg55\include</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
@@ -267,8 +269,8 @@
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value>
-      <Value>%24(PackRepoDir)\arm\cmsis\4.2.0\CMSIS\Include\</Value>
-      <Value>%24(PackRepoDir)\Atmel\SAMG_DFP\2.0.92\samg55\include</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.preprocessingassembler.general.IncludePaths>
@@ -289,8 +291,8 @@
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value>
-      <Value>%24(PackRepoDir)\arm\cmsis\4.2.0\CMSIS\Include\</Value>
-      <Value>%24(PackRepoDir)\Atmel\SAMG_DFP\2.0.92\samg55\include</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
@@ -327,8 +329,9 @@
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value>
-      <Value>%24(PackRepoDir)\arm\cmsis\4.2.0\CMSIS\Include\</Value>
-      <Value>%24(PackRepoDir)\Atmel\SAMG_DFP\2.0.92\samg55\include</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value>
+      <Value>../src/.</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -348,6 +351,7 @@
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
+  <armgcc.linker.memorysettings.ExternalRAM />
   <armgcc.linker.miscellaneous.LinkerFlags>-Tsamg55j19_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
   <armgcc.assembler.general.IncludePaths>
     <ListValues>
@@ -367,8 +371,8 @@
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value>
-      <Value>%24(PackRepoDir)\arm\cmsis\4.2.0\CMSIS\Include\</Value>
-      <Value>%24(PackRepoDir)\Atmel\SAMG_DFP\2.0.92\samg55\include</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
@@ -390,8 +394,8 @@
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value>
       <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value>
-      <Value>%24(PackRepoDir)\arm\cmsis\4.2.0\CMSIS\Include\</Value>
-      <Value>%24(PackRepoDir)\Atmel\SAMG_DFP\2.0.92\samg55\include</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
@@ -399,7 +403,10 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="pins.h">
+    <Compile Include="Device_Startup\startup_samg55j19.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Device_Startup\system_samg55j19.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Config\FreeRTOSConfig.h">
@@ -418,18 +425,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Config\RTE_Components.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Device_Startup\startup_samg55j19.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Device_Startup\system_samg55j19.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="driver_init.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="driver_init.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="examples\driver_examples.c">
@@ -690,7 +685,16 @@
     <Compile Include="hri\hri_wdt_g55.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="main.c">
+    <Compile Include="src\driver_init.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\driver_init.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\pins.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="thirdparty\RTOS\freertos\FreeRTOSV8.2.3\rtos_port.c">
@@ -786,6 +790,7 @@
     <Folder Include="hpl\pmc\" />
     <Folder Include="hpl\usart\" />
     <Folder Include="hri\" />
+    <Folder Include="src\" />
     <Folder Include="thirdparty\" />
     <Folder Include="thirdparty\RTOS\" />
     <Folder Include="thirdparty\RTOS\freertos\" />

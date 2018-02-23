@@ -97,12 +97,8 @@ SECTIONS
         _efixed = .;            /* End of text section */
     } > ram
 
-    . = ALIGN(8);
+    . = ALIGN(4);
     _etext = .;
-
-    .relocate : AT (_etext)
-    {
-        . = ALIGN(8);    _etext = .;
 
     .relocate : AT (_etext)
     {

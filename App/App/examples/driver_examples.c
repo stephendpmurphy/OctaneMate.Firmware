@@ -6,6 +6,7 @@
  * to avoid losing it when reconfiguring.
  */
 
+#ifdef EXAMPLE_CODE
 #include "driver_examples.h"
 #include "driver_init.h"
 #include "utils.h"
@@ -33,3 +34,4 @@ void USART_STN_example(void)
 
 	io_write(io, (uint8_t *)"Hello World!", 12);
 }
+#endif

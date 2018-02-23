@@ -44,17 +44,20 @@ int main(void);
 
 void __libc_init_array(void);
 
+/* Reset handler */
+void Reset_Handler(void);
+
 /* Default empty handler */
 void Dummy_Handler(void);
 
 /* Cortex-M4 core handlers */
-void NMI_Handler          ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
+void NonMaskableInt_Handler ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
 void HardFault_Handler    ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
-void MemManage_Handler    ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
+void MemoryManagement_Handler ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
 void BusFault_Handler     ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
 void UsageFault_Handler   ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
-void SVC_Handler          ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
-void DebugMon_Handler     ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
+void SVCall_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
+void DebugMonitor_Handler ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
 void PendSV_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
 void SysTick_Handler      ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
 
@@ -100,18 +103,18 @@ const DeviceVectors exception_table = {
         .pvStack = (void*) (&_estack),
 
         .pfnReset_Handler              = (void*) Reset_Handler,
-        .pfnNMI_Handler                = (void*) NMI_Handler,
+        .pfnNonMaskableInt_Handler     = (void*) NonMaskableInt_Handler,
         .pfnHardFault_Handler          = (void*) HardFault_Handler,
-        .pfnMemManage_Handler          = (void*) MemManage_Handler,
+        .pfnMemoryManagement_Handler   = (void*) MemoryManagement_Handler,
         .pfnBusFault_Handler           = (void*) BusFault_Handler,
         .pfnUsageFault_Handler         = (void*) UsageFault_Handler,
-        .pfnReserved1_Handler          = (void*) (0UL), /* Reserved */
-        .pfnReserved2_Handler          = (void*) (0UL), /* Reserved */
-        .pfnReserved3_Handler          = (void*) (0UL), /* Reserved */
-        .pfnReserved4_Handler          = (void*) (0UL), /* Reserved */
-        .pfnSVC_Handler                = (void*) SVC_Handler,
-        .pfnDebugMon_Handler           = (void*) DebugMon_Handler,
-        .pfnReserved5_Handler          = (void*) (0UL), /* Reserved */
+        .pvReservedC9                  = (void*) (0UL), /* Reserved */
+        .pvReservedC8                  = (void*) (0UL), /* Reserved */
+        .pvReservedC7                  = (void*) (0UL), /* Reserved */
+        .pvReservedC6                  = (void*) (0UL), /* Reserved */
+        .pfnSVCall_Handler             = (void*) SVCall_Handler,
+        .pfnDebugMonitor_Handler       = (void*) DebugMonitor_Handler,
+        .pvReservedC3                  = (void*) (0UL), /* Reserved */
         .pfnPendSV_Handler             = (void*) PendSV_Handler,
         .pfnSysTick_Handler            = (void*) SysTick_Handler,
 
