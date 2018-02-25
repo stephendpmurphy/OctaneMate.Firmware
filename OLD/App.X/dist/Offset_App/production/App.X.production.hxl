@@ -1,0 +1,37 @@
+### HEXMate logfile and output summary ###
+### Memory Usage ###
+ Unused memory ranges:
+  0h - 769h
+  76Eh - EFFh
+  F8Ah - 1FFFDh
+  1FFFFh - 1FFFFFh
+  200010h - 2FFFFFh
+  30000Ch - 30003Fh
+  
+ dist/Offset_App/production\App.X.production.hex ranges:
+  76Ah - 76Dh
+  F00h - F89h
+  1FFFEh - 1FFFEh
+  200000h - 20000Fh
+  300000h - 30000Bh
+  
+### Hex Memory Map ###
+ Legend:
+  - = Unused memory
+  F = Filled ROM
+  S = Stored serial code
+  A = Stored ASCII string
+  R = Reserved for checksum
+  C = Stored checksum result
+  T = Trailing code
+  & = Find & replace opcode
+  X = Find & delete opcode
+  1 = dist/Offset_App/production\App.X.production.hex
+00000000: ----------------------------------------------------------------
+00000740: ------------------------------------------1111------------------
+00000F00: 1111111111111111111111111111111111111111111111111111111111111111
+00000F40: 1111111111111111111111111111111111111111111111111111111111111111
+00000F80: 1111111111------------------------------------------------------
+0001FFC0: --------------------------------------------------------------1-
+00200000: 1111111111111111------------------------------------------------
+00300000: 111111111111----------------------------------------------------

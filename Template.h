@@ -2,19 +2,12 @@
 #define TEMPLATE_H
 
 /**********************************************************
-* Copyright 2017, Murphy Technology, All rights reserved. *
+* Copyright 2018, Murphy Technology, All rights reserved. *
 ***********************************************************/
 
 /************ DEFINITIONS ***************/
 
 /************** TYPEDEFS ****************/
-
-/****************************************
-* Name:
-* Arg:
-* Return:
-* Notes:
-*****************************************/
 
 /********* FUNCTION PROTOTYPES **********/
 

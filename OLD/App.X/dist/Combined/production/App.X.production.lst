@@ -1,0 +1,2487 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.43 build -156212558 
+                                                                                               Sun Nov 05 20:48:15 2017
+
+Microchip Technology Omniscient Code Generator v1.43 (Free mode) build 201707250354
+     1                           	processor	18F27K40
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	idataCOMRAM,global,class=CODE,delta=1,noexec
+     6                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1,noexec
+     7                           	psect	_NVFlag_const,global,ovrld,reloc=2,class=CODE,delta=1,noexec
+     8                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     9                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+    10                           	psect	dataCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+    11                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1,lowdata,noexec
+    12                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+    13                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    20                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    21                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    22                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    23                           	psect	text10,global,reloc=2,class=CODE,delta=1
+    24                           	psect	text11,global,reloc=2,class=CODE,delta=1
+    25                           	psect	text12,global,reloc=2,class=CODE,delta=1
+    26                           	psect	text13,global,reloc=2,class=CODE,delta=1,group=1
+    27                           	psect	text14,global,reloc=2,class=CODE,delta=1
+    28                           	psect	text15,global,reloc=2,class=CODE,delta=1,group=1
+    29                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    30                           	psect	text16,global,reloc=2,class=CODE,delta=1,group=1
+    31                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    32  0000                     
+    33                           ; Version 1.43
+    34                           ; Generated 25/07/2017 GMT
+    35                           ; 
+    36                           ; Copyright © 2017, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    37                           ; All rights reserved.
+    38                           ; 
+    39                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    40                           ; 
+    41                           ; Redistribution and use in source and binary forms, with or without modification, are
+    42                           ; permitted provided that the following conditions are met:
+    43                           ; 
+    44                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    45                           ;        conditions and the following disclaimer.
+    46                           ; 
+    47                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    48                           ;        of conditions and the following disclaimer in the documentation and/or other
+    49                           ;        materials provided with the distribution.
+    50                           ; 
+    51                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    52                           ;        software without specific prior written permission.
+    53                           ; 
+    54                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    55                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    56                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    57                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    58                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    59                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    60                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    61                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    62                           ; 
+    63                           ; 
+    64                           ; Code-generator required, PIC18F27K40 Definitions
+    65                           ; 
+    66                           ; SFR Addresses
+    67  0000                     
+    68                           	psect	idataCOMRAM
+    69  0012C4                     __pidataCOMRAM:
+    70                           	opt stack 0
+    71                           
+    72                           ;initializer for _BLUETOOTH_LED
+    73  0012C4  03E8               	dw	1000
+    74  0012C6  01                 	db	1
+    75                           
+    76                           ;initializer for _MCU_LED
+    77  0012C7  03E8               	dw	1000
+    78  0012C9  00                 	db	0
+    79                           
+    80                           ;initializer for _TWENTY_HZ_LOG
+    81  0012CA  00                 	db	0
+    82  0012CB  03                 	db	3
+    83                           
+    84                           ;initializer for _TEN_HZ_LOG
+    85  0012CC  00                 	db	0
+    86  0012CD  02                 	db	2
+    87  0000                     _NVFlag_absconstaddr	set	131070
+    88                           
+    89                           	psect	smallconst
+    90  000F00                     __psmallconst:
+    91                           	opt stack 0
+    92  000F00  00                 	db	0
+    93  000F01                     _DEFAULT_PID_CHANNEL_CONFIG:
+    94                           	opt stack 0
+    95  000F01  00                 	db	0
+    96  000F02  00                 	db	0
+    97  000F03  00                 	db	0
+    98  000F04  00                 	db	0
+    99  000F05  00                 	db	0
+   100  000F06  00                 	db	0
+   101  000F07  0000               	dw	0
+   102  000F09                     __end_of_DEFAULT_PID_CHANNEL_CONFIG:
+   103                           	opt stack 0
+   104  000F09                     _DEFAULT_DEVICE_CONFIG:
+   105                           	opt stack 0
+   106  000F09  00                 	db	0
+   107  000F0A  01                 	db	1
+   108  000F0B  02                 	db	2
+   109  000F0C                     __end_of_DEFAULT_DEVICE_CONFIG:
+   110                           	opt stack 0
+   111  0000                     _NVFlag_absconstaddr	set	131070
+   112  000F0C  00                 	db	0	; dummy byte at the end
+   113  0000                     
+   114                           	psect	_NVFlag_const
+   115  01FFFE                     __p_NVFlag_const:
+   116                           	opt stack 0
+   117  01FFFE                     _NVFlag:
+   118                           	opt stack 0
+   119  01FFFE  55                 	db	85
+   120  01FFFF                     __end_of_NVFlag:
+   121                           	opt stack 0
+   122  0000                     _OSCTUNE	set	3805
+   123  0000                     _OSCFRQ	set	3806
+   124  0000                     _OSCEN	set	3804
+   125  0000                     _OSCCON3	set	3802
+   126  0000                     _OSCCON1	set	3800
+   127  0000                     _ODCONC	set	3871
+   128  0000                     _ODCONB	set	3863
+   129  0000                     _ODCONA	set	3855
+   130  0000                     _WPUC	set	3872
+   131  0000                     _WPUA	set	3856
+   132  0000                     _WPUB	set	3864
+   133  0000                     _WPUE	set	3885
+   134  0000                     _ANSELA	set	3857
+   135  0000                     _ANSELB	set	3865
+   136  0000                     _ANSELC	set	3873
+   137  0000                     _LATAbits	set	3971
+   138  0000                     _TRISC	set	3978
+   139  0000                     _TRISB	set	3977
+   140  0000                     _TRISA	set	3976
+   141  0000                     _LATC	set	3973
+   142  0000                     _LATB	set	3972
+   143  0000                     _LATA	set	3971
+   144                           
+   145                           ; #config settings
+   146  0000                     
+   147                           	psect	cinit
+   148  0011A0                     __pcinit:
+   149                           	opt stack 0
+   150  0011A0                     start_initialization:
+   151                           	opt stack 0
+   152  0011A0                     __initialization:
+   153                           	opt stack 0
+   154                           
+   155                           ; Initialize objects allocated to COMRAM (10 bytes)
+   156                           ; load TBLPTR registers with __pidataCOMRAM
+   157  0011A0  0EC4               	movlw	low __pidataCOMRAM
+   158  0011A2  6EF6               	movwf	tblptrl,c
+   159  0011A4  0E12               	movlw	high __pidataCOMRAM
+   160  0011A6  6EF7               	movwf	tblptrh,c
+   161  0011A8  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
+   162  0011AA  6EF8               	movwf	tblptru,c
+   163  0011AC  EE00  F03D         	lfsr	0,__pdataCOMRAM
+   164  0011B0  EE10 F00A          	lfsr	1,10
+   165  0011B4                     copy_data0:
+   166  0011B4  0009               	tblrd		*+
+   167  0011B6  CFF5 FFEE          	movff	tablat,postinc0
+   168  0011BA  50E5               	movf	postdec1,w,c
+   169  0011BC  50E1               	movf	fsr1l,w,c
+   170  0011BE  E1FA               	bnz	copy_data0
+   171                           
+   172                           ; Clear objects allocated to BANK0 (160 bytes)
+   173  0011C0  EE00  F060         	lfsr	0,__pbssBANK0
+   174  0011C4  0EA0               	movlw	160
+   175  0011C6                     clear_0:
+   176  0011C6  6AEE               	clrf	postinc0,c
+   177  0011C8  06E8               	decf	wreg,f,c
+   178  0011CA  E1FD               	bnz	clear_0
+   179                           
+   180                           ; Clear objects allocated to COMRAM (49 bytes)
+   181  0011CC  EE00  F001         	lfsr	0,__pbssCOMRAM
+   182  0011D0  0E31               	movlw	49
+   183  0011D2                     clear_1:
+   184  0011D2  6AEE               	clrf	postinc0,c
+   185  0011D4  06E8               	decf	wreg,f,c
+   186  0011D6  E1FD               	bnz	clear_1
+   187  0011D8                     end_of_initialization:
+   188                           	opt stack 0
+   189  0011D8                     __end_of__initialization:
+   190                           	opt stack 0
+   191  0011D8  0100               	movlb	0
+   192  0011DA  EFAF  F008         	goto	_main	;jump to C main() function
+   193                           tblptru	equ	0xFF8
+   194                           tblptrh	equ	0xFF7
+   195                           tblptrl	equ	0xFF6
+   196                           tablat	equ	0xFF5
+   197                           postinc0	equ	0xFEE
+   198                           wreg	equ	0xFE8
+   199                           postdec1	equ	0xFE5
+   200                           fsr1l	equ	0xFE1
+   201                           
+   202                           	psect	bssCOMRAM
+   203  000001                     __pbssCOMRAM:
+   204                           	opt stack 0
+   205  000001                     __timer_tick:
+   206                           	opt stack 0
+   207  000001                     	ds	2
+   208  000003                     _DEVICE_TIMEOUTS:
+   209                           	opt stack 0
+   210  000003                     	ds	44
+   211  00002F                     _DEVICE_CONFIG:
+   212                           	opt stack 0
+   213  00002F                     	ds	3
+   214                           tblptru	equ	0xFF8
+   215                           tblptrh	equ	0xFF7
+   216                           tblptrl	equ	0xFF6
+   217                           tablat	equ	0xFF5
+   218                           postinc0	equ	0xFEE
+   219                           wreg	equ	0xFE8
+   220                           postdec1	equ	0xFE5
+   221                           fsr1l	equ	0xFE1
+   222                           
+   223                           	psect	dataCOMRAM
+   224  00003D                     __pdataCOMRAM:
+   225                           	opt stack 0
+   226  00003D                     _BLUETOOTH_LED:
+   227                           	opt stack 0
+   228  00003D                     	ds	3
+   229  000040                     _MCU_LED:
+   230                           	opt stack 0
+   231  000040                     	ds	3
+   232  000043                     _TWENTY_HZ_LOG:
+   233                           	opt stack 0
+   234  000043                     	ds	2
+   235  000045                     _TEN_HZ_LOG:
+   236                           	opt stack 0
+   237  000045                     	ds	2
+   238                           tblptru	equ	0xFF8
+   239                           tblptrh	equ	0xFF7
+   240                           tblptrl	equ	0xFF6
+   241                           tablat	equ	0xFF5
+   242                           postinc0	equ	0xFEE
+   243                           wreg	equ	0xFE8
+   244                           postdec1	equ	0xFE5
+   245                           fsr1l	equ	0xFE1
+   246                           
+   247                           	psect	bssBANK0
+   248  000060                     __pbssBANK0:
+   249                           	opt stack 0
+   250  000060                     _PID_CHANNEL_CONFIG:
+   251                           	opt stack 0
+   252  000060                     	ds	160
+   253                           tblptru	equ	0xFF8
+   254                           tblptrh	equ	0xFF7
+   255                           tblptrl	equ	0xFF6
+   256                           tablat	equ	0xFF5
+   257                           postinc0	equ	0xFEE
+   258                           wreg	equ	0xFE8
+   259                           postdec1	equ	0xFE5
+   260                           fsr1l	equ	0xFE1
+   261                           
+   262                           	psect	cstackCOMRAM
+   263  000032                     __pcstackCOMRAM:
+   264                           	opt stack 0
+   265  000032                     ??_UpdateMCU_LED:
+   266  000032                     ??_UpdateBluetooth_LED:
+   267  000032                     SetTimerStatus@enabled:
+   268                           	opt stack 0
+   269  000032                     SetTimerPeriodic@periodic:
+   270                           	opt stack 0
+   271  000032                     memcpy@d1:
+   272                           	opt stack 0
+   273  000032                     memset@p1:
+   274                           	opt stack 0
+   275                           
+   276                           ; 2 bytes @ 0x0
+   277  000032                     	ds	1
+   278  000033                     SetTimerStatus@handle:
+   279                           	opt stack 0
+   280                           
+   281                           ; 1 bytes @ 0x1
+   282  000033                     	ds	1
+   283  000034                     ??_ServiceTimers:
+   284  000034                     SetTimerPeriodic@handle:
+   285                           	opt stack 0
+   286  000034                     memcpy@s1:
+   287                           	opt stack 0
+   288  000034                     memset@c:
+   289                           	opt stack 0
+   290                           
+   291                           ; 2 bytes @ 0x2
+   292  000034                     	ds	1
+   293  000035                     SetLED_State@LED:
+   294                           	opt stack 0
+   295                           
+   296                           ; 3 bytes @ 0x3
+   297  000035                     	ds	1
+   298  000036                     ServiceTimers@handle:
+   299                           	opt stack 0
+   300  000036                     memcpy@n:
+   301                           	opt stack 0
+   302  000036                     memset@n:
+   303                           	opt stack 0
+   304                           
+   305                           ; 2 bytes @ 0x4
+   306  000036                     	ds	2
+   307  000038                     SetLED_State@state:
+   308                           	opt stack 0
+   309  000038                     memcpy@d:
+   310                           	opt stack 0
+   311  000038                     memset@p:
+   312                           	opt stack 0
+   313                           
+   314                           ; 2 bytes @ 0x6
+   315  000038                     	ds	2
+   316  00003A                     memcpy@s:
+   317                           	opt stack 0
+   318                           
+   319                           ; 2 bytes @ 0x8
+   320  00003A                     	ds	2
+   321  00003C                     memcpy@tmp:
+   322                           	opt stack 0
+   323                           
+   324                           ; 1 bytes @ 0xA
+   325  00003C                     	ds	1
+   326  00003D                     tblptru	equ	0xFF8
+   327                           tblptrh	equ	0xFF7
+   328                           tblptrl	equ	0xFF6
+   329                           tablat	equ	0xFF5
+   330                           postinc0	equ	0xFEE
+   331                           wreg	equ	0xFE8
+   332                           postdec1	equ	0xFE5
+   333                           fsr1l	equ	0xFE1
+   334                           
+   335                           ; 1 bytes @ 0xB
+   336 ;;
+   337 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   338 ;;
+   339 ;; *************** function _main *****************
+   340 ;; Defined at:
+   341 ;;		line 30 in file "main.c"
+   342 ;; Parameters:    Size  Location     Type
+   343 ;;		None
+   344 ;; Auto vars:     Size  Location     Type
+   345 ;;		None
+   346 ;; Return value:  Size  Location     Type
+   347 ;;                  1    wreg      void 
+   348 ;; Registers used:
+   349 ;;		wreg, fsr2l, fsr2h, status,2, status,0, pclath, tosl, tblptrl, tblptrh, tblptru, prodl, prodh, cstack
+   350 ;; Tracked objects:
+   351 ;;		On entry : 0/0
+   352 ;;		On exit  : 0/0
+   353 ;;		Unchanged: 0/0
+   354 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   355 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   356 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   357 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   358 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   359 ;;Total ram usage:        0 bytes
+   360 ;; Hardware stack levels required when called:    2
+   361 ;; This function calls:
+   362 ;;		_InitDeviceConfig
+   363 ;;		_InitTimer
+   364 ;;		_SYSTEM_Initialize
+   365 ;;		_ServiceTimers
+   366 ;;		_SetLED_State
+   367 ;; This function is called by:
+   368 ;;		Startup code after reset
+   369 ;; This function uses a non-reentrant model
+   370 ;;
+   371                           
+   372                           	psect	text0
+   373  00115E                     __ptext0:
+   374                           	opt stack 0
+   375  00115E                     _main:
+   376                           	opt stack 29
+   377                           
+   378                           ;main.c: 33: SYSTEM_Initialize();
+   379                           
+   380                           ;incstack = 0
+   381  00115E  EC67  F009         	call	_SYSTEM_Initialize	;wreg free
+   382                           
+   383                           ;main.c: 34: InitTimer();
+   384  001162  EC38  F009         	call	_InitTimer	;wreg free
+   385                           
+   386                           ;main.c: 35: InitDeviceConfig();
+   387  001166  EC47  F009         	call	_InitDeviceConfig	;wreg free
+   388                           
+   389                           ;main.c: 37: SetLED_State(MCU_LED, LED_ON);
+   390  00116A  C040  F035         	movff	_MCU_LED,SetLED_State@LED
+   391  00116E  C041  F036         	movff	_MCU_LED+1,SetLED_State@LED+1
+   392  001172  C042  F037         	movff	_MCU_LED+2,SetLED_State@LED+2
+   393  001176  0E00               	movlw	0
+   394  001178  6E39               	movwf	SetLED_State@state+1,c
+   395  00117A  0E00               	movlw	0
+   396  00117C  6E38               	movwf	SetLED_State@state,c
+   397  00117E  EC17  F009         	call	_SetLED_State	;wreg free
+   398                           
+   399                           ;main.c: 38: SetLED_State(BLUETOOTH_LED, LED_ON);
+   400  001182  C03D  F035         	movff	_BLUETOOTH_LED,SetLED_State@LED
+   401  001186  C03E  F036         	movff	_BLUETOOTH_LED+1,SetLED_State@LED+1
+   402  00118A  C03F  F037         	movff	_BLUETOOTH_LED+2,SetLED_State@LED+2
+   403  00118E  0E00               	movlw	0
+   404  001190  6E39               	movwf	SetLED_State@state+1,c
+   405  001192  0E00               	movlw	0
+   406  001194  6E38               	movwf	SetLED_State@state,c
+   407  001196  EC17  F009         	call	_SetLED_State	;wreg free
+   408  00119A                     
+   409                           ;main.c: 41: {
+   410                           ;main.c: 42: ServiceTimers();
+   411  00119A  EC87  F007         	call	_ServiceTimers	;wreg free
+   412  00119E  D7FD               	goto	l79
+   413  0011A0                     __end_of_main:
+   414                           	opt stack 0
+   415                           tblptru	equ	0xFF8
+   416                           tblptrh	equ	0xFF7
+   417                           tblptrl	equ	0xFF6
+   418                           tablat	equ	0xFF5
+   419                           postinc0	equ	0xFEE
+   420                           wreg	equ	0xFE8
+   421                           postdec1	equ	0xFE5
+   422                           fsr1l	equ	0xFE1
+   423                           
+   424 ;; *************** function _SetLED_State *****************
+   425 ;; Defined at:
+   426 ;;		line 98 in file "LED_UI.c"
+   427 ;; Parameters:    Size  Location     Type
+   428 ;;  LED             3    3[COMRAM] struct STATUS_LED
+   429 ;;  state           2    6[COMRAM] unsigned int 
+   430 ;; Auto vars:     Size  Location     Type
+   431 ;;		None
+   432 ;; Return value:  Size  Location     Type
+   433 ;;                  1    wreg      void 
+   434 ;; Registers used:
+   435 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+   436 ;; Tracked objects:
+   437 ;;		On entry : 0/0
+   438 ;;		On exit  : 0/0
+   439 ;;		Unchanged: 0/0
+   440 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   441 ;;      Params:         5       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   442 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   443 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   444 ;;      Totals:         5       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   445 ;;Total ram usage:        5 bytes
+   446 ;; Hardware stack levels used:    1
+   447 ;; Hardware stack levels required when called:    1
+   448 ;; This function calls:
+   449 ;;		_SetTimerPeriodic
+   450 ;;		_SetTimerStatus
+   451 ;; This function is called by:
+   452 ;;		_main
+   453 ;; This function uses a non-reentrant model
+   454 ;;
+   455                           
+   456                           	psect	text1
+   457  00122E                     __ptext1:
+   458                           	opt stack 0
+   459  00122E                     _SetLED_State:
+   460                           	opt stack 29
+   461                           
+   462                           ;LED_UI.c: 100: LED.LED_STATE = state;
+   463                           
+   464                           ;incstack = 0
+   465  00122E  C038  F035         	movff	SetLED_State@state,SetLED_State@LED
+   466  001232  C039  F036         	movff	SetLED_State@state+1,SetLED_State@LED+1
+   467                           
+   468                           ;LED_UI.c: 101: SetTimerPeriodic(LED.TIMEOUT_HANDLE, state);
+   469  001236  C038  F032         	movff	SetLED_State@state,SetTimerPeriodic@periodic
+   470  00123A  C039  F033         	movff	SetLED_State@state+1,SetTimerPeriodic@periodic+1
+   471  00123E  5037               	movf	SetLED_State@LED+2,w,c
+   472  001240  EC05  F009         	call	_SetTimerPeriodic
+   473                           
+   474                           ;LED_UI.c: 102: SetTimerStatus(LED.TIMEOUT_HANDLE, 0x01);
+   475  001244  0E01               	movlw	1
+   476  001246  6E32               	movwf	SetTimerStatus@enabled,c
+   477  001248  5037               	movf	SetLED_State@LED+2,w,c
+   478  00124A  EC56  F009         	call	_SetTimerStatus
+   479  00124E  0012               	return		;funcret
+   480  001250                     __end_of_SetLED_State:
+   481                           	opt stack 0
+   482                           tblptru	equ	0xFF8
+   483                           tblptrh	equ	0xFF7
+   484                           tblptrl	equ	0xFF6
+   485                           tablat	equ	0xFF5
+   486                           postinc0	equ	0xFEE
+   487                           wreg	equ	0xFE8
+   488                           postdec1	equ	0xFE5
+   489                           fsr1l	equ	0xFE1
+   490                           
+   491 ;; *************** function _SetTimerPeriodic *****************
+   492 ;; Defined at:
+   493 ;;		line 65 in file "Timeout.c"
+   494 ;; Parameters:    Size  Location     Type
+   495 ;;  handle          1    wreg     enum E184
+   496 ;;  periodic        2    0[COMRAM] unsigned int 
+   497 ;; Auto vars:     Size  Location     Type
+   498 ;;  handle          1    2[COMRAM] enum E184
+   499 ;; Return value:  Size  Location     Type
+   500 ;;                  1    wreg      void 
+   501 ;; Registers used:
+   502 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh
+   503 ;; Tracked objects:
+   504 ;;		On entry : 0/0
+   505 ;;		On exit  : 0/0
+   506 ;;		Unchanged: 0/0
+   507 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   508 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   509 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   510 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   511 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   512 ;;Total ram usage:        3 bytes
+   513 ;; Hardware stack levels used:    1
+   514 ;; This function calls:
+   515 ;;		Nothing
+   516 ;; This function is called by:
+   517 ;;		_SetLED_State
+   518 ;; This function uses a non-reentrant model
+   519 ;;
+   520                           
+   521                           	psect	text2
+   522  00120A                     __ptext2:
+   523                           	opt stack 0
+   524  00120A                     _SetTimerPeriodic:
+   525                           	opt stack 29
+   526                           
+   527                           ;incstack = 0
+   528                           ;SetTimerPeriodic@handle stored from wreg
+   529  00120A  6E34               	movwf	SetTimerPeriodic@handle,c
+   530                           
+   531                           ;Timeout.c: 67: DEVICE_TIMEOUTS[handle].periodic = periodic;
+   532  00120C  5034               	movf	SetTimerPeriodic@handle,w,c
+   533  00120E  0D0B               	mullw	11
+   534  001210  0E03               	movlw	3
+   535  001212  26F3               	addwf	prodl,f,c
+   536  001214  0E00               	movlw	0
+   537  001216  22F4               	addwfc	prodh,f,c
+   538  001218  0E03               	movlw	low _DEVICE_TIMEOUTS
+   539  00121A  24F3               	addwf	prodl,w,c
+   540  00121C  6ED9               	movwf	fsr2l,c
+   541  00121E  0E00               	movlw	high _DEVICE_TIMEOUTS
+   542  001220  20F4               	addwfc	prodh,w,c
+   543  001222  6EDA               	movwf	fsr2h,c
+   544  001224  C032  FFDE         	movff	SetTimerPeriodic@periodic,postinc2
+   545  001228  C033  FFDD         	movff	SetTimerPeriodic@periodic+1,postdec2
+   546  00122C  0012               	return		;funcret
+   547  00122E                     __end_of_SetTimerPeriodic:
+   548                           	opt stack 0
+   549                           tblptru	equ	0xFF8
+   550                           tblptrh	equ	0xFF7
+   551                           tblptrl	equ	0xFF6
+   552                           tablat	equ	0xFF5
+   553                           prodh	equ	0xFF4
+   554                           prodl	equ	0xFF3
+   555                           postinc0	equ	0xFEE
+   556                           wreg	equ	0xFE8
+   557                           postdec1	equ	0xFE5
+   558                           fsr1l	equ	0xFE1
+   559                           postinc2	equ	0xFDE
+   560                           postdec2	equ	0xFDD
+   561                           fsr2h	equ	0xFDA
+   562                           fsr2l	equ	0xFD9
+   563                           
+   564 ;; *************** function _ServiceTimers *****************
+   565 ;; Defined at:
+   566 ;;		line 77 in file "Timeout.c"
+   567 ;; Parameters:    Size  Location     Type
+   568 ;;		None
+   569 ;; Auto vars:     Size  Location     Type
+   570 ;;  handle          1    4[COMRAM] enum E184
+   571 ;; Return value:  Size  Location     Type
+   572 ;;                  1    wreg      void 
+   573 ;; Registers used:
+   574 ;;		wreg, fsr2l, fsr2h, status,2, status,0, pclath, tosl, prodl, prodh, cstack
+   575 ;; Tracked objects:
+   576 ;;		On entry : 0/0
+   577 ;;		On exit  : 0/0
+   578 ;;		Unchanged: 0/0
+   579 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   580 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   581 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   582 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   583 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   584 ;;Total ram usage:        3 bytes
+   585 ;; Hardware stack levels used:    1
+   586 ;; Hardware stack levels required when called:    1
+   587 ;; This function calls:
+   588 ;;		_LogTenHz
+   589 ;;		_LogTwentyHz
+   590 ;;		_SetTimerStatus
+   591 ;;		_UpdateBluetooth_LED
+   592 ;;		_UpdateMCU_LED
+   593 ;; This function is called by:
+   594 ;;		_main
+   595 ;; This function uses a non-reentrant model
+   596 ;;
+   597                           
+   598                           	psect	text3
+   599  000F0E                     __ptext3:
+   600                           	opt stack 0
+   601  000F0E                     _ServiceTimers:
+   602                           	opt stack 29
+   603                           
+   604                           ;Timeout.c: 79: TIMEOUT_HANDLE_t handle = 0;
+   605                           
+   606                           ;incstack = 0
+   607  000F0E  0E00               	movlw	0
+   608  000F10  6E36               	movwf	ServiceTimers@handle,c
+   609                           
+   610                           ;Timeout.c: 81: for(handle=0;handle<4;handle++)
+   611  000F12  0E00               	movlw	0
+   612  000F14  6E36               	movwf	ServiceTimers@handle,c
+   613  000F16                     l1193:
+   614  000F16  0E03               	movlw	3
+   615  000F18  6436               	cpfsgt	ServiceTimers@handle,c
+   616  000F1A  D001               	goto	l124
+   617  000F1C  0012               	return	
+   618  000F1E                     l124:
+   619                           
+   620                           ;Timeout.c: 82: {
+   621                           ;Timeout.c: 83: if((0x01 == DEVICE_TIMEOUTS[handle].enabled) && (DEVICE_TIMEOUTS[handle]
+      +                          .timeout_ms < _timer_tick))
+   622  000F1E  5036               	movf	ServiceTimers@handle,w,c
+   623  000F20  0D0B               	mullw	11
+   624  000F22  0E03               	movlw	low _DEVICE_TIMEOUTS
+   625  000F24  24F3               	addwf	prodl,w,c
+   626  000F26  6ED9               	movwf	fsr2l,c
+   627  000F28  0E00               	movlw	high _DEVICE_TIMEOUTS
+   628  000F2A  20F4               	addwfc	prodh,w,c
+   629  000F2C  6EDA               	movwf	fsr2h,c
+   630  000F2E  04DE               	decf	postinc2,w,c
+   631  000F30  A4D8               	btfss	status,2,c
+   632  000F32  D02A               	goto	u209
+   633  000F34  5036               	movf	ServiceTimers@handle,w,c
+   634  000F36  0D0B               	mullw	11
+   635  000F38  0E01               	movlw	1
+   636  000F3A  26F3               	addwf	prodl,f,c
+   637  000F3C  0E00               	movlw	0
+   638  000F3E  22F4               	addwfc	prodh,f,c
+   639  000F40  0E03               	movlw	low _DEVICE_TIMEOUTS
+   640  000F42  24F3               	addwf	prodl,w,c
+   641  000F44  6ED9               	movwf	fsr2l,c
+   642  000F46  0E00               	movlw	high _DEVICE_TIMEOUTS
+   643  000F48  20F4               	addwfc	prodh,w,c
+   644  000F4A  6EDA               	movwf	fsr2h,c
+   645  000F4C  5001               	movf	__timer_tick,w,c
+   646  000F4E  5CDE               	subwf	postinc2,w,c
+   647  000F50  5002               	movf	__timer_tick+1,w,c
+   648  000F52  58DE               	subwfb	postinc2,w,c
+   649  000F54  B0D8               	btfsc	status,0,c
+   650  000F56  D018               	goto	u209
+   651                           
+   652                           ;Timeout.c: 84: {
+   653                           ;Timeout.c: 85: DEVICE_TIMEOUTS[handle].callback();
+   654  000F58  5036               	movf	ServiceTimers@handle,w,c
+   655  000F5A  0D0B               	mullw	11
+   656  000F5C  0E05               	movlw	5
+   657  000F5E  26F3               	addwf	prodl,f,c
+   658  000F60  0E00               	movlw	0
+   659  000F62  22F4               	addwfc	prodh,f,c
+   660  000F64  0E03               	movlw	low _DEVICE_TIMEOUTS
+   661  000F66  24F3               	addwf	prodl,w,c
+   662  000F68  6ED9               	movwf	fsr2l,c
+   663  000F6A  0E00               	movlw	high _DEVICE_TIMEOUTS
+   664  000F6C  20F4               	addwfc	prodh,w,c
+   665  000F6E  6EDA               	movwf	fsr2h,c
+   666  000F70  D801               	call	u208
+   667  000F72  D00A               	goto	u209
+   668  000F74                     u208:
+   669  000F74  0005               	push	
+   670  000F76  6EFA               	movwf	pclath,c
+   671  000F78  50DE               	movf	postinc2,w,c
+   672  000F7A  6EFD               	movwf	tosl,c
+   673  000F7C  50DE               	movf	postinc2,w,c
+   674  000F7E  6EFE               	movwf	tosh,c
+   675  000F80  50DE               	movf	postinc2,w,c
+   676  000F82  6EFF               	movwf	tosu,c
+   677  000F84  50FA               	movf	pclath,w,c
+   678  000F86  0012               	return		;indir
+   679  000F88                     u209:
+   680                           
+   681                           ;Timeout.c: 86: }
+   682                           ;Timeout.c: 88: if(DEVICE_TIMEOUTS[handle].periodic > 0)
+   683  000F88  5036               	movf	ServiceTimers@handle,w,c
+   684  000F8A  0D0B               	mullw	11
+   685  000F8C  0E03               	movlw	3
+   686  000F8E  26F3               	addwf	prodl,f,c
+   687  000F90  0E00               	movlw	0
+   688  000F92  22F4               	addwfc	prodh,f,c
+   689  000F94  0E03               	movlw	low _DEVICE_TIMEOUTS
+   690  000F96  24F3               	addwf	prodl,w,c
+   691  000F98  6ED9               	movwf	fsr2l,c
+   692  000F9A  0E00               	movlw	high _DEVICE_TIMEOUTS
+   693  000F9C  20F4               	addwfc	prodh,w,c
+   694  000F9E  6EDA               	movwf	fsr2h,c
+   695  000FA0  50DE               	movf	postinc2,w,c
+   696  000FA2  10DE               	iorwf	postinc2,w,c
+   697  000FA4  B4D8               	btfsc	status,2,c
+   698  000FA6  D021               	goto	l127
+   699                           
+   700                           ;Timeout.c: 89: {
+   701                           ;Timeout.c: 90: DEVICE_TIMEOUTS[handle].timeout_ms += DEVICE_TIMEOUTS[handle].periodic;
+   702  000FA8  5036               	movf	ServiceTimers@handle,w,c
+   703  000FAA  0D0B               	mullw	11
+   704  000FAC  0E03               	movlw	3
+   705  000FAE  26F3               	addwf	prodl,f,c
+   706  000FB0  0E00               	movlw	0
+   707  000FB2  22F4               	addwfc	prodh,f,c
+   708  000FB4  0E03               	movlw	low _DEVICE_TIMEOUTS
+   709  000FB6  24F3               	addwf	prodl,w,c
+   710  000FB8  6ED9               	movwf	fsr2l,c
+   711  000FBA  0E00               	movlw	high _DEVICE_TIMEOUTS
+   712  000FBC  20F4               	addwfc	prodh,w,c
+   713  000FBE  6EDA               	movwf	fsr2h,c
+   714  000FC0  CFDE F034          	movff	postinc2,??_ServiceTimers
+   715  000FC4  CFDD F035          	movff	postdec2,??_ServiceTimers+1
+   716  000FC8  5036               	movf	ServiceTimers@handle,w,c
+   717  000FCA  0D0B               	mullw	11
+   718  000FCC  0E01               	movlw	1
+   719  000FCE  26F3               	addwf	prodl,f,c
+   720  000FD0  0E00               	movlw	0
+   721  000FD2  22F4               	addwfc	prodh,f,c
+   722  000FD4  0E03               	movlw	low _DEVICE_TIMEOUTS
+   723  000FD6  24F3               	addwf	prodl,w,c
+   724  000FD8  6ED9               	movwf	fsr2l,c
+   725  000FDA  0E00               	movlw	high _DEVICE_TIMEOUTS
+   726  000FDC  20F4               	addwfc	prodh,w,c
+   727  000FDE  6EDA               	movwf	fsr2h,c
+   728  000FE0  5034               	movf	??_ServiceTimers,w,c
+   729  000FE2  26DE               	addwf	postinc2,f,c
+   730  000FE4  5035               	movf	??_ServiceTimers+1,w,c
+   731  000FE6  22DD               	addwfc	postdec2,f,c
+   732                           
+   733                           ;Timeout.c: 91: }
+   734  000FE8  D005               	goto	l128
+   735  000FEA                     l127:
+   736                           
+   737                           ;Timeout.c: 92: else
+   738                           ;Timeout.c: 93: {
+   739                           ;Timeout.c: 94: SetTimerStatus(handle, 0x00);
+   740  000FEA  0E00               	movlw	0
+   741  000FEC  6E32               	movwf	SetTimerStatus@enabled,c
+   742  000FEE  5036               	movf	ServiceTimers@handle,w,c
+   743  000FF0  EC56  F009         	call	_SetTimerStatus
+   744  000FF4                     l128:
+   745  000FF4  2A36               	incf	ServiceTimers@handle,f,c
+   746  000FF6  D78F               	goto	l1193
+   747  000FF8                     __end_of_ServiceTimers:
+   748                           	opt stack 0
+   749                           tosu	equ	0xFFF
+   750                           tosh	equ	0xFFE
+   751                           tosl	equ	0xFFD
+   752                           pclath	equ	0xFFA
+   753                           tblptru	equ	0xFF8
+   754                           tblptrh	equ	0xFF7
+   755                           tblptrl	equ	0xFF6
+   756                           tablat	equ	0xFF5
+   757                           prodh	equ	0xFF4
+   758                           prodl	equ	0xFF3
+   759                           postinc0	equ	0xFEE
+   760                           wreg	equ	0xFE8
+   761                           postdec1	equ	0xFE5
+   762                           fsr1l	equ	0xFE1
+   763                           postinc2	equ	0xFDE
+   764                           postdec2	equ	0xFDD
+   765                           fsr2h	equ	0xFDA
+   766                           fsr2l	equ	0xFD9
+   767                           status	equ	0xFD8
+   768                           
+   769 ;; *************** function _LogTwentyHz *****************
+   770 ;; Defined at:
+   771 ;;		line 52 in file "Logger.c"
+   772 ;; Parameters:    Size  Location     Type
+   773 ;;		None
+   774 ;; Auto vars:     Size  Location     Type
+   775 ;;		None
+   776 ;; Return value:  Size  Location     Type
+   777 ;;                  1    wreg      void 
+   778 ;; Registers used:
+   779 ;;		None
+   780 ;; Tracked objects:
+   781 ;;		On entry : 0/0
+   782 ;;		On exit  : 0/0
+   783 ;;		Unchanged: 0/0
+   784 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   785 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   786 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   787 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   788 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   789 ;;Total ram usage:        0 bytes
+   790 ;; Hardware stack levels used:    1
+   791 ;; This function calls:
+   792 ;;		Nothing
+   793 ;; This function is called by:
+   794 ;;		_InitLogger
+   795 ;;		_ServiceTimers
+   796 ;; This function uses a non-reentrant model
+   797 ;;
+   798                           
+   799                           	psect	text4
+   800  0012D8                     __ptext4:
+   801                           	opt stack 0
+   802  0012D8                     _LogTwentyHz:
+   803                           	opt stack 29
+   804                           
+   805                           ;incstack = 0
+   806  0012D8  0012               	return		;funcret
+   807  0012DA                     __end_of_LogTwentyHz:
+   808                           	opt stack 0
+   809                           tosu	equ	0xFFF
+   810                           tosh	equ	0xFFE
+   811                           tosl	equ	0xFFD
+   812                           pclath	equ	0xFFA
+   813                           tblptru	equ	0xFF8
+   814                           tblptrh	equ	0xFF7
+   815                           tblptrl	equ	0xFF6
+   816                           tablat	equ	0xFF5
+   817                           prodh	equ	0xFF4
+   818                           prodl	equ	0xFF3
+   819                           postinc0	equ	0xFEE
+   820                           wreg	equ	0xFE8
+   821                           postdec1	equ	0xFE5
+   822                           fsr1l	equ	0xFE1
+   823                           postinc2	equ	0xFDE
+   824                           postdec2	equ	0xFDD
+   825                           fsr2h	equ	0xFDA
+   826                           fsr2l	equ	0xFD9
+   827                           status	equ	0xFD8
+   828                           
+   829 ;; *************** function _LogTenHz *****************
+   830 ;; Defined at:
+   831 ;;		line 40 in file "Logger.c"
+   832 ;; Parameters:    Size  Location     Type
+   833 ;;		None
+   834 ;; Auto vars:     Size  Location     Type
+   835 ;;		None
+   836 ;; Return value:  Size  Location     Type
+   837 ;;                  1    wreg      void 
+   838 ;; Registers used:
+   839 ;;		None
+   840 ;; Tracked objects:
+   841 ;;		On entry : 0/0
+   842 ;;		On exit  : 0/0
+   843 ;;		Unchanged: 0/0
+   844 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   845 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   846 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   847 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   848 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   849 ;;Total ram usage:        0 bytes
+   850 ;; Hardware stack levels used:    1
+   851 ;; This function calls:
+   852 ;;		Nothing
+   853 ;; This function is called by:
+   854 ;;		_InitLogger
+   855 ;;		_ServiceTimers
+   856 ;; This function uses a non-reentrant model
+   857 ;;
+   858                           
+   859                           	psect	text5
+   860  0012DA                     __ptext5:
+   861                           	opt stack 0
+   862  0012DA                     _LogTenHz:
+   863                           	opt stack 29
+   864                           
+   865                           ;incstack = 0
+   866  0012DA  0012               	return		;funcret
+   867  0012DC                     __end_of_LogTenHz:
+   868                           	opt stack 0
+   869                           tosu	equ	0xFFF
+   870                           tosh	equ	0xFFE
+   871                           tosl	equ	0xFFD
+   872                           pclath	equ	0xFFA
+   873                           tblptru	equ	0xFF8
+   874                           tblptrh	equ	0xFF7
+   875                           tblptrl	equ	0xFF6
+   876                           tablat	equ	0xFF5
+   877                           prodh	equ	0xFF4
+   878                           prodl	equ	0xFF3
+   879                           postinc0	equ	0xFEE
+   880                           wreg	equ	0xFE8
+   881                           postdec1	equ	0xFE5
+   882                           fsr1l	equ	0xFE1
+   883                           postinc2	equ	0xFDE
+   884                           postdec2	equ	0xFDD
+   885                           fsr2h	equ	0xFDA
+   886                           fsr2l	equ	0xFD9
+   887                           status	equ	0xFD8
+   888                           
+   889 ;; *************** function _UpdateBluetooth_LED *****************
+   890 ;; Defined at:
+   891 ;;		line 69 in file "LED_UI.c"
+   892 ;; Parameters:    Size  Location     Type
+   893 ;;		None
+   894 ;; Auto vars:     Size  Location     Type
+   895 ;;		None
+   896 ;; Return value:  Size  Location     Type
+   897 ;;                  1    wreg      void 
+   898 ;; Registers used:
+   899 ;;		wreg, status,2, status,0
+   900 ;; Tracked objects:
+   901 ;;		On entry : 0/0
+   902 ;;		On exit  : 0/0
+   903 ;;		Unchanged: 0/0
+   904 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   905 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   906 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   907 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   908 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   909 ;;Total ram usage:        2 bytes
+   910 ;; Hardware stack levels used:    1
+   911 ;; This function calls:
+   912 ;;		Nothing
+   913 ;; This function is called by:
+   914 ;;		_InitLED_UI
+   915 ;;		_ServiceTimers
+   916 ;; This function uses a non-reentrant model
+   917 ;;
+   918                           
+   919                           	psect	text6
+   920  000FF8                     __ptext6:
+   921                           	opt stack 0
+   922  000FF8                     _UpdateBluetooth_LED:
+   923                           	opt stack 29
+   924                           
+   925                           ;LED_UI.c: 71: switch(BLUETOOTH_LED.LED_STATE)
+   926                           
+   927                           ;incstack = 0
+   928  000FF8  D014               	goto	l168
+   929  000FFA                     
+   930                           ;LED_UI.c: 74: do { LATAbits.LATA1 = 0; } while(0);
+   931  000FFA  9283               	bcf	3971,1,c	;volatile
+   932                           
+   933                           ;LED_UI.c: 75: break;
+   934  000FFC  0012               	return	
+   935  000FFE                     
+   936                           ;LED_UI.c: 78: do { LATAbits.LATA1 = 1; } while(0);
+   937  000FFE  8283               	bsf	3971,1,c	;volatile
+   938                           
+   939                           ;LED_UI.c: 79: break;
+   940  001000  0012               	return	
+   941  001002                     
+   942                           ;LED_UI.c: 82: do { LATAbits.LATA1 = ~LATAbits.LATA1; } while(0);
+   943  001002  A283               	btfss	3971,1,c	;volatile
+   944  001004  D002               	goto	u160
+   945  001006  0E01               	movlw	1
+   946  001008  D001               	goto	u166
+   947  00100A                     u160:
+   948  00100A  0E00               	movlw	0
+   949  00100C                     u166:
+   950  00100C  0AFF               	xorlw	255
+   951  00100E  6E32               	movwf	??_UpdateBluetooth_LED& (0+255),c
+   952  001010  4632               	rlncf	??_UpdateBluetooth_LED,f,c
+   953  001012  5083               	movf	3971,w,c	;volatile
+   954  001014  1832               	xorwf	??_UpdateBluetooth_LED,w,c
+   955  001016  0BFD               	andlw	-3
+   956  001018  1832               	xorwf	??_UpdateBluetooth_LED,w,c
+   957  00101A  6E83               	movwf	3971,c	;volatile
+   958                           
+   959                           ;LED_UI.c: 83: break;
+   960  00101C  0012               	return	
+   961  00101E                     
+   962                           ;LED_UI.c: 86: do { LATAbits.LATA1 = 0; } while(0);
+   963  00101E  9283               	bcf	3971,1,c	;volatile
+   964                           
+   965                           ;LED_UI.c: 88: }
+   966                           
+   967                           ;LED_UI.c: 87: break;
+   968  001020  0012               	return	
+   969  001022                     l168:
+   970  001022  C03D  F032         	movff	_BLUETOOTH_LED,??_UpdateBluetooth_LED
+   971  001026  C03E  F033         	movff	_BLUETOOTH_LED+1,??_UpdateBluetooth_LED+1
+   972                           
+   973                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 3 sub-sw
+      +                          itches
+   974                           ; Switch size 1, requested type "space"
+   975                           ; Number of cases is 3, Range of values is 0 to 3
+   976                           ; switch strategies available:
+   977                           ; Name         Instructions Cycles
+   978                           ; simple_byte           10     6 (average)
+   979                           ;	Chosen strategy is simple_byte
+   980  00102A  5033               	movf	??_UpdateBluetooth_LED+1,w,c
+   981  00102C  0A00               	xorlw	0	; case 0
+   982  00102E  B4D8               	btfsc	status,2,c
+   983  001030  D007               	goto	l1375
+   984  001032  0A01               	xorlw	1	; case 1
+   985  001034  B4D8               	btfsc	status,2,c
+   986  001036  D009               	goto	l1377
+   987  001038  0A02               	xorlw	2	; case 3
+   988  00103A  B4D8               	btfsc	status,2,c
+   989  00103C  D00B               	goto	l1379
+   990  00103E  D7EF               	goto	l179
+   991  001040                     l1375:
+   992                           
+   993                           ; Switch size 1, requested type "space"
+   994                           ; Number of cases is 1, Range of values is 0 to 0
+   995                           ; switch strategies available:
+   996                           ; Name         Instructions Cycles
+   997                           ; simple_byte            4     3 (average)
+   998                           ;	Chosen strategy is simple_byte
+   999  001040  5032               	movf	??_UpdateBluetooth_LED,w,c
+  1000  001042  0A00               	xorlw	0	; case 0
+  1001  001044  B4D8               	btfsc	status,2,c
+  1002  001046  D7DB               	goto	l173
+  1003  001048  D7EA               	goto	l179
+  1004  00104A                     l1377:
+  1005                           
+  1006                           ; Switch size 1, requested type "space"
+  1007                           ; Number of cases is 1, Range of values is 250 to 250
+  1008                           ; switch strategies available:
+  1009                           ; Name         Instructions Cycles
+  1010                           ; simple_byte            4     3 (average)
+  1011                           ;	Chosen strategy is simple_byte
+  1012  00104A  5032               	movf	??_UpdateBluetooth_LED,w,c
+  1013  00104C  0AFA               	xorlw	250	; case 250
+  1014  00104E  B4D8               	btfsc	status,2,c
+  1015  001050  D7D8               	goto	l176
+  1016  001052  D7E5               	goto	l179
+  1017  001054                     l1379:
+  1018                           
+  1019                           ; Switch size 1, requested type "space"
+  1020                           ; Number of cases is 1, Range of values is 232 to 232
+  1021                           ; switch strategies available:
+  1022                           ; Name         Instructions Cycles
+  1023                           ; simple_byte            4     3 (average)
+  1024                           ;	Chosen strategy is simple_byte
+  1025  001054  5032               	movf	??_UpdateBluetooth_LED,w,c
+  1026  001056  0AE8               	xorlw	232	; case 232
+  1027  001058  B4D8               	btfsc	status,2,c
+  1028  00105A  D7CF               	goto	l169
+  1029  00105C  D7E0               	goto	l179
+  1030  00105E                     __end_of_UpdateBluetooth_LED:
+  1031                           	opt stack 0
+  1032                           tosu	equ	0xFFF
+  1033                           tosh	equ	0xFFE
+  1034                           tosl	equ	0xFFD
+  1035                           pclath	equ	0xFFA
+  1036                           tblptru	equ	0xFF8
+  1037                           tblptrh	equ	0xFF7
+  1038                           tblptrl	equ	0xFF6
+  1039                           tablat	equ	0xFF5
+  1040                           prodh	equ	0xFF4
+  1041                           prodl	equ	0xFF3
+  1042                           postinc0	equ	0xFEE
+  1043                           wreg	equ	0xFE8
+  1044                           postdec1	equ	0xFE5
+  1045                           fsr1l	equ	0xFE1
+  1046                           postinc2	equ	0xFDE
+  1047                           postdec2	equ	0xFDD
+  1048                           fsr2h	equ	0xFDA
+  1049                           fsr2l	equ	0xFD9
+  1050                           status	equ	0xFD8
+  1051                           
+  1052 ;; *************** function _UpdateMCU_LED *****************
+  1053 ;; Defined at:
+  1054 ;;		line 40 in file "LED_UI.c"
+  1055 ;; Parameters:    Size  Location     Type
+  1056 ;;		None
+  1057 ;; Auto vars:     Size  Location     Type
+  1058 ;;		None
+  1059 ;; Return value:  Size  Location     Type
+  1060 ;;                  1    wreg      void 
+  1061 ;; Registers used:
+  1062 ;;		wreg, status,2, status,0
+  1063 ;; Tracked objects:
+  1064 ;;		On entry : 0/0
+  1065 ;;		On exit  : 0/0
+  1066 ;;		Unchanged: 0/0
+  1067 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+  1068 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1069 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1070 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1071 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1072 ;;Total ram usage:        2 bytes
+  1073 ;; Hardware stack levels used:    1
+  1074 ;; This function calls:
+  1075 ;;		Nothing
+  1076 ;; This function is called by:
+  1077 ;;		_InitLED_UI
+  1078 ;;		_ServiceTimers
+  1079 ;; This function uses a non-reentrant model
+  1080 ;;
+  1081                           
+  1082                           	psect	text7
+  1083  00105E                     __ptext7:
+  1084                           	opt stack 0
+  1085  00105E                     _UpdateMCU_LED:
+  1086                           	opt stack 29
+  1087                           
+  1088                           ;LED_UI.c: 42: switch(MCU_LED.LED_STATE)
+  1089                           
+  1090                           ;incstack = 0
+  1091  00105E  D013               	goto	l151
+  1092  001060                     
+  1093                           ;LED_UI.c: 45: do { LATAbits.LATA0 = 0; } while(0);
+  1094  001060  9083               	bcf	3971,0,c	;volatile
+  1095                           
+  1096                           ;LED_UI.c: 46: break;
+  1097  001062  0012               	return	
+  1098  001064                     
+  1099                           ;LED_UI.c: 49: do { LATAbits.LATA0 = 1; } while(0);
+  1100  001064  8083               	bsf	3971,0,c	;volatile
+  1101                           
+  1102                           ;LED_UI.c: 50: break;
+  1103  001066  0012               	return	
+  1104  001068                     
+  1105                           ;LED_UI.c: 53: do { LATAbits.LATA0 = ~LATAbits.LATA0; } while(0);
+  1106  001068  A083               	btfss	3971,0,c	;volatile
+  1107  00106A  D002               	goto	u150
+  1108  00106C  0E01               	movlw	1
+  1109  00106E  D001               	goto	u156
+  1110  001070                     u150:
+  1111  001070  0E00               	movlw	0
+  1112  001072                     u156:
+  1113  001072  0AFF               	xorlw	255
+  1114  001074  6E32               	movwf	??_UpdateMCU_LED& (0+255),c
+  1115  001076  5083               	movf	3971,w,c	;volatile
+  1116  001078  1832               	xorwf	??_UpdateMCU_LED,w,c
+  1117  00107A  0BFE               	andlw	-2
+  1118  00107C  1832               	xorwf	??_UpdateMCU_LED,w,c
+  1119  00107E  6E83               	movwf	3971,c	;volatile
+  1120                           
+  1121                           ;LED_UI.c: 54: break;
+  1122  001080  0012               	return	
+  1123  001082                     
+  1124                           ;LED_UI.c: 57: do { LATAbits.LATA0 = 0; } while(0);
+  1125  001082  9083               	bcf	3971,0,c	;volatile
+  1126                           
+  1127                           ;LED_UI.c: 59: }
+  1128                           
+  1129                           ;LED_UI.c: 58: break;
+  1130  001084  0012               	return	
+  1131  001086                     l151:
+  1132  001086  C040  F032         	movff	_MCU_LED,??_UpdateMCU_LED
+  1133  00108A  C041  F033         	movff	_MCU_LED+1,??_UpdateMCU_LED+1
+  1134                           
+  1135                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 3 sub-sw
+      +                          itches
+  1136                           ; Switch size 1, requested type "space"
+  1137                           ; Number of cases is 3, Range of values is 0 to 3
+  1138                           ; switch strategies available:
+  1139                           ; Name         Instructions Cycles
+  1140                           ; simple_byte           10     6 (average)
+  1141                           ;	Chosen strategy is simple_byte
+  1142  00108E  5033               	movf	??_UpdateMCU_LED+1,w,c
+  1143  001090  0A00               	xorlw	0	; case 0
+  1144  001092  B4D8               	btfsc	status,2,c
+  1145  001094  D007               	goto	l1381
+  1146  001096  0A01               	xorlw	1	; case 1
+  1147  001098  B4D8               	btfsc	status,2,c
+  1148  00109A  D009               	goto	l1383
+  1149  00109C  0A02               	xorlw	2	; case 3
+  1150  00109E  B4D8               	btfsc	status,2,c
+  1151  0010A0  D00B               	goto	l1385
+  1152  0010A2  D7EF               	goto	l162
+  1153  0010A4                     l1381:
+  1154                           
+  1155                           ; Switch size 1, requested type "space"
+  1156                           ; Number of cases is 1, Range of values is 0 to 0
+  1157                           ; switch strategies available:
+  1158                           ; Name         Instructions Cycles
+  1159                           ; simple_byte            4     3 (average)
+  1160                           ;	Chosen strategy is simple_byte
+  1161  0010A4  5032               	movf	??_UpdateMCU_LED,w,c
+  1162  0010A6  0A00               	xorlw	0	; case 0
+  1163  0010A8  B4D8               	btfsc	status,2,c
+  1164  0010AA  D7DC               	goto	l156
+  1165  0010AC  D7EA               	goto	l162
+  1166  0010AE                     l1383:
+  1167                           
+  1168                           ; Switch size 1, requested type "space"
+  1169                           ; Number of cases is 1, Range of values is 250 to 250
+  1170                           ; switch strategies available:
+  1171                           ; Name         Instructions Cycles
+  1172                           ; simple_byte            4     3 (average)
+  1173                           ;	Chosen strategy is simple_byte
+  1174  0010AE  5032               	movf	??_UpdateMCU_LED,w,c
+  1175  0010B0  0AFA               	xorlw	250	; case 250
+  1176  0010B2  B4D8               	btfsc	status,2,c
+  1177  0010B4  D7D9               	goto	l159
+  1178  0010B6  D7E5               	goto	l162
+  1179  0010B8                     l1385:
+  1180                           
+  1181                           ; Switch size 1, requested type "space"
+  1182                           ; Number of cases is 1, Range of values is 232 to 232
+  1183                           ; switch strategies available:
+  1184                           ; Name         Instructions Cycles
+  1185                           ; simple_byte            4     3 (average)
+  1186                           ;	Chosen strategy is simple_byte
+  1187  0010B8  5032               	movf	??_UpdateMCU_LED,w,c
+  1188  0010BA  0AE8               	xorlw	232	; case 232
+  1189  0010BC  B4D8               	btfsc	status,2,c
+  1190  0010BE  D7D0               	goto	l152
+  1191  0010C0  D7E0               	goto	l162
+  1192  0010C2                     __end_of_UpdateMCU_LED:
+  1193                           	opt stack 0
+  1194                           tosu	equ	0xFFF
+  1195                           tosh	equ	0xFFE
+  1196                           tosl	equ	0xFFD
+  1197                           pclath	equ	0xFFA
+  1198                           tblptru	equ	0xFF8
+  1199                           tblptrh	equ	0xFF7
+  1200                           tblptrl	equ	0xFF6
+  1201                           tablat	equ	0xFF5
+  1202                           prodh	equ	0xFF4
+  1203                           prodl	equ	0xFF3
+  1204                           postinc0	equ	0xFEE
+  1205                           wreg	equ	0xFE8
+  1206                           postdec1	equ	0xFE5
+  1207                           fsr1l	equ	0xFE1
+  1208                           postinc2	equ	0xFDE
+  1209                           postdec2	equ	0xFDD
+  1210                           fsr2h	equ	0xFDA
+  1211                           fsr2l	equ	0xFD9
+  1212                           status	equ	0xFD8
+  1213                           
+  1214 ;; *************** function _SetTimerStatus *****************
+  1215 ;; Defined at:
+  1216 ;;		line 53 in file "Timeout.c"
+  1217 ;; Parameters:    Size  Location     Type
+  1218 ;;  handle          1    wreg     enum E184
+  1219 ;;  enabled         1    0[COMRAM] unsigned char 
+  1220 ;; Auto vars:     Size  Location     Type
+  1221 ;;  handle          1    1[COMRAM] enum E184
+  1222 ;; Return value:  Size  Location     Type
+  1223 ;;                  1    wreg      void 
+  1224 ;; Registers used:
+  1225 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh
+  1226 ;; Tracked objects:
+  1227 ;;		On entry : 0/0
+  1228 ;;		On exit  : 0/0
+  1229 ;;		Unchanged: 0/0
+  1230 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+  1231 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1232 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1233 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1234 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1235 ;;Total ram usage:        2 bytes
+  1236 ;; Hardware stack levels used:    1
+  1237 ;; This function calls:
+  1238 ;;		Nothing
+  1239 ;; This function is called by:
+  1240 ;;		_ServiceTimers
+  1241 ;;		_SetLED_State
+  1242 ;;		_EnableLogger
+  1243 ;; This function uses a non-reentrant model
+  1244 ;;
+  1245                           
+  1246                           	psect	text8
+  1247  0012AC                     __ptext8:
+  1248                           	opt stack 0
+  1249  0012AC                     _SetTimerStatus:
+  1250                           	opt stack 29
+  1251                           
+  1252                           ;incstack = 0
+  1253                           ;SetTimerStatus@handle stored from wreg
+  1254  0012AC  6E33               	movwf	SetTimerStatus@handle,c
+  1255                           
+  1256                           ;Timeout.c: 55: DEVICE_TIMEOUTS[handle].enabled = enabled;
+  1257  0012AE  5033               	movf	SetTimerStatus@handle,w,c
+  1258  0012B0  0D0B               	mullw	11
+  1259  0012B2  0E03               	movlw	low _DEVICE_TIMEOUTS
+  1260  0012B4  24F3               	addwf	prodl,w,c
+  1261  0012B6  6ED9               	movwf	fsr2l,c
+  1262  0012B8  0E00               	movlw	high _DEVICE_TIMEOUTS
+  1263  0012BA  20F4               	addwfc	prodh,w,c
+  1264  0012BC  6EDA               	movwf	fsr2h,c
+  1265  0012BE  C032  FFDF         	movff	SetTimerStatus@enabled,indf2
+  1266  0012C2  0012               	return		;funcret
+  1267  0012C4                     __end_of_SetTimerStatus:
+  1268                           	opt stack 0
+  1269                           tosu	equ	0xFFF
+  1270                           tosh	equ	0xFFE
+  1271                           tosl	equ	0xFFD
+  1272                           pclath	equ	0xFFA
+  1273                           tblptru	equ	0xFF8
+  1274                           tblptrh	equ	0xFF7
+  1275                           tblptrl	equ	0xFF6
+  1276                           tablat	equ	0xFF5
+  1277                           prodh	equ	0xFF4
+  1278                           prodl	equ	0xFF3
+  1279                           postinc0	equ	0xFEE
+  1280                           wreg	equ	0xFE8
+  1281                           postdec1	equ	0xFE5
+  1282                           fsr1l	equ	0xFE1
+  1283                           indf2	equ	0xFDF
+  1284                           postinc2	equ	0xFDE
+  1285                           postdec2	equ	0xFDD
+  1286                           fsr2h	equ	0xFDA
+  1287                           fsr2l	equ	0xFD9
+  1288                           status	equ	0xFD8
+  1289                           
+  1290 ;; *************** function _SYSTEM_Initialize *****************
+  1291 ;; Defined at:
+  1292 ;;		line 115 in file "mcc_generated_files/mcc.c"
+  1293 ;; Parameters:    Size  Location     Type
+  1294 ;;		None
+  1295 ;; Auto vars:     Size  Location     Type
+  1296 ;;		None
+  1297 ;; Return value:  Size  Location     Type
+  1298 ;;                  1    wreg      void 
+  1299 ;; Registers used:
+  1300 ;;		wreg, status,2, cstack
+  1301 ;; Tracked objects:
+  1302 ;;		On entry : 0/0
+  1303 ;;		On exit  : 0/0
+  1304 ;;		Unchanged: 0/0
+  1305 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+  1306 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1307 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1308 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1309 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1310 ;;Total ram usage:        0 bytes
+  1311 ;; Hardware stack levels used:    1
+  1312 ;; Hardware stack levels required when called:    1
+  1313 ;; This function calls:
+  1314 ;;		_OSCILLATOR_Initialize
+  1315 ;;		_PIN_MANAGER_Initialize
+  1316 ;; This function is called by:
+  1317 ;;		_main
+  1318 ;; This function uses a non-reentrant model
+  1319 ;;
+  1320                           
+  1321                           	psect	text9
+  1322  0012CE                     __ptext9:
+  1323                           	opt stack 0
+  1324  0012CE                     _SYSTEM_Initialize:
+  1325                           	opt stack 29
+  1326                           
+  1327                           ;mcc.c: 118: PIN_MANAGER_Initialize();
+  1328                           
+  1329                           ;incstack = 0
+  1330  0012CE  EC61  F008         	call	_PIN_MANAGER_Initialize	;wreg free
+  1331                           
+  1332                           ;mcc.c: 119: OSCILLATOR_Initialize();
+  1333  0012D2  EC28  F009         	call	_OSCILLATOR_Initialize	;wreg free
+  1334  0012D6  0012               	return		;funcret
+  1335  0012D8                     __end_of_SYSTEM_Initialize:
+  1336                           	opt stack 0
+  1337                           tosu	equ	0xFFF
+  1338                           tosh	equ	0xFFE
+  1339                           tosl	equ	0xFFD
+  1340                           pclath	equ	0xFFA
+  1341                           tblptru	equ	0xFF8
+  1342                           tblptrh	equ	0xFF7
+  1343                           tblptrl	equ	0xFF6
+  1344                           tablat	equ	0xFF5
+  1345                           prodh	equ	0xFF4
+  1346                           prodl	equ	0xFF3
+  1347                           postinc0	equ	0xFEE
+  1348                           wreg	equ	0xFE8
+  1349                           postdec1	equ	0xFE5
+  1350                           fsr1l	equ	0xFE1
+  1351                           indf2	equ	0xFDF
+  1352                           postinc2	equ	0xFDE
+  1353                           postdec2	equ	0xFDD
+  1354                           fsr2h	equ	0xFDA
+  1355                           fsr2l	equ	0xFD9
+  1356                           status	equ	0xFD8
+  1357                           
+  1358 ;; *************** function _PIN_MANAGER_Initialize *****************
+  1359 ;; Defined at:
+  1360 ;;		line 52 in file "mcc_generated_files/pin_manager.c"
+  1361 ;; Parameters:    Size  Location     Type
+  1362 ;;		None
+  1363 ;; Auto vars:     Size  Location     Type
+  1364 ;;		None
+  1365 ;; Return value:  Size  Location     Type
+  1366 ;;                  1    wreg      void 
+  1367 ;; Registers used:
+  1368 ;;		wreg, status,2
+  1369 ;; Tracked objects:
+  1370 ;;		On entry : 0/0
+  1371 ;;		On exit  : 0/0
+  1372 ;;		Unchanged: 0/0
+  1373 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+  1374 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1375 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1376 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1377 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1378 ;;Total ram usage:        0 bytes
+  1379 ;; Hardware stack levels used:    1
+  1380 ;; This function calls:
+  1381 ;;		Nothing
+  1382 ;; This function is called by:
+  1383 ;;		_SYSTEM_Initialize
+  1384 ;; This function uses a non-reentrant model
+  1385 ;;
+  1386                           
+  1387                           	psect	text10
+  1388  0010C2                     __ptext10:
+  1389                           	opt stack 0
+  1390  0010C2                     _PIN_MANAGER_Initialize:
+  1391                           	opt stack 29
+  1392                           
+  1393                           ;pin_manager.c: 57: LATA = 0x00;
+  1394                           
+  1395                           ;incstack = 0
+  1396  0010C2  0E00               	movlw	0
+  1397  0010C4  6E83               	movwf	3971,c	;volatile
+  1398                           
+  1399                           ;pin_manager.c: 58: LATB = 0x00;
+  1400  0010C6  0E00               	movlw	0
+  1401  0010C8  6E84               	movwf	3972,c	;volatile
+  1402                           
+  1403                           ;pin_manager.c: 59: LATC = 0x00;
+  1404  0010CA  0E00               	movlw	0
+  1405  0010CC  6E85               	movwf	3973,c	;volatile
+  1406                           
+  1407                           ;pin_manager.c: 64: TRISA = 0xF0;
+  1408  0010CE  0EF0               	movlw	240
+  1409  0010D0  6E88               	movwf	3976,c	;volatile
+  1410                           
+  1411                           ;pin_manager.c: 65: TRISB = 0xFF;
+  1412  0010D2  6889               	setf	3977,c	;volatile
+  1413                           
+  1414                           ;pin_manager.c: 66: TRISC = 0xC7;
+  1415  0010D4  0EC7               	movlw	199
+  1416  0010D6  6E8A               	movwf	3978,c	;volatile
+  1417                           
+  1418                           ;pin_manager.c: 71: ANSELC = 0xC7;
+  1419  0010D8  0EC7               	movlw	199
+  1420  0010DA  010F               	movlb	15	; () banked
+  1421  0010DC  6F21               	movwf	33,b	;volatile
+  1422                           
+  1423                           ; BSR set to: 15
+  1424                           ;pin_manager.c: 72: ANSELB = 0xFF;
+  1425  0010DE  010F               	movlb	15	; () banked
+  1426  0010E0  6919               	setf	25,b	;volatile
+  1427                           
+  1428                           ;pin_manager.c: 73: ANSELA = 0xF0;
+  1429  0010E2  0EF0               	movlw	240
+  1430  0010E4  010F               	movlb	15	; () banked
+  1431  0010E6  6F11               	movwf	17,b	;volatile
+  1432                           
+  1433                           ;pin_manager.c: 78: WPUE = 0x00;
+  1434  0010E8  0E00               	movlw	0
+  1435  0010EA  010F               	movlb	15	; () banked
+  1436  0010EC  6F2D               	movwf	45,b	;volatile
+  1437                           
+  1438                           ;pin_manager.c: 79: WPUB = 0x00;
+  1439  0010EE  0E00               	movlw	0
+  1440  0010F0  010F               	movlb	15	; () banked
+  1441  0010F2  6F18               	movwf	24,b	;volatile
+  1442                           
+  1443                           ;pin_manager.c: 80: WPUA = 0x00;
+  1444  0010F4  0E00               	movlw	0
+  1445  0010F6  010F               	movlb	15	; () banked
+  1446  0010F8  6F10               	movwf	16,b	;volatile
+  1447                           
+  1448                           ;pin_manager.c: 81: WPUC = 0x00;
+  1449  0010FA  0E00               	movlw	0
+  1450  0010FC  010F               	movlb	15	; () banked
+  1451  0010FE  6F20               	movwf	32,b	;volatile
+  1452                           
+  1453                           ;pin_manager.c: 86: ODCONA = 0x00;
+  1454  001100  0E00               	movlw	0
+  1455  001102  010F               	movlb	15	; () banked
+  1456  001104  6F0F               	movwf	15,b	;volatile
+  1457                           
+  1458                           ;pin_manager.c: 87: ODCONB = 0x00;
+  1459  001106  0E00               	movlw	0
+  1460  001108  010F               	movlb	15	; () banked
+  1461  00110A  6F17               	movwf	23,b	;volatile
+  1462                           
+  1463                           ;pin_manager.c: 88: ODCONC = 0x00;
+  1464  00110C  0E00               	movlw	0
+  1465  00110E  010F               	movlb	15	; () banked
+  1466  001110  6F1F               	movwf	31,b	;volatile
+  1467                           
+  1468                           ; BSR set to: 15
+  1469  001112  0012               	return		;funcret
+  1470  001114                     __end_of_PIN_MANAGER_Initialize:
+  1471                           	opt stack 0
+  1472                           tosu	equ	0xFFF
+  1473                           tosh	equ	0xFFE
+  1474                           tosl	equ	0xFFD
+  1475                           pclath	equ	0xFFA
+  1476                           tblptru	equ	0xFF8
+  1477                           tblptrh	equ	0xFF7
+  1478                           tblptrl	equ	0xFF6
+  1479                           tablat	equ	0xFF5
+  1480                           prodh	equ	0xFF4
+  1481                           prodl	equ	0xFF3
+  1482                           postinc0	equ	0xFEE
+  1483                           wreg	equ	0xFE8
+  1484                           postdec1	equ	0xFE5
+  1485                           fsr1l	equ	0xFE1
+  1486                           indf2	equ	0xFDF
+  1487                           postinc2	equ	0xFDE
+  1488                           postdec2	equ	0xFDD
+  1489                           fsr2h	equ	0xFDA
+  1490                           fsr2l	equ	0xFD9
+  1491                           status	equ	0xFD8
+  1492                           
+  1493 ;; *************** function _OSCILLATOR_Initialize *****************
+  1494 ;; Defined at:
+  1495 ;;		line 122 in file "mcc_generated_files/mcc.c"
+  1496 ;; Parameters:    Size  Location     Type
+  1497 ;;		None
+  1498 ;; Auto vars:     Size  Location     Type
+  1499 ;;		None
+  1500 ;; Return value:  Size  Location     Type
+  1501 ;;                  1    wreg      void 
+  1502 ;; Registers used:
+  1503 ;;		wreg, status,2
+  1504 ;; Tracked objects:
+  1505 ;;		On entry : 0/0
+  1506 ;;		On exit  : 0/0
+  1507 ;;		Unchanged: 0/0
+  1508 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+  1509 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1510 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1511 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1512 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1513 ;;Total ram usage:        0 bytes
+  1514 ;; Hardware stack levels used:    1
+  1515 ;; This function calls:
+  1516 ;;		Nothing
+  1517 ;; This function is called by:
+  1518 ;;		_SYSTEM_Initialize
+  1519 ;; This function uses a non-reentrant model
+  1520 ;;
+  1521                           
+  1522                           	psect	text11
+  1523  001250                     __ptext11:
+  1524                           	opt stack 0
+  1525  001250                     _OSCILLATOR_Initialize:
+  1526                           	opt stack 29
+  1527                           
+  1528                           ;mcc.c: 125: OSCCON1 = 0x60;
+  1529                           
+  1530                           ; BSR set to: 15
+  1531                           ;incstack = 0
+  1532  001250  0E60               	movlw	96
+  1533  001252  010E               	movlb	14	; () banked
+  1534  001254  6FD8               	movwf	216,b	;volatile
+  1535                           
+  1536                           ;mcc.c: 127: OSCCON3 = 0x00;
+  1537  001256  0E00               	movlw	0
+  1538  001258  010E               	movlb	14	; () banked
+  1539  00125A  6FDA               	movwf	218,b	;volatile
+  1540                           
+  1541                           ;mcc.c: 129: OSCEN = 0x00;
+  1542  00125C  0E00               	movlw	0
+  1543  00125E  010E               	movlb	14	; () banked
+  1544  001260  6FDC               	movwf	220,b	;volatile
+  1545                           
+  1546                           ;mcc.c: 131: OSCFRQ = 0x08;
+  1547  001262  0E08               	movlw	8
+  1548  001264  010E               	movlb	14	; () banked
+  1549  001266  6FDE               	movwf	222,b	;volatile
+  1550                           
+  1551                           ;mcc.c: 133: OSCTUNE = 0x00;
+  1552  001268  0E00               	movlw	0
+  1553  00126A  010E               	movlb	14	; () banked
+  1554  00126C  6FDD               	movwf	221,b	;volatile
+  1555                           
+  1556                           ; BSR set to: 14
+  1557  00126E  0012               	return		;funcret
+  1558  001270                     __end_of_OSCILLATOR_Initialize:
+  1559                           	opt stack 0
+  1560                           tosu	equ	0xFFF
+  1561                           tosh	equ	0xFFE
+  1562                           tosl	equ	0xFFD
+  1563                           pclath	equ	0xFFA
+  1564                           tblptru	equ	0xFF8
+  1565                           tblptrh	equ	0xFF7
+  1566                           tblptrl	equ	0xFF6
+  1567                           tablat	equ	0xFF5
+  1568                           prodh	equ	0xFF4
+  1569                           prodl	equ	0xFF3
+  1570                           postinc0	equ	0xFEE
+  1571                           wreg	equ	0xFE8
+  1572                           postdec1	equ	0xFE5
+  1573                           fsr1l	equ	0xFE1
+  1574                           indf2	equ	0xFDF
+  1575                           postinc2	equ	0xFDE
+  1576                           postdec2	equ	0xFDD
+  1577                           fsr2h	equ	0xFDA
+  1578                           fsr2l	equ	0xFD9
+  1579                           status	equ	0xFD8
+  1580                           
+  1581 ;; *************** function _InitTimer *****************
+  1582 ;; Defined at:
+  1583 ;;		line 24 in file "Timeout.c"
+  1584 ;; Parameters:    Size  Location     Type
+  1585 ;;		None
+  1586 ;; Auto vars:     Size  Location     Type
+  1587 ;;		None
+  1588 ;; Return value:  Size  Location     Type
+  1589 ;;                  1    wreg      void 
+  1590 ;; Registers used:
+  1591 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+  1592 ;; Tracked objects:
+  1593 ;;		On entry : 0/0
+  1594 ;;		On exit  : 0/0
+  1595 ;;		Unchanged: 0/0
+  1596 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+  1597 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1598 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1599 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1600 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1601 ;;Total ram usage:        0 bytes
+  1602 ;; Hardware stack levels used:    1
+  1603 ;; Hardware stack levels required when called:    1
+  1604 ;; This function calls:
+  1605 ;;		_memset
+  1606 ;; This function is called by:
+  1607 ;;		_main
+  1608 ;; This function uses a non-reentrant model
+  1609 ;;
+  1610                           
+  1611                           	psect	text12
+  1612  001270                     __ptext12:
+  1613                           	opt stack 0
+  1614  001270                     _InitTimer:
+  1615                           	opt stack 29
+  1616                           
+  1617                           ;Timeout.c: 26: memset(DEVICE_TIMEOUTS, 0, sizeof(TIMEOUT_t));
+  1618                           
+  1619                           ; BSR set to: 14
+  1620                           ;incstack = 0
+  1621  001270  0E03               	movlw	low _DEVICE_TIMEOUTS
+  1622  001272  6E32               	movwf	memset@p1,c
+  1623  001274  0E00               	movlw	high _DEVICE_TIMEOUTS
+  1624  001276  6E33               	movwf	memset@p1+1,c
+  1625  001278  0E00               	movlw	0
+  1626  00127A  6E35               	movwf	memset@c+1,c
+  1627  00127C  0E00               	movlw	0
+  1628  00127E  6E34               	movwf	memset@c,c
+  1629  001280  0E00               	movlw	0
+  1630  001282  6E37               	movwf	memset@n+1,c
+  1631  001284  0E0B               	movlw	11
+  1632  001286  6E36               	movwf	memset@n,c
+  1633  001288  ECEF  F008         	call	_memset	;wreg free
+  1634  00128C  0012               	return		;funcret
+  1635  00128E                     __end_of_InitTimer:
+  1636                           	opt stack 0
+  1637                           tosu	equ	0xFFF
+  1638                           tosh	equ	0xFFE
+  1639                           tosl	equ	0xFFD
+  1640                           pclath	equ	0xFFA
+  1641                           tblptru	equ	0xFF8
+  1642                           tblptrh	equ	0xFF7
+  1643                           tblptrl	equ	0xFF6
+  1644                           tablat	equ	0xFF5
+  1645                           prodh	equ	0xFF4
+  1646                           prodl	equ	0xFF3
+  1647                           postinc0	equ	0xFEE
+  1648                           wreg	equ	0xFE8
+  1649                           postdec1	equ	0xFE5
+  1650                           fsr1l	equ	0xFE1
+  1651                           indf2	equ	0xFDF
+  1652                           postinc2	equ	0xFDE
+  1653                           postdec2	equ	0xFDD
+  1654                           fsr2h	equ	0xFDA
+  1655                           fsr2l	equ	0xFD9
+  1656                           status	equ	0xFD8
+  1657                           
+  1658 ;; *************** function _memset *****************
+  1659 ;; Defined at:
+  1660 ;;		line 8 in file "C:\Program Files (x86)\Microchip\xc8\v1.43\sources\common\memset.c"
+  1661 ;; Parameters:    Size  Location     Type
+  1662 ;;  p1              2    0[COMRAM] PTR void 
+  1663 ;;		 -> DEVICE_TIMEOUTS(44), 
+  1664 ;;  c               2    2[COMRAM] int 
+  1665 ;;  n               2    4[COMRAM] unsigned int 
+  1666 ;; Auto vars:     Size  Location     Type
+  1667 ;;  p               2    6[COMRAM] PTR unsigned char 
+  1668 ;;		 -> DEVICE_TIMEOUTS(44), 
+  1669 ;; Return value:  Size  Location     Type
+  1670 ;;                  2    0[COMRAM] PTR void 
+  1671 ;; Registers used:
+  1672 ;;		wreg, fsr2l, fsr2h, status,2, status,0
+  1673 ;; Tracked objects:
+  1674 ;;		On entry : 0/0
+  1675 ;;		On exit  : 0/0
+  1676 ;;		Unchanged: 0/0
+  1677 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+  1678 ;;      Params:         6       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1679 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1680 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1681 ;;      Totals:         8       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1682 ;;Total ram usage:        8 bytes
+  1683 ;; Hardware stack levels used:    1
+  1684 ;; This function calls:
+  1685 ;;		Nothing
+  1686 ;; This function is called by:
+  1687 ;;		_InitTimer
+  1688 ;; This function uses a non-reentrant model
+  1689 ;;
+  1690                           
+  1691                           	psect	text13
+  1692  0011DE                     __ptext13:
+  1693                           	opt stack 0
+  1694  0011DE                     _memset:
+  1695                           	opt stack 29
+  1696                           
+  1697                           ;incstack = 0
+  1698  0011DE  C032  F038         	movff	memset@p1,memset@p
+  1699  0011E2  C033  F039         	movff	memset@p1+1,memset@p+1
+  1700  0011E6  D008               	goto	l643
+  1701  0011E8                     l1131:
+  1702  0011E8  C038  FFD9         	movff	memset@p,fsr2l
+  1703  0011EC  C039  FFDA         	movff	memset@p+1,fsr2h
+  1704  0011F0  C034  FFDF         	movff	memset@c,indf2
+  1705  0011F4  4A38               	infsnz	memset@p,f,c
+  1706  0011F6  2A39               	incf	memset@p+1,f,c
+  1707  0011F8                     l643:
+  1708  0011F8  0636               	decf	memset@n,f,c
+  1709  0011FA  A0D8               	btfss	status,0,c
+  1710  0011FC  0637               	decf	memset@n+1,f,c
+  1711  0011FE  2836               	incf	memset@n,w,c
+  1712  001200  E1F3               	bnz	l1131
+  1713  001202  2837               	incf	memset@n+1,w,c
+  1714  001204  B4D8               	btfsc	status,2,c
+  1715  001206  0012               	return	
+  1716  001208  D7EF               	goto	l644
+  1717  00120A                     __end_of_memset:
+  1718                           	opt stack 0
+  1719                           tosu	equ	0xFFF
+  1720                           tosh	equ	0xFFE
+  1721                           tosl	equ	0xFFD
+  1722                           pclath	equ	0xFFA
+  1723                           tblptru	equ	0xFF8
+  1724                           tblptrh	equ	0xFF7
+  1725                           tblptrl	equ	0xFF6
+  1726                           tablat	equ	0xFF5
+  1727                           prodh	equ	0xFF4
+  1728                           prodl	equ	0xFF3
+  1729                           postinc0	equ	0xFEE
+  1730                           wreg	equ	0xFE8
+  1731                           postdec1	equ	0xFE5
+  1732                           fsr1l	equ	0xFE1
+  1733                           indf2	equ	0xFDF
+  1734                           postinc2	equ	0xFDE
+  1735                           postdec2	equ	0xFDD
+  1736                           fsr2h	equ	0xFDA
+  1737                           fsr2l	equ	0xFD9
+  1738                           status	equ	0xFD8
+  1739                           
+  1740 ;; *************** function _InitDeviceConfig *****************
+  1741 ;; Defined at:
+  1742 ;;		line 28 in file "NonVolatileMemory.c"
+  1743 ;; Parameters:    Size  Location     Type
+  1744 ;;		None
+  1745 ;; Auto vars:     Size  Location     Type
+  1746 ;;		None
+  1747 ;; Return value:  Size  Location     Type
+  1748 ;;                  1    wreg      void 
+  1749 ;; Registers used:
+  1750 ;;		wreg, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+  1751 ;; Tracked objects:
+  1752 ;;		On entry : 0/0
+  1753 ;;		On exit  : 0/0
+  1754 ;;		Unchanged: 0/0
+  1755 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+  1756 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1757 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1758 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1759 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1760 ;;Total ram usage:        0 bytes
+  1761 ;; Hardware stack levels used:    1
+  1762 ;; Hardware stack levels required when called:    1
+  1763 ;; This function calls:
+  1764 ;;		_memcpy
+  1765 ;; This function is called by:
+  1766 ;;		_main
+  1767 ;; This function uses a non-reentrant model
+  1768 ;;
+  1769                           
+  1770                           	psect	text14
+  1771  00128E                     __ptext14:
+  1772                           	opt stack 0
+  1773  00128E                     _InitDeviceConfig:
+  1774                           	opt stack 29
+  1775                           
+  1776                           ;NonVolatileMemory.c: 30: memcpy((uint8_t*)&DEVICE_CONFIG, DEFAULT_DEVICE_CONFIG, sizeof
+      +                          (DEVICE_CONFIG_t));
+  1777                           
+  1778                           ;incstack = 0
+  1779  00128E  0E2F               	movlw	low _DEVICE_CONFIG
+  1780  001290  6E32               	movwf	memcpy@d1,c
+  1781  001292  0E00               	movlw	high _DEVICE_CONFIG
+  1782  001294  6E33               	movwf	memcpy@d1+1,c
+  1783  001296  0E09               	movlw	low _DEFAULT_DEVICE_CONFIG
+  1784  001298  6E34               	movwf	memcpy@s1,c
+  1785  00129A  0E0F               	movlw	high _DEFAULT_DEVICE_CONFIG
+  1786  00129C  6E35               	movwf	memcpy@s1+1,c
+  1787  00129E  0E00               	movlw	0
+  1788  0012A0  6E37               	movwf	memcpy@n+1,c
+  1789  0012A2  0E03               	movlw	3
+  1790  0012A4  6E36               	movwf	memcpy@n,c
+  1791  0012A6  EC8A  F008         	call	_memcpy	;wreg free
+  1792  0012AA  0012               	return		;funcret
+  1793  0012AC                     __end_of_InitDeviceConfig:
+  1794                           	opt stack 0
+  1795                           tosu	equ	0xFFF
+  1796                           tosh	equ	0xFFE
+  1797                           tosl	equ	0xFFD
+  1798                           pclath	equ	0xFFA
+  1799                           tblptru	equ	0xFF8
+  1800                           tblptrh	equ	0xFF7
+  1801                           tblptrl	equ	0xFF6
+  1802                           tablat	equ	0xFF5
+  1803                           prodh	equ	0xFF4
+  1804                           prodl	equ	0xFF3
+  1805                           postinc0	equ	0xFEE
+  1806                           wreg	equ	0xFE8
+  1807                           postdec1	equ	0xFE5
+  1808                           fsr1l	equ	0xFE1
+  1809                           indf2	equ	0xFDF
+  1810                           postinc2	equ	0xFDE
+  1811                           postdec2	equ	0xFDD
+  1812                           fsr2h	equ	0xFDA
+  1813                           fsr2l	equ	0xFD9
+  1814                           status	equ	0xFD8
+  1815                           
+  1816 ;; *************** function _memcpy *****************
+  1817 ;; Defined at:
+  1818 ;;		line 27 in file "C:\Program Files (x86)\Microchip\xc8\v1.43\sources\common\memcpy.c"
+  1819 ;; Parameters:    Size  Location     Type
+  1820 ;;  d1              2    0[COMRAM] PTR void 
+  1821 ;;		 -> PID_CHANNEL_CONFIG(160), DEVICE_CONFIG(3), 
+  1822 ;;  s1              2    2[COMRAM] PTR const void 
+  1823 ;;		 -> DEFAULT_DEVICE_CONFIG(3), DEFAULT_PID_CHANNEL_CONFIG(8), 
+  1824 ;;  n               2    4[COMRAM] unsigned int 
+  1825 ;; Auto vars:     Size  Location     Type
+  1826 ;;  s               2    8[COMRAM] PTR const unsigned char 
+  1827 ;;		 -> DEFAULT_DEVICE_CONFIG(3), DEFAULT_PID_CHANNEL_CONFIG(8), 
+  1828 ;;  d               2    6[COMRAM] PTR unsigned char 
+  1829 ;;		 -> PID_CHANNEL_CONFIG(160), DEVICE_CONFIG(3), 
+  1830 ;;  tmp             1   10[COMRAM] unsigned char 
+  1831 ;; Return value:  Size  Location     Type
+  1832 ;;                  2    0[COMRAM] PTR void 
+  1833 ;; Registers used:
+  1834 ;;		wreg, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru
+  1835 ;; Tracked objects:
+  1836 ;;		On entry : 0/0
+  1837 ;;		On exit  : 0/0
+  1838 ;;		Unchanged: 0/0
+  1839 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+  1840 ;;      Params:         6       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1841 ;;      Locals:         5       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1842 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1843 ;;      Totals:        11       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+  1844 ;;Total ram usage:       11 bytes
+  1845 ;; Hardware stack levels used:    1
+  1846 ;; This function calls:
+  1847 ;;		Nothing
+  1848 ;; This function is called by:
+  1849 ;;		_InitDeviceConfig
+  1850 ;;		_ResetAllConfig
+  1851 ;; This function uses a non-reentrant model
+  1852 ;;
+  1853                           
+  1854                           	psect	text15
+  1855  001114                     __ptext15:
+  1856                           	opt stack 0
+  1857  001114                     _memcpy:
+  1858                           	opt stack 29
+  1859                           
+  1860                           ;incstack = 0
+  1861  001114  C034  F03A         	movff	memcpy@s1,memcpy@s
+  1862  001118  C035  F03B         	movff	memcpy@s1+1,memcpy@s+1
+  1863  00111C  C032  F038         	movff	memcpy@d1,memcpy@d
+  1864  001120  C033  F039         	movff	memcpy@d1+1,memcpy@d+1
+  1865  001124  D013               	goto	l637
+  1866  001126                     l1119:
+  1867  001126  C03A  FFF6         	movff	memcpy@s,tblptrl
+  1868  00112A  C03B  FFF7         	movff	memcpy@s+1,tblptrh
+  1869  00112E                     	if	0	;tblptru may be non-zero
+  1870  00112E                     	endif
+  1871  00112E                     	if	1	;Program memory is > 0xFFFF, there are 3 active tblptr bytes
+  1872  00112E  0E00               	movlw	low (__mediumconst shr (0+16))
+  1873  001130  6EF8               	movwf	tblptru,c
+  1874  001132                     	endif
+  1875  001132  0008               	tblrd		*
+  1876  001134  CFF5 F03C          	movff	tablat,memcpy@tmp
+  1877  001138  4A3A               	infsnz	memcpy@s,f,c
+  1878  00113A  2A3B               	incf	memcpy@s+1,f,c
+  1879  00113C  C038  FFD9         	movff	memcpy@d,fsr2l
+  1880  001140  C039  FFDA         	movff	memcpy@d+1,fsr2h
+  1881  001144  C03C  FFDF         	movff	memcpy@tmp,indf2
+  1882  001148  4A38               	infsnz	memcpy@d,f,c
+  1883  00114A  2A39               	incf	memcpy@d+1,f,c
+  1884  00114C                     l637:
+  1885  00114C  0636               	decf	memcpy@n,f,c
+  1886  00114E  A0D8               	btfss	status,0,c
+  1887  001150  0637               	decf	memcpy@n+1,f,c
+  1888  001152  2836               	incf	memcpy@n,w,c
+  1889  001154  E1E8               	bnz	l1119
+  1890  001156  2837               	incf	memcpy@n+1,w,c
+  1891  001158  B4D8               	btfsc	status,2,c
+  1892  00115A  0012               	return	
+  1893  00115C  D7E4               	goto	l638
+  1894  00115E                     __end_of_memcpy:
+  1895                           	opt stack 0
+  1896                           tosu	equ	0xFFF
+  1897                           tosh	equ	0xFFE
+  1898                           tosl	equ	0xFFD
+  1899                           pclath	equ	0xFFA
+  1900                           tblptru	equ	0xFF8
+  1901                           tblptrh	equ	0xFF7
+  1902                           tblptrl	equ	0xFF6
+  1903                           tablat	equ	0xFF5
+  1904                           prodh	equ	0xFF4
+  1905                           prodl	equ	0xFF3
+  1906                           postinc0	equ	0xFEE
+  1907                           wreg	equ	0xFE8
+  1908                           postdec1	equ	0xFE5
+  1909                           fsr1l	equ	0xFE1
+  1910                           indf2	equ	0xFDF
+  1911                           postinc2	equ	0xFDE
+  1912                           postdec2	equ	0xFDD
+  1913                           fsr2h	equ	0xFDA
+  1914                           fsr2l	equ	0xFD9
+  1915                           status	equ	0xFD8
+  1916                           tosu	equ	0xFFF
+  1917                           tosh	equ	0xFFE
+  1918                           tosl	equ	0xFFD
+  1919                           pclath	equ	0xFFA
+  1920                           tblptru	equ	0xFF8
+  1921                           tblptrh	equ	0xFF7
+  1922                           tblptrl	equ	0xFF6
+  1923                           tablat	equ	0xFF5
+  1924                           prodh	equ	0xFF4
+  1925                           prodl	equ	0xFF3
+  1926                           postinc0	equ	0xFEE
+  1927                           wreg	equ	0xFE8
+  1928                           postdec1	equ	0xFE5
+  1929                           fsr1l	equ	0xFE1
+  1930                           indf2	equ	0xFDF
+  1931                           postinc2	equ	0xFDE
+  1932                           postdec2	equ	0xFDD
+  1933                           fsr2h	equ	0xFDA
+  1934                           fsr2l	equ	0xFD9
+  1935                           status	equ	0xFD8
+  1936                           
+  1937                           	psect	text16
+  1938  000000                     __ptext16:
+  1939                           	opt stack 0
+  1940                           tosu	equ	0xFFF
+  1941                           tosh	equ	0xFFE
+  1942                           tosl	equ	0xFFD
+  1943                           pclath	equ	0xFFA
+  1944                           tblptru	equ	0xFF8
+  1945                           tblptrh	equ	0xFF7
+  1946                           tblptrl	equ	0xFF6
+  1947                           tablat	equ	0xFF5
+  1948                           prodh	equ	0xFF4
+  1949                           prodl	equ	0xFF3
+  1950                           postinc0	equ	0xFEE
+  1951                           wreg	equ	0xFE8
+  1952                           postdec1	equ	0xFE5
+  1953                           fsr1l	equ	0xFE1
+  1954                           indf2	equ	0xFDF
+  1955                           postinc2	equ	0xFDE
+  1956                           postdec2	equ	0xFDD
+  1957                           fsr2h	equ	0xFDA
+  1958                           fsr2l	equ	0xFD9
+  1959                           status	equ	0xFD8
+  1960                           
+  1961                           	psect	rparam
+  1962  0000                     tosu	equ	0xFFF
+  1963                           tosh	equ	0xFFE
+  1964                           tosl	equ	0xFFD
+  1965                           pclath	equ	0xFFA
+  1966                           tblptru	equ	0xFF8
+  1967                           tblptrh	equ	0xFF7
+  1968                           tblptrl	equ	0xFF6
+  1969                           tablat	equ	0xFF5
+  1970                           prodh	equ	0xFF4
+  1971                           prodl	equ	0xFF3
+  1972                           postinc0	equ	0xFEE
+  1973                           wreg	equ	0xFE8
+  1974                           postdec1	equ	0xFE5
+  1975                           fsr1l	equ	0xFE1
+  1976                           indf2	equ	0xFDF
+  1977                           postinc2	equ	0xFDE
+  1978                           postdec2	equ	0xFDD
+  1979                           fsr2h	equ	0xFDA
+  1980                           fsr2l	equ	0xFD9
+  1981                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    11
+    Data        10
+    BSS         209
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95     11      70
+    BANK0           160      0     160
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          136      0       0
+
+Pointer List with Targets:
+
+    memset@p1	PTR void  size(2) Largest target is 44
+		 -> DEVICE_TIMEOUTS(COMRAM[44]), 
+
+    memset@p	PTR unsigned char  size(2) Largest target is 44
+		 -> DEVICE_TIMEOUTS(COMRAM[44]), 
+
+    memcpy@d1	PTR void  size(2) Largest target is 160
+		 -> PID_CHANNEL_CONFIG(BANK0[160]), DEVICE_CONFIG(COMRAM[3]), 
+
+    memcpy@d	PTR unsigned char  size(2) Largest target is 160
+		 -> PID_CHANNEL_CONFIG(BANK0[160]), DEVICE_CONFIG(COMRAM[3]), 
+
+    memcpy@s1	PTR const void  size(2) Largest target is 8
+		 -> DEFAULT_DEVICE_CONFIG(CODE[3]), DEFAULT_PID_CHANNEL_CONFIG(CODE[8]), 
+
+    memcpy@s	PTR const unsigned char  size(2) Largest target is 8
+		 -> DEFAULT_DEVICE_CONFIG(CODE[3]), DEFAULT_PID_CHANNEL_CONFIG(CODE[8]), 
+
+    S141TIMEOUT_STRUCT$arg	PTR void  size(2) Largest target is 0
+
+    DEVICE_TIMEOUTS.arg	PTR void  size(2) Largest target is 0
+
+    S141TIMEOUT_STRUCT$callback	PTR FTN()void  size(3) Largest target is 1
+		 -> LogTwentyHz(), LogTenHz(), UpdateBluetooth_LED(), UpdateMCU_LED(), 
+
+    DEVICE_TIMEOUTS.callback	PTR FTN()void  size(3) Largest target is 1
+		 -> LogTwentyHz(), LogTenHz(), UpdateBluetooth_LED(), UpdateMCU_LED(), 
+
+    sp__memset	PTR void  size(2) Largest target is 44
+		 -> DEVICE_TIMEOUTS(COMRAM[44]), 
+
+    sp__memcpy	PTR void  size(2) Largest target is 160
+		 -> PID_CHANNEL_CONFIG(BANK0[160]), DEVICE_CONFIG(COMRAM[3]), 
+
+
+Critical Paths under _main in COMRAM
+
+    _SetLED_State->_SetTimerPeriodic
+    _ServiceTimers->_SetTimerStatus
+    _ServiceTimers->_UpdateBluetooth_LED
+    _ServiceTimers->_UpdateMCU_LED
+    _InitTimer->_memset
+    _InitDeviceConfig->_memcpy
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0    2563
+                   _InitDeviceConfig
+                          _InitTimer
+                  _SYSTEM_Initialize
+                      _ServiceTimers
+                       _SetLED_State
+ ---------------------------------------------------------------------------------
+ (1) _SetLED_State                                         5     0      5     863
+                                              3 COMRAM     5     0      5
+                   _SetTimerPeriodic
+                     _SetTimerStatus
+ ---------------------------------------------------------------------------------
+ (2) _SetTimerPeriodic                                     3     1      2     120
+                                              0 COMRAM     3     1      2
+ ---------------------------------------------------------------------------------
+ (1) _ServiceTimers                                        3     3      0     549
+                                              2 COMRAM     3     3      0
+                           _LogTenHz *
+                        _LogTwentyHz *
+                     _SetTimerStatus
+                _UpdateBluetooth_LED *
+                      _UpdateMCU_LED *
+ ---------------------------------------------------------------------------------
+ (2) _UpdateMCU_LED                                        2     2      0       0
+                                              0 COMRAM     2     2      0
+ ---------------------------------------------------------------------------------
+ (2) _UpdateBluetooth_LED                                  2     2      0       0
+                                              0 COMRAM     2     2      0
+ ---------------------------------------------------------------------------------
+ (2) _SetTimerStatus                                       2     1      1     348
+                                              0 COMRAM     2     1      1
+ ---------------------------------------------------------------------------------
+ (2) _LogTwentyHz                                          0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _LogTenHz                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _SYSTEM_Initialize                                    0     0      0       0
+              _OSCILLATOR_Initialize
+             _PIN_MANAGER_Initialize
+ ---------------------------------------------------------------------------------
+ (2) _PIN_MANAGER_Initialize                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _OSCILLATOR_Initialize                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _InitTimer                                            0     0      0     324
+                             _memset
+ ---------------------------------------------------------------------------------
+ (2) _memset                                               8     2      6     324
+                                              0 COMRAM     8     2      6
+ ---------------------------------------------------------------------------------
+ (1) _InitDeviceConfig                                     0     0      0     827
+                             _memcpy
+ ---------------------------------------------------------------------------------
+ (2) _memcpy                                              11     5      6     827
+                                              0 COMRAM    11     5      6
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _InitDeviceConfig
+     _memcpy
+   _InitTimer
+     _memset
+   _SYSTEM_Initialize
+     _OSCILLATOR_Initialize
+     _PIN_MANAGER_Initialize
+   _ServiceTimers
+     _LogTenHz *
+     _LogTwentyHz *
+     _SetTimerStatus *
+     _UpdateBluetooth_LED *
+     _UpdateMCU_LED *
+   _SetLED_State
+     _SetTimerPeriodic
+     _SetTimerStatus
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             E87      0       0      35        0.0%
+EEDATA             400      0       0       0        0.0%
+BITBANK13          100      0       0      31        0.0%
+BANK13             100      0       0      32        0.0%
+BITBANK12          100      0       0      29        0.0%
+BANK12             100      0       0      30        0.0%
+BITBANK11          100      0       0      27        0.0%
+BANK11             100      0       0      28        0.0%
+BITBANK10          100      0       0      25        0.0%
+BANK10             100      0       0      26        0.0%
+BITBANK9           100      0       0      23        0.0%
+BANK9              100      0       0      24        0.0%
+BITBANK8           100      0       0      21        0.0%
+BANK8              100      0       0      22        0.0%
+BITBANK7           100      0       0      19        0.0%
+BANK7              100      0       0      20        0.0%
+BITBANK6           100      0       0      17        0.0%
+BANK6              100      0       0      18        0.0%
+BITBANK5           100      0       0      15        0.0%
+BANK5              100      0       0      16        0.0%
+BITBANK4           100      0       0      13        0.0%
+BANK4              100      0       0      14        0.0%
+BITBANK3           100      0       0      11        0.0%
+BANK3              100      0       0      12        0.0%
+BITBANK2           100      0       0       9        0.0%
+BANK2              100      0       0      10        0.0%
+BITBANK1           100      0       0       7        0.0%
+BANK1              100      0       0       8        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0      A0       5      100.0%
+BITBANK14           88      0       0      33        0.0%
+BANK14              88      0       0      34        0.0%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F      B      46       1       73.7%
+BITSFR_2             0      0       0     200        0.0%
+SFR_2                0      0       0     200        0.0%
+BITSFR_1             0      0       0     200        0.0%
+SFR_1                0      0       0     200        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      E6       6        0.0%
+DATA                 0      0      E6       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.43 build -156212558 
+Symbol Table                                                                                   Sun Nov 05 20:48:15 2017
+
+            __end_of_SetTimerStatus 12C4                         __CFG_CP$OFF 000000  
+                                l79 119A                         __CFG_LVP$ON 000000  
+                               l124 0F1E                                 l151 1086  
+                               l127 0FEA                                 l152 1060  
+                               l128 0FF4                                 l162 1082  
+                               l156 1064                                 l173 0FFE  
+                               l159 1068                                 l168 1022  
+                               l176 1002                                 l169 0FFA  
+                               l179 101E                                 l643 11F8  
+                               l644 11E8                                 l637 114C  
+                               l638 1126                                 u150 1070  
+                               u160 100A                                 u208 0F74  
+                               u209 0F88                                 u156 1072  
+                               u166 100C                        __CFG_CPD$OFF 000000  
+                               prod 000FF3                                 tosl 000FFD  
+                               wreg 000FE8        __size_of_UpdateBluetooth_LED 0066  
+                      __CFG_ZCD$OFF 000000                                l1131 11E8  
+                              l1119 1126                                l1193 0F16  
+                              l1381 10A4                                l1383 10AE  
+                              l1375 1040                                l1385 10B8  
+                              l1377 104A                                l1379 1054  
+                              _LATA 000F83                                _LATB 000F84  
+                              _LATC 000F85                                _WPUA 000F10  
+                              _WPUB 000F18                                _WPUC 000F20  
+                              _WPUE 000F2D                       __CFG_FCMEN$ON 000000  
+                              _main 115E                                fsr2h 000FDA  
+                              indf2 000FDF                                fsr1l 000FE1  
+                              fsr2l 000FD9                       _TWENTY_HZ_LOG 0043  
+                              prodh 000FF4                                prodl 000FF3  
+                              start 076A                       __CFG_CSWEN$ON 000000  
+                      ___param_bank 000000                     ?_SetTimerStatus 0032  
+                     __CFG_SCANE$ON 000000      __size_of_OSCILLATOR_Initialize 0020  
+     __end_of_OSCILLATOR_Initialize 1270                   SetLED_State@state 0038  
+                             ?_main 0032                       __CFG_WDTE$OFF 000000  
+                    __CFG_DEBUG$OFF 000000                 ServiceTimers@handle 0036  
+                     ??_LogTwentyHz 0032                               _OSCEN 000EDC  
+                             _TRISA 000F88                               _TRISB 000F89  
+                             _TRISC 000F8A                       __CFG_WRT0$OFF 000000  
+                     __CFG_WRT1$OFF 000000                       __CFG_WRT2$OFF 000000  
+                     __CFG_WRT3$OFF 000000                       __CFG_WRT4$OFF 000000  
+                     __CFG_WRT5$OFF 000000                       __CFG_WRT6$OFF 000000  
+                     __CFG_WRT7$OFF 000000                      __CFG_EBTR0$OFF 000000  
+                    __CFG_EBTR1$OFF 000000                      __CFG_EBTR2$OFF 000000  
+                    __CFG_EBTR3$OFF 000000                      __CFG_EBTR4$OFF 000000  
+                    __CFG_EBTR5$OFF 000000                      __CFG_EBTR6$OFF 000000  
+                    __CFG_EBTR7$OFF 000000                       __CFG_WRTB$OFF 000000  
+                     __CFG_WRTC$OFF 000000                       __CFG_WRTD$OFF 000000  
+                    __CFG_EBTRB$OFF 000000                       ?_SetLED_State 0035  
+                __CFG_MCLRE$EXTMCLR 000000                               pclath 000FFA  
+                             tablat 000FF5                               status 000FD8  
+                   __initialization 11A0                        __end_of_main 11A0  
+                  __end_of_LogTenHz 12DC                              ??_main 003D  
+                     __activetblptr 000003                      ??_SetLED_State 003A  
+               __end_of_LogTwentyHz 12DA                              _ANSELA 000F11  
+                            _ANSELB 000F19                              _ANSELC 000F21  
+                            _ODCONA 000F0F                              _ODCONB 000F17  
+                            _ODCONC 000F1F                      __CFG_WDTCCS$SC 000000  
+                            _OSCFRQ 000EDE                  __size_of_InitTimer 001E  
+                            _NVFlag FFFE                    _InitDeviceConfig 128E  
+                    __CFG_PWRTE$OFF 000000                      __CFG_XINST$OFF 000000  
+                    __CFG_STVREN$ON 000000                              _memcpy 1114  
+                            _memset 11DE                              clear_0 11C6  
+                            clear_1 11D2               __end_of_ServiceTimers 0FF8  
+          SetTimerPeriodic@periodic 0032                        __pdataCOMRAM 003D  
+                      __mediumconst 0000                              tblptrh 000FF7  
+                            tblptrl 000FF6                              tblptru 000FF8  
+__end_of_DEFAULT_PID_CHANNEL_CONFIG 0F09          _DEFAULT_PID_CHANNEL_CONFIG 0F01  
+                 _SYSTEM_Initialize 12CE                          __accesstop 0060  
+           __end_of__initialization 11D8                  ?_SYSTEM_Initialize 0032  
+                     ___rparam_used 000001                   ?_SetTimerPeriodic 0032  
+               _UpdateBluetooth_LED 0FF8                     SetLED_State@LED 0035  
+                    __pcstackCOMRAM 0032                  ??_SetTimerPeriodic 0034  
+               ??_SYSTEM_Initialize 0032                   __end_of_InitTimer 128E  
+                       _LogTwentyHz 12D8                ?_UpdateBluetooth_LED 0032  
+         __end_of_SYSTEM_Initialize 12D8                          __pbssBANK0 0060  
+                         ?_LogTenHz 0032               __end_of_UpdateMCU_LED 10C2  
+                  ??_SetTimerStatus 0033                __end_of_SetLED_State 1250  
+                   __CFG_PPS1WAY$ON 000000                             ?_memcpy 0032  
+                           ?_memset 0032                     __p_NVFlag_const FFFE  
+             ??_UpdateBluetooth_LED 0032                             _MCU_LED 0040  
+                           _OSCCON1 000ED8                             _OSCCON3 000EDA  
+                           _OSCTUNE 000EDD                          ??_LogTenHz 0032  
+                           __Hparam 0000                             __Lparam 0000  
+        __CFG_RSTOSC$HFINTOSC_64MHZ 000000                        __psmallconst 0F00  
+                           __pcinit 11A0                     __size_of_memcpy 004A  
+                   __size_of_memset 002C                             __ramtop 0F00  
+                           __ptext0 115E                             __ptext1 122E  
+                           __ptext2 120A                             __ptext3 0F0E  
+                           __ptext4 12D8                             __ptext5 12DA  
+                           __ptext6 0FF8                             __ptext7 105E  
+                           __ptext8 12AC                             __ptext9 12CE  
+             _OSCILLATOR_Initialize 1250                  _PID_CHANNEL_CONFIG 0060  
+          __end_of_InitDeviceConfig 12AC                SetTimerStatus@handle 0033  
+          ??_PIN_MANAGER_Initialize 0032          __size_of_SYSTEM_Initialize 000A  
+              end_of_initialization 11D8                             memcpy@d 0038  
+                           memcpy@n 0036                             memcpy@s 003A  
+                           memset@c 0034                             memset@n 0036  
+                           memset@p 0038                             postdec1 000FE5  
+                           postdec2 000FDD                             postinc0 000FEE  
+                           postinc2 000FDE       __end_of_DEFAULT_DEVICE_CONFIG 0F0C  
+             __CFG_WDTCPS$WDTCPS_31 000000                       _DEVICE_CONFIG 002F  
+               _NVFlag_absconstaddr 01FFFE                    __CFG_FEXTOSC$OFF 000000  
+             __size_of_SetLED_State 0022                      __end_of_NVFlag FFFF  
+                     __pidataCOMRAM 12C4              SetTimerPeriodic@handle 0034  
+                    __end_of_memcpy 115E              ?_OSCILLATOR_Initialize 0032  
+                    __end_of_memset 120A                        ?_LogTwentyHz 0032  
+         __size_of_SetTimerPeriodic 0024                 start_initialization 11A0  
+   __size_of_PIN_MANAGER_Initialize 0052                           _InitTimer 1270  
+                      _SetLED_State 122E                   __size_of_LogTenHz 0002  
+            __size_of_ServiceTimers 00EA                    __CFG_LPBOREN$OFF 000000  
+                          ??_memcpy 0038                            ??_memset 0038  
+                     _BLUETOOTH_LED 003D                         __pbssCOMRAM 0001  
+                        ?_InitTimer 0032              _PIN_MANAGER_Initialize 10C2  
+       __end_of_UpdateBluetooth_LED 105E                         __smallconst 0F00  
+            __size_of_UpdateMCU_LED 0064                       _ServiceTimers 0F0E  
+                 ?_InitDeviceConfig 0032                         __timer_tick 0001  
+                ??_InitDeviceConfig 003D                            _LATAbits 000F83  
+               __CFG_BORV$VBOR_2P45 000000             __size_of_SetTimerStatus 0018  
+                    ?_ServiceTimers 0032                    _SetTimerPeriodic 120A  
+                       ??_InitTimer 003A                __size_of_LogTwentyHz 0002  
+                         copy_data0 11B4                            _LogTenHz 12DA  
+                     _UpdateMCU_LED 105E                            __Hrparam 0000  
+                         memcpy@tmp 003C                            __Lrparam 0000  
+                __CFG_BOREN$SBORDIS 000000             ??_OSCILLATOR_Initialize 0032  
+             _DEFAULT_DEVICE_CONFIG 0F09                            __ptext10 10C2  
+                          __ptext11 1250                            __ptext12 1270  
+                          __ptext13 11DE                            __ptext14 128E  
+                          __ptext15 1114                            __ptext16 0000  
+                     __size_of_main 0042                      ?_UpdateMCU_LED 0032  
+             SetTimerStatus@enabled 0032                __CFG_WDTCWS$WDTCWS_7 000000  
+                   ??_ServiceTimers 0034                            memcpy@d1 0032  
+                          memcpy@s1 0034                            memset@p1 0032  
+           ?_PIN_MANAGER_Initialize 0032                   __CFG_CLKOUTEN$OFF 000000  
+                    _SetTimerStatus 12AC                          _TEN_HZ_LOG 0045  
+                   _DEVICE_TIMEOUTS 0003      __end_of_PIN_MANAGER_Initialize 1114  
+                   ??_UpdateMCU_LED 0032           __size_of_InitDeviceConfig 001E  
+          __end_of_SetTimerPeriodic 122E  

@@ -1,5 +1,5 @@
 /**********************************************************
-* Copyright 2017, Murphy Technology, All rights reserved. *
+* Copyright 2018, Murphy Technology, All rights reserved. *
 ***********************************************************/
 
 /************ DEFINITIONS ***************/
