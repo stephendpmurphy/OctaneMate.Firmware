@@ -29,7 +29,11 @@ QueueHandle_t xUI_Queue;
 *****************************************/
 void task_UI(void)
 {
-	UI_LED_STATE_t UI_State = UI_OFF;
+	uint32_t MCU_LED_Reference = 0;
+	uint32_t BLE_LED_Reference = 0;
+	UI_LED_DUR_t MCU_LED_DUR = UI_OFF;
+	UI_LED_DUR_t BLE_LED_DUR = UI_OFF;
+	UI_Task_Msg RxMsg;
 	TickType_t xBlockTime = 10/portTICK_PERIOD_MS;
 	
 	while(xUI_Queue == 0)
@@ -37,33 +41,63 @@ void task_UI(void)
 		//Failed to create queue
 	}
 	
+	MCU_LED_Reference = xTaskGetTickCount();
+	BLE_LED_Reference = xTaskGetTickCount();
+	
 	for(;;)
 	{
 		// Receive a message on the created queue.  Block for 10 ticks if a
 		// message is not immediately available.
-		if( xQueueReceive( xUI_Queue, &( UI_State ), xBlockTime ))
+		if( xQueueReceive( xUI_Queue, &( RxMsg ), xBlockTime ))
 		{
+			if(RxMsg.led == MCU_LED)
+			{
+				MCU_LED_DUR = RxMsg.dur;
+			}
+			else if(RxMsg.led == BLE_LED)
+			{
+				BLE_LED_DUR = RxMsg.dur;
+			}
+			else
+			{
 				
+			}
 		}
-		switch((int)UI_State)
+		
+		if( (xTaskGetTickCount() - MCU_LED_Reference) >= MCU_LED_DUR )
 		{
-			case UI_OFF:
+			if( (MCU_LED_DUR != UI_OFF) && (MCU_LED_DUR != UI_SOLID) )
+			{
+				gpio_toggle_pin_level(MCU_STATUS_LED);
+			}
+			else if( MCU_LED_DUR == UI_OFF )
+			{
 				gpio_set_pin_level(MCU_STATUS_LED, true);
-				break;
-			case UI_SOLID:
+			}
+			else if( MCU_LED_DUR == UI_SOLID )
+			{
 				gpio_set_pin_level(MCU_STATUS_LED, false);
-				break;
-			case UI_FAST_FLASH:
-				vTaskDelay(250/portTICK_PERIOD_MS);
-				gpio_toggle_pin_level(MCU_STATUS_LED);
-				break;
-			case UI_SLOW_FLASH:
-				vTaskDelay(1000/portTICK_PERIOD_MS);
-				gpio_toggle_pin_level(MCU_STATUS_LED);
-				break;
-			default:
-				gpio_set_pin_level(MCU_STATUS_LED, true);
-				break;
+			}
+			MCU_LED_Reference = xTaskGetTickCount();
 		}
+		
+		if( (xTaskGetTickCount() - BLE_LED_Reference) >= BLE_LED_DUR )
+		{
+			if( (BLE_LED_DUR != UI_OFF) && (BLE_LED_DUR != UI_SOLID) )
+			{
+				gpio_toggle_pin_level(BLE_STATUS_LED);
+			}
+			else if( BLE_LED_DUR == UI_OFF )
+			{
+				gpio_set_pin_level(BLE_STATUS_LED, true);
+			}
+			else if( BLE_LED_DUR == UI_SOLID )
+			{
+				gpio_set_pin_level(BLE_STATUS_LED, false);
+			}
+			BLE_LED_Reference = xTaskGetTickCount();
+		}
+		
+		vTaskDelay(150/portTICK_PERIOD_MS);
 	}
 }

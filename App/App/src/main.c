@@ -34,7 +34,7 @@ int main(void)
 		while (1) {;}
 	}
 	
-	xUI_Queue = xQueueCreate(5, sizeof(UI_LED_STATE_t));
+	xUI_Queue = xQueueCreate(5, sizeof(UI_Task_Msg));
 
 	vTaskStartScheduler();
 }
@@ -51,14 +51,17 @@ static void _task_UI_Sender(void *p)
 {
 	(void)p;
 	TickType_t xBlockTime = 5/portTICK_PERIOD_MS;
-	UI_LED_STATE_t state = UI_FAST_FLASH;
+	UI_Task_Msg TxMsg;
+	TxMsg.led = MCU_LED;
+	TxMsg.dur = UI_OFF;
 	for(;;)
 	{
-		for(UI_LED_STATE_t x = UI_OFF; x <= UI_SLOW_FLASH; x++)
-		{	
-			state = x;
-			xQueueSend( xUI_Queue, ( void * ) &state, xBlockTime );
-			vTaskDelay(5000/portTICK_PERIOD_MS);
-		}
+		TxMsg.dur = UI_FAST_FLASH;
+		xQueueSend( xUI_Queue, ( void * ) &TxMsg, xBlockTime );
+		vTaskDelay(5000/portTICK_PERIOD_MS);
+		
+		TxMsg.dur = UI_SLOW_FLASH;
+		xQueueSend( xUI_Queue, ( void * ) &TxMsg, xBlockTime );
+		vTaskDelay(5000/portTICK_PERIOD_MS);
 	}
 }
