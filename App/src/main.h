@@ -1,14 +1,24 @@
-/*
- * main.h
- *
- * Created: 2/25/2018 2:12:24 PM
- *  Author: Steve
- */ 
-
+/**********************************************************
+* Copyright 2018, Murphy Technology, All rights reserved. *
+***********************************************************/
 
 #ifndef MAIN_H_
 #define MAIN_H_
 
+/************ DEFINITIONS ***************/
+#define TASK_BLE_STACK_SIZE (128 / sizeof(portSTACK_TYPE))
+#define TASK_UI_STACK_SIZE (128 / sizeof(portSTACK_TYPE))
+#define TASK_UISender_STACK_SIZE (128 / sizeof(portSTACK_TYPE))
+
+#define TASK_BLE_STACK_PRIORITY (tskIDLE_PRIORITY + 1)
+#define TASK_UI_STACK_PRIORITY (tskIDLE_PRIORITY + 2)
+#define TASK_UISender_STACK_PRIORITY (tskIDLE_PRIORITY + 3)
+
+/************** TYPEDEFS ****************/
+
+/********* FUNCTION PROTOTYPES **********/
+
+/******* EXTERN / GLOBAL VARIABLE *******/
 extern QueueHandle_t xUI_Queue;
 
 #endif /* MAIN_H_ */

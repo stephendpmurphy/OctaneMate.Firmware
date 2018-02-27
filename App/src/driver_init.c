@@ -6,15 +6,13 @@
  * to avoid losing it when reconfiguring.
  */
 
-#include "driver_init.h"
+#include <driver_init.h>
 #include <hal_init.h>
 #include <hpl_pmc.h>
 #include <peripheral_clk_config.h>
 #include <utils.h>
-
 #include <hpl_usart_base.h>
-
-#include <hpl_usart_base.h>
+#include <BLE_task.h>
 
 struct usart_sync_descriptor USART_BLE;
 
@@ -38,6 +36,7 @@ void USART_BLE_init(void)
 	USART_BLE_CLOCK_init();
 	USART_BLE_PORT_init();
 	usart_sync_init(&USART_BLE, FLEXCOM0, _usart_get_usart_sync());
+	NVIC_EnableIRQ(BLE_USART_IRQn);
 }
 
 void USART_STN_PORT_init(void)

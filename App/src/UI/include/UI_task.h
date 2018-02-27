@@ -1,10 +1,9 @@
-#ifndef UI_TASK_H_
-#define UI_TASK_H_
-
-
 /**********************************************************
 * Copyright 2018, Murphy Technology, All rights reserved. *
 ***********************************************************/
+
+#ifndef UI_TASK_H_
+#define UI_TASK_H_
 
 /************ DEFINITIONS ***************/
 
@@ -28,8 +27,10 @@ typedef struct
 	UI_LED_t led;
 	UI_LED_DUR_t dur;
 } UI_Task_Msg;
+
 /********* FUNCTION PROTOTYPES **********/
-void task_UI(void);
+void task_UI(void *p);
+
 /******* EXTERN / GLOBAL VARIABLE *******/
 
 #endif /* UI_TASK_H_ */

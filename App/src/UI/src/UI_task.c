@@ -18,7 +18,7 @@
 /********* FUNCTION PROTOTYPES **********/
 
 /******* EXTERN / GLOBAL VARIABLE *******/
-QueueHandle_t xUI_Queue;
+
 /*********** LOCAL VARIABLES ************/
 
 /****************************************
@@ -27,8 +27,9 @@ QueueHandle_t xUI_Queue;
 * Return: void
 * Notes: Main task for the UI engine
 *****************************************/
-void task_UI(void)
+void task_UI(void *p)
 {
+	(void)p;
 	uint32_t MCU_LED_Reference = 0;
 	uint32_t BLE_LED_Reference = 0;
 	UI_LED_DUR_t MCU_LED_DUR = UI_OFF;
