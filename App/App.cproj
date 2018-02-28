@@ -207,7 +207,7 @@
   <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
   <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
   <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
-  <armgcc.compiler.directories.IncludePaths><ListValues><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/core</Value><Value>../hpl/mem2mem</Value><Value>../hpl/pio</Value><Value>../hpl/pmc</Value><Value>../hpl/usart</Value><Value>../hri</Value><Value>../thirdparty/RTOS</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value><Value>../src</Value><Value>../src/UI/include</Value><Value>../src/BLE/include</Value></ListValues></armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.directories.IncludePaths><ListValues><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/core</Value><Value>../hpl/mem2mem</Value><Value>../hpl/pio</Value><Value>../hpl/pmc</Value><Value>../hpl/usart</Value><Value>../hri</Value><Value>../thirdparty/RTOS</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value><Value>../src/main</Value><Value>../src/ui</Value><Value>../src/ble</Value><Value>../src/board</Value></ListValues></armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
@@ -232,46 +232,102 @@
   <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
   <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
   <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
-  <armgcc.compiler.directories.IncludePaths><ListValues>
-  <Value>../Config</Value>
-  <Value>../</Value>
-  <Value>../examples</Value>
-  <Value>../hal/include</Value>
-  <Value>../hal/utils/include</Value>
-  <Value>../hpl/core</Value>
-  <Value>../hpl/mem2mem</Value>
-  <Value>../hpl/pio</Value>
-  <Value>../hpl/pmc</Value>
-  <Value>../hpl/usart</Value>
-  <Value>../hri</Value>
-  <Value>../thirdparty/RTOS</Value>
-  <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3</Value>
-  <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value>
-  <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value>
-  <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value>
-  <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
-  <Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value>
-  <Value>../src</Value>
-  <Value>../src/UI/include</Value>
-  <Value>../src/BLE/include</Value>
-  <Value>../src/.</Value>
-  <Value>../src/UI/.</Value>
-</ListValues></armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>DEBUG</Value>
+    </ListValues>
+  </armgcc.compiler.symbols.DefSymbols>
+  <armgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/mem2mem</Value>
+      <Value>../hpl/pio</Value>
+      <Value>../hpl/pmc</Value>
+      <Value>../hpl/usart</Value>
+      <Value>../hri</Value>
+      <Value>../thirdparty/RTOS</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value>
+      <Value>../src/main</Value>
+      <Value>../src/ui</Value>
+      <Value>../src/ble</Value>
+      <Value>../src/board</Value>
+      <Value>../src/.</Value>
+      <Value>../src/UI/.</Value>
+    </ListValues>
+  </armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+  <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
   <armgcc.linker.general.UseNewlibNano>True</armgcc.linker.general.UseNewlibNano>
-  <armgcc.linker.libraries.Libraries><ListValues><Value>libm</Value></ListValues></armgcc.linker.libraries.Libraries>
-  <armgcc.linker.libraries.LibrarySearchPaths><ListValues><Value>%24(ProjectDir)\Device_Startup</Value></ListValues></armgcc.linker.libraries.LibrarySearchPaths>
+  <armgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </armgcc.linker.libraries.Libraries>
+  <armgcc.linker.libraries.LibrarySearchPaths>
+    <ListValues>
+      <Value>%24(ProjectDir)\Device_Startup</Value>
+    </ListValues>
+  </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
-  <armgcc.linker.memorysettings.ExternalRAM></armgcc.linker.memorysettings.ExternalRAM>
+  <armgcc.linker.memorysettings.ExternalRAM />
   <armgcc.linker.miscellaneous.LinkerFlags>-Tsamg55j19_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
-  <armgcc.assembler.general.IncludePaths><ListValues><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/core</Value><Value>../hpl/mem2mem</Value><Value>../hpl/pio</Value><Value>../hpl/pmc</Value><Value>../hpl/usart</Value><Value>../hri</Value><Value>../thirdparty/RTOS</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value></ListValues></armgcc.assembler.general.IncludePaths>
-  <armgcc.preprocessingassembler.general.IncludePaths><ListValues><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/core</Value><Value>../hpl/mem2mem</Value><Value>../hpl/pio</Value><Value>../hpl/pmc</Value><Value>../hpl/usart</Value><Value>../hri</Value><Value>../thirdparty/RTOS</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value><Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value></ListValues></armgcc.preprocessingassembler.general.IncludePaths>
-  <armgcc.compiler.symbols.DefSymbols><ListValues><Value>DEBUG</Value></ListValues></armgcc.compiler.symbols.DefSymbols>
-  <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
-  <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
+  <armgcc.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/mem2mem</Value>
+      <Value>../hpl/pio</Value>
+      <Value>../hpl/pmc</Value>
+      <Value>../hpl/usart</Value>
+      <Value>../hri</Value>
+      <Value>../thirdparty/RTOS</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value>
+    </ListValues>
+  </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
+  <armgcc.preprocessingassembler.general.IncludePaths>
+    <ListValues>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/mem2mem</Value>
+      <Value>../hpl/pio</Value>
+      <Value>../hpl/pmc</Value>
+      <Value>../hpl/usart</Value>
+      <Value>../hri</Value>
+      <Value>../thirdparty/RTOS</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/include</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/Source/portable/GCC/ARM_CM4F</Value>
+      <Value>../thirdparty/RTOS/freertos/FreeRTOSV8.2.3/module_config</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAMG_DFP\2.1.97\samg55\include</Value>
+    </ListValues>
+  </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
 </ArmGcc>
     </ToolchainSettings>
@@ -559,31 +615,31 @@
     <Compile Include="hri\hri_wdt_g55.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\BLE\include\BLE_task.h">
+    <Compile Include="src\ble\BLE_task.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\BLE\src\BLE_task.c">
+    <Compile Include="src\ble\BLE_task.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\driver_init.c">
+    <Compile Include="src\board\driver_init.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\driver_init.h">
+    <Compile Include="src\board\driver_init.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\main.c">
+    <Compile Include="src\board\pins.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\main.h">
+    <Compile Include="src\main\main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\pins.h">
+    <Compile Include="src\main\main.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\UI\include\UI_task.h">
+    <Compile Include="src\ui\UI_task.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\UI\src\UI_task.c">
+    <Compile Include="src\ui\UI_task.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="thirdparty\RTOS\freertos\FreeRTOSV8.2.3\rtos_port.c">
@@ -680,15 +736,13 @@
     <Folder Include="hpl\usart\" />
     <Folder Include="hri\" />
     <Folder Include="src\" />
-    <Folder Include="src\BLE" />
-    <Folder Include="src\BLE\include" />
-    <Folder Include="src\BLE\src" />
-    <Folder Include="src\Debug" />
-    <Folder Include="src\PwrMngr" />
-    <Folder Include="src\STN1110" />
-    <Folder Include="src\UI" />
-    <Folder Include="src\UI\include" />
-    <Folder Include="src\UI\src" />
+    <Folder Include="src\ble" />
+    <Folder Include="src\debug" />
+    <Folder Include="src\board" />
+    <Folder Include="src\main" />
+    <Folder Include="src\pwrmngr" />
+    <Folder Include="src\stn1110" />
+    <Folder Include="src\ui" />
     <Folder Include="thirdparty\" />
     <Folder Include="thirdparty\RTOS\" />
     <Folder Include="thirdparty\RTOS\freertos\" />
