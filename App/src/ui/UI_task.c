@@ -12,7 +12,6 @@
 #include <driver_init.h>
 #include <UI_task.h>
 
-
 /************ DEFINITIONS ***************/
 
 /********* FUNCTION PROTOTYPES **********/

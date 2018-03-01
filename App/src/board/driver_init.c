@@ -1,10 +1,6 @@
-/*
- * Code generated from Atmel Start.
- *
- * This file will be overwritten when reconfiguring your Atmel Start project.
- * Please copy examples or other code you want to keep to a separate file
- * to avoid losing it when reconfiguring.
- */
+/**********************************************************
+* Copyright 2018, Murphy Technology, All rights reserved. *
+***********************************************************/
 
 #include <driver_init.h>
 #include <hal_init.h>
@@ -14,8 +10,8 @@
 #include <hpl_usart_base.h>
 #include <BLE_task.h>
 
+/*********** LOCAL VARIABLES ************/
 struct usart_sync_descriptor USART_BLE;
-
 struct usart_sync_descriptor USART_STN;
 
 void USART_BLE_PORT_init(void)

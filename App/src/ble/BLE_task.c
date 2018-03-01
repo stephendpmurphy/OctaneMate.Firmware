@@ -24,10 +24,10 @@ char g_ble_recv_buff[BLE_USART_BUFFER_SIZE] = "";
 char g_ble_tran_buff[BLE_USART_BUFFER_SIZE] = "";
 
 /****************************************
-* Name:
-* Arg:
-* Return:
-* Notes:
+* Name: task_BLE
+* Arg: *p
+* Return: void
+* Notes: Task for BLE 
 *****************************************/
 void task_BLE(void *p)
 {

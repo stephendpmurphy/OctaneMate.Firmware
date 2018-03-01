@@ -1,3 +1,7 @@
+/**********************************************************
+* Copyright 2018, Murphy Technology, All rights reserved. *
+***********************************************************/
+
 //FreeRTOS Headers
 #include <FreeRTOS.h>
 #include <FreeRTOSConfig.h>
@@ -10,13 +14,25 @@
 #include <UI_task.h>
 #include <BLE_task.h>
 
+/************ DEFINITIONS ***************/
+
+/********* FUNCTION PROTOTYPES **********/
+static void _task_UI_Sender(void *p);
+
+/******* EXTERN / GLOBAL VARIABLE *******/
+QueueHandle_t xUI_Queue;
+
+/*********** LOCAL VARIABLES ************/
 static TaskHandle_t xBLE_Task;
 static TaskHandle_t xUISender_Task;
 static TaskHandle_t xUI_Task;
-QueueHandle_t xUI_Queue;
 
-static void _task_UI_Sender(void *p);
-
+/****************************************
+* Name: main
+* Arg: void 
+* Return: void
+* Notes: main entry to program
+*****************************************/
 int main(void)
 {
 	/* Initializes MCU, drivers and middleware */

@@ -1,10 +1,7 @@
-/*
- * Code generated from Atmel Start.
- *
- * This file will be overwritten when reconfiguring your Atmel Start project.
- * Please copy examples or other code you want to keep to a separate file
- * to avoid losing it when reconfiguring.
- */
+/**********************************************************
+* Copyright 2018, Murphy Technology, All rights reserved. *
+***********************************************************/
+
 #ifndef DRIVER_INIT_H_INCLUDED
 #define DRIVER_INIT_H_INCLUDED
 
