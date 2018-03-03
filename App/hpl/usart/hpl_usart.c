@@ -143,6 +143,20 @@ static struct usart_configuration _usarts[] = {
 };
 #endif
 
+/* The priority of the peripheral should be between the low and high interrupt priority set by chosen RTOS,
+  * Otherwise, some of the RTOS APIs may fail to work inside interrupts
+  * In case of FreeRTOS,the Lowest Interrupt priority is set by configLIBRARY_LOWEST_INTERRUPT_PRIORITY and
+  * Maximum interrupt priority by configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY, So Interrupt Priority of the peripheral
+ * should be between
+  * configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY andconfigLIBRARY_LOWEST_INTERRUPT_PRIORITY */
+#define USART_INTERRUPT_PRIORITY 6
+
+static struct _usart_async_device *_usart0_dev = NULL;
+
+static struct _usart_async_device *_usart1_dev = NULL;
+
+static struct _usart_async_device *_usart6_dev = NULL;
+
 static uint8_t _usart_get_irq_num(const void *const hw);
 static uint8_t _get_usart_index(const void *const hw);
 static uint8_t _usart_get_hardware_index(const void *const hw);
@@ -194,6 +208,15 @@ static uint8_t _usart_get_irq_num(const void *const hw)
  */
 static void _usart_init_irq_param(const void *const hw, struct _usart_async_device *dev)
 {
+	if (hw == FLEXCOM0) {
+		_usart0_dev = dev;
+	}
+	if (hw == FLEXCOM1) {
+		_usart1_dev = dev;
+	}
+	if (hw == FLEXCOM6) {
+		_usart6_dev = dev;
+	}
 }
 
 /**
@@ -676,6 +699,30 @@ static void _usart_interrupt_handler(struct _usart_async_device *device)
 		hri_usart_write_US_CR_reg(hw, US_CR_RSTSTA);
 		device->usart_cb.error_cb(device);
 	}
+}
+
+/**
+ * \internal USART interrupt handler
+ */
+void FLEXCOM0_Handler(void)
+{
+	_usart_interrupt_handler(_usart0_dev);
+}
+
+/**
+ * \internal USART interrupt handler
+ */
+void FLEXCOM1_Handler(void)
+{
+	_usart_interrupt_handler(_usart1_dev);
+}
+
+/**
+ * \internal USART interrupt handler
+ */
+void FLEXCOM6_Handler(void)
+{
+	_usart_interrupt_handler(_usart6_dev);
 }
 
 /**

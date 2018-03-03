@@ -100,6 +100,36 @@
 #define CONF_FLEXCOM1_FREQUENCY 24000000
 #endif
 
+// <h> FLEXCOM Clock Settings
+// <o> FLEXCOM Clock source
+// <0=> Master Clock (MCK)
+// <1=> MCK / 8
+// <2=> Programmable Clock Controller 6 (PMC_PCK6)
+// <2=> Programmable Clock Controller 7 (PMC_PCK7)
+// <3=> External Clock
+// <i> This defines the clock source for the FLEXCOM, PCK6 is used for FLEXCOM0/1/2/3 and PCK7 is used for FLEXCOM4/5/6/7
+// <id> flexcom_clock_source
+#ifndef CONF_FLEXCOM6_CK_SRC
+#define CONF_FLEXCOM6_CK_SRC 0
+#endif
+
+// <o> FLEXCOM External Clock Input on SCK <1-4294967295>
+// <i> Inputs the external clock frequency on SCK
+// <id> flexcom_clock_freq
+#ifndef CONF_FLEXCOM6_SCK_FREQ
+#define CONF_FLEXCOM6_SCK_FREQ 10000000
+#endif
+
+// </h>
+
+/**
+ * \def FLEXCOM FREQUENCY
+ * \brief FLEXCOM's Clock frequency
+ */
+#ifndef CONF_FLEXCOM6_FREQUENCY
+#define CONF_FLEXCOM6_FREQUENCY 24000000
+#endif
+
 // <<< end of configuration section >>>
 
 #endif // PERIPHERAL_CLK_CONFIG_H

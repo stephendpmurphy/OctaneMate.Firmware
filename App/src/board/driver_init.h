@@ -17,18 +17,11 @@ extern "C" {
 #include <hal_init.h>
 #include <hal_io.h>
 #include <hal_sleep.h>
+#include <hal_usart_async.h>
 
-#include <hal_usart_sync.h>
-
-#include <hal_usart_sync.h>
-
-extern struct usart_sync_descriptor USART_BLE;
-
-extern struct usart_sync_descriptor USART_STN;
-
-void USART_EDBG_PORT_init(void);
-void USART_EDBG_CLOCK_init(void);
-void USART_EDBG_init(void);
+extern struct usart_async_descriptor USART_BLE;
+extern struct usart_async_descriptor USART_STN;
+extern struct usart_async_descriptor USART_DEBUG;
 
 void USART_BLE_PORT_init(void);
 void USART_BLE_CLOCK_init(void);
@@ -37,6 +30,10 @@ void USART_BLE_init(void);
 void USART_STN_PORT_init(void);
 void USART_STN_CLOCK_init(void);
 void USART_STN_init(void);
+
+void USART_DEBUG_PORT_init(void);
+void USART_DEBUG_CLOCK_init(void);
+void USART_DEBUG_init(void);
 
 /**
  * \brief Perform system initialization, initialize pins and clocks for

@@ -6,7 +6,6 @@
  * to avoid losing it when reconfiguring.
  */
 
-#ifdef EXAMPLE_CODE
 #include "utils.h"
 
 #ifndef DRIVER_EXAMPLES_H_INCLUDED
@@ -20,9 +19,10 @@ void USART_BLE_example(void);
 
 void USART_STN_example(void);
 
+void USART_DEBUG_example(void);
+
 #ifdef __cplusplus
 }
 #endif
 
 #endif // DRIVER_EXAMPLES_H_INCLUDEDD
-#endif

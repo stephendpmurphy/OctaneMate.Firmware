@@ -2,7 +2,6 @@
 #ifndef FREERTOSCONFIG_H
 #define FREERTOSCONFIG_H
 
-
 // <<< Use Configuration Wizard in Context Menu >>>
 
 #if defined(__GNUC__) || defined(__ICCARM__)
@@ -25,7 +24,7 @@ void assert_triggered(const char *file, uint32_t line);
 // <i> Default: 5
 // <id> freertos_max_priorities
 #ifndef configMAX_PRIORITIES
-#define configMAX_PRIORITIES ((uint16_t)5)
+#define configMAX_PRIORITIES (5)
 #endif
 
 // <o> Minimal stack size<64-1024>
@@ -189,7 +188,7 @@ void assert_triggered(const char *file, uint32_t line);
 #define configTIMER_TASK_STACK_DEPTH (64)
 #endif
 
-#define configPRIO_BITS 2
+#define configPRIO_BITS 4
 #define configMAX_TASK_NAME_LEN (8)
 #define configIDLE_SHOULD_YIELD 1
 #define configQUEUE_REGISTRY_SIZE 0
