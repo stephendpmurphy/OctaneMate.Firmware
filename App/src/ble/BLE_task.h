@@ -13,6 +13,7 @@
 
 /********* FUNCTION PROTOTYPES **********/
 void task_BLE(void *p);
+void BLE_initTask(void);
 
 /******* EXTERN / GLOBAL VARIABLE *******/
 

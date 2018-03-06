@@ -25,12 +25,11 @@
 static void _task_UI_Sender(void *p);
 
 /******* EXTERN / GLOBAL VARIABLE *******/
-QueueHandle_t xUI_Queue;
+
 
 /*********** LOCAL VARIABLES ************/
-static TaskHandle_t xBLE_Task;
 static TaskHandle_t xUISender_Task;
-static TaskHandle_t xUI_Task;
+
 
 /****************************************
 * Name: main
@@ -42,24 +41,16 @@ int main(void)
 {
 	/* Initializes MCU, drivers and middleware */
 	system_init();
-	
-	if (xTaskCreate(task_UI, "UI Task", TASK_UI_STACK_SIZE, NULL, TASK_UI_STACK_PRIORITY, xUI_Task) != pdPASS) {
-		while (1) {;}
-	}
-
-	xUI_Queue = xQueueCreate(5, sizeof(UI_Task_Msg));
-
-
-	if (xTaskCreate(task_BLE, "BLE Task", TASK_BLE_STACK_SIZE, NULL, TASK_BLE_STACK_PRIORITY, xBLE_Task) != pdPASS) {
-		while (1) {;}
-	}
+	DEBUG_initTask();
+	UI_initTask();
+	BLE_initTask();
 
 	if (xTaskCreate(_task_UI_Sender, "UI Sender Task", TASK_UISender_STACK_SIZE, NULL, TASK_UISender_STACK_PRIORITY, xUISender_Task) != pdPASS) {
 		while (1) {;}
 	}
 
-	DEBUG_initTask();
-
+	DEBUG_println(UI_DEBUG_OUTPUT, "OctaneMate v%d,%d,%d\r\n",1,1,0);
+	delay_ms(1000);
 	vTaskStartScheduler();
 }
 
@@ -70,7 +61,7 @@ static void _task_UI_Sender(void *p)
 	UI_Task_Msg TxMsg;
 	TxMsg.led = MCU_LED;
 	TxMsg.dur = UI_OFF;
-	UI_DEBUG_PRINTLN("UI SENDER TASK STARTED \r\n");
+	DEBUG_PRINTLN("UI SENDER TASK STARTED \r\n");
 
 	for(;;)
 	{

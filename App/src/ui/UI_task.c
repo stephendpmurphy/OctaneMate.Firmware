@@ -17,8 +17,18 @@
 /********* FUNCTION PROTOTYPES **********/
 
 /******* EXTERN / GLOBAL VARIABLE *******/
-
+QueueHandle_t xUI_Queue;
 /*********** LOCAL VARIABLES ************/
+static TaskHandle_t xUI_Task;
+
+void UI_initTask(void)
+{
+	if (xTaskCreate(task_UI, "UI Task", TASK_UI_STACK_SIZE, NULL, TASK_UI_STACK_PRIORITY, xUI_Task) != pdPASS) {
+		while (1) {;}
+	}
+
+	xUI_Queue = xQueueCreate(5, sizeof(UI_Task_Msg));	
+}
 
 /****************************************
 * Name: task_UI

@@ -30,7 +30,9 @@ typedef struct
 
 /********* FUNCTION PROTOTYPES **********/
 void task_UI(void *p);
+void UI_initTask(void);
 
 /******* EXTERN / GLOBAL VARIABLE *******/
+extern QueueHandle_t xUI_Queue;
 
 #endif /* UI_TASK_H_ */
