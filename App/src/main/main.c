@@ -49,8 +49,8 @@ int main(void)
 		while (1) {;}
 	}
 
-	DEBUG_println(UI_DEBUG_OUTPUT, "OctaneMate v%d,%d,%d\r\n",1,1,0);
-	delay_ms(1000);
+	DEBUG_PRINTLN("OctaneMate v%d.%d.%d\r\n", FW_MAJOR, FW_MINOR, FW_BUILD);
+	delay_ms(2000);
 	vTaskStartScheduler();
 }
 

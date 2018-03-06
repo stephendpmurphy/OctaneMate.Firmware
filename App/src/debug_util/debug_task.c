@@ -55,29 +55,24 @@ void DEBUG_initTask(void)
 	}
 }
 
-void DEBUG_println(enum DEBUG_OUTPUT_TYPE type, const char *frmt, ...)
+void DEBUG_println(const char * frmt, ...)
 {
-	char *szList = "";
+	char buf[255] = {0};
 	va_list args;
 	va_start(args, frmt);
-	sprintf(szList, frmt, args);
+	volatile int count = vsnprintf(buf,255,frmt,args);
 	va_end(args);
-	taskENTER_CRITICAL();
-	str_write(szList);
-	taskEXIT_CRITICAL();
+	str_write(buf);
 }
 
 void DEBUG_VOID_println()
 {
-	stdio_serial_init(USART_DEBUG);
 	//not enabled.. do nothing with this string..
 }
 
 void str_write(const char *s)
 {
-	taskENTER_CRITICAL();
 	io_write(&USART_DEBUG.io, (const uint8_t *)s, strlen(s));
-	taskEXIT_CRITICAL();
 }
 
 char char_read()

@@ -11,7 +11,7 @@
 
 #include <semphr.h>
 
-#define DEBUG_OUTPUT_ENABLED 0
+#define DEBUG_OUTPUT_ENABLED 1
 
 #if (DEBUG_OUTPUT_ENABLED == 1)
 #define DEBUG_PRINTLN(...) DEBUG_println(__VA_ARGS__)
@@ -30,7 +30,7 @@ enum DEBUG_OUTPUT_TYPE {
 };
 
 void DEBUG_initTask(void);
-void DEBUG_println(enum DEBUG_OUTPUT_TYPE type, const char *frmt, ...);
+void DEBUG_println(const char *frmt, ...);
 void DEBUG_VOID_println(void);
 
 extern bool BLE_DEBUG_ENABLED;
