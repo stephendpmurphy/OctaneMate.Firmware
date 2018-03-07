@@ -60,7 +60,7 @@ void DEBUG_println(const char * frmt, ...)
 	char buf[255] = {0};
 	va_list args;
 	va_start(args, frmt);
-	volatile int count = vsnprintf(buf,255,frmt,args);
+	vsnprintf(buf,255,frmt,args);
 	va_end(args);
 	str_write(buf);
 }

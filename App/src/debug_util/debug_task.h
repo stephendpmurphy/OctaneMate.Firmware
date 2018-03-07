@@ -11,7 +11,7 @@
 
 #include <semphr.h>
 
-#define DEBUG_OUTPUT_ENABLED 1
+#define DEBUG_OUTPUT_ENABLED 0
 
 #if (DEBUG_OUTPUT_ENABLED == 1)
 #define DEBUG_PRINTLN(...) DEBUG_println(__VA_ARGS__)
