@@ -24,7 +24,7 @@ void assert_triggered(const char *file, uint32_t line);
 // <i> Default: 5
 // <id> freertos_max_priorities
 #ifndef configMAX_PRIORITIES
-#define configMAX_PRIORITIES (5)
+#define configMAX_PRIORITIES (6)
 #endif
 
 // <o> Minimal stack size<64-1024>
@@ -32,7 +32,7 @@ void assert_triggered(const char *file, uint32_t line);
 // <i> Default: 64
 // <id> freertos_minimal_stack_size
 #ifndef configMINIMAL_STACK_SIZE
-#define configMINIMAL_STACK_SIZE ((uint16_t)64)
+#define configMINIMAL_STACK_SIZE ((uint16_t)256)
 #endif
 
 /* configTOTAL_HEAP_SIZE is not used when heap_3.c is used. */
@@ -41,7 +41,7 @@ void assert_triggered(const char *file, uint32_t line);
 // <i> Default: 2400
 // <id> freertos_total_heap_size
 #ifndef configTOTAL_HEAP_SIZE
-#define configTOTAL_HEAP_SIZE ((size_t)(4800))
+#define configTOTAL_HEAP_SIZE ((size_t)(80*1024))
 #endif
 
 // <q> Enable mutex
@@ -176,22 +176,22 @@ void assert_triggered(const char *file, uint32_t line);
 // <i> Default is 2
 // <id> freertos_timer_task_priority
 #ifndef configTIMER_TASK_PRIORITY
-#define configTIMER_TASK_PRIORITY (2)
+#define configTIMER_TASK_PRIORITY (configMAX_PRIORITIES-1)
 #endif
 
-#define configTIMER_QUEUE_LENGTH 2
+#define configTIMER_QUEUE_LENGTH 10
 
 // <o> Timer task stack size <32-512:4>
 // <i> Default is 64
 // <id> freertos_timer_task_stack_depth
 #ifndef TIMER_TASK_STACK_DEPTH
-#define configTIMER_TASK_STACK_DEPTH (64)
+#define configTIMER_TASK_STACK_DEPTH (configMINIMAL_STACK_SIZE*2)
 #endif
 
 #define configPRIO_BITS 4
-#define configMAX_TASK_NAME_LEN (8)
+#define configMAX_TASK_NAME_LEN (15)
 #define configIDLE_SHOULD_YIELD 1
-#define configQUEUE_REGISTRY_SIZE 0
+#define configQUEUE_REGISTRY_SIZE 8
 #define configUSE_QUEUE_SETS 1
 #define configENABLE_BACKWARD_COMPATIBILITY 1
 
@@ -201,19 +201,19 @@ to exclude the API function. */
 // <q> Include function to set task priority
 // <id> freertos_vtaskpriorityset
 #ifndef INCLUDE_vTaskPrioritySet
-#define INCLUDE_vTaskPrioritySet 0
+#define INCLUDE_vTaskPrioritySet 1
 #endif
 
 // <q> Include function to get task priority
 // <id> freertos_uxtaskpriorityget
 #ifndef INCLUDE_uxTaskPriorityGet
-#define INCLUDE_uxTaskPriorityGet 0
+#define INCLUDE_uxTaskPriorityGet 1
 #endif
 
 // <q> Include function to delete task
 // <id> freertos_vtaskdelete
 #ifndef INCLUDE_vTaskDelete
-#define INCLUDE_vTaskDelete 0
+#define INCLUDE_vTaskDelete 1
 #endif
 
 // <q> Include function to suspend task
@@ -231,7 +231,7 @@ to exclude the API function. */
 // <q> Include task delay utilities
 // <id> freertos_vtaskdelayuntil
 #ifndef INCLUDE_vTaskDelayUntil
-#define INCLUDE_vTaskDelayUntil 0
+#define INCLUDE_vTaskDelayUntil 1
 #endif
 
 // <q> Include task delay function
@@ -240,7 +240,7 @@ to exclude the API function. */
 #define INCLUDE_vTaskDelay 1
 #endif
 
-#define INCLUDE_xTaskGetSchedulerState 0
+#define INCLUDE_xTaskGetSchedulerState 1
 
 // <q> Include the function to get current task handler
 // <id> freertos_xtaskgetcurrenttaskhandle
@@ -248,12 +248,12 @@ to exclude the API function. */
 #define INCLUDE_xTaskGetCurrentTaskHandle 0
 #endif
 
-#define INCLUDE_uxTaskGetStackHighWaterMark 0
+#define INCLUDE_uxTaskGetStackHighWaterMark 1
 
 // <q> Include the function to get idle task handler
 // <id> freertos_xtaskgetidletaskhandle
 #ifndef INCLUDE_xTaskGetIdleTaskHandle
-#define INCLUDE_xTaskGetIdleTaskHandle 0
+#define INCLUDE_xTaskGetIdleTaskHandle 1
 #endif
 
 #define INCLUDE_xTimerGetTimerDaemonTaskHandle 0
@@ -279,7 +279,7 @@ to exclude the API function. */
 // <q> Include the function to pend timer call
 // <id> freertos_xtimerpendfunctioncall
 #ifndef INCLUDE_xTimerPendFunctionCall
-#define INCLUDE_xTimerPendFunctionCall 0
+#define INCLUDE_xTimerPendFunctionCall 1
 #endif
 
 // </e>

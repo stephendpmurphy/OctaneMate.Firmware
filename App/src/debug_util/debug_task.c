@@ -33,6 +33,7 @@ bool BLE_DEBUG_ENABLED = false;
 bool UI_DEBUG_ENABLED = false;
 /*********** LOCAL VARIABLES ************/
 static TaskHandle_t xDebug_Task;
+static SemaphoreHandle_t printf_mutex;
 struct io_descriptor *io;
 char g_debug_recv_buff[5] = "";
 uint8_t recv_buff_index = 0;
@@ -50,6 +51,13 @@ void DEBUG_initTask(void)
 	usart_async_get_io_descriptor(&USART_DEBUG, &io);
 	usart_async_enable(&USART_DEBUG);
 
+	printf_mutex = xSemaphoreCreateMutex();
+
+	if(printf_mutex == NULL)
+	{
+		while(1) {;}
+	}
+
 	if (xTaskCreate(task_Debug, "Debug Task", TASK_Debug_STACK_SIZE, NULL, TASK_Debug_STACK_PRIORITY, xDebug_Task) != pdPASS) {
 		while (1) {;}
 	}
@@ -62,7 +70,24 @@ void DEBUG_println(const char * frmt, ...)
 	va_start(args, frmt);
 	vsnprintf(buf,255,frmt,args);
 	va_end(args);
-	str_write(buf);
+
+	if(xTaskGetSchedulerState() != taskSCHEDULER_RUNNING)
+	{	
+		str_write(buf);
+		delay_ms(10); 
+		//It seems like the processor is running faster than the USART can grab the data from the buf variable
+		//So we end up overwriting the buffer with a new printf before we can finish the previous write.. So a short delay is added
+		//Doesn't seem to be a problem below when Tasks are actually running.
+	}
+	else
+	{
+		if(xSemaphoreTake(printf_mutex, portMAX_DELAY) == pdPASS)
+		{
+			str_write(buf);
+			xSemaphoreGive(printf_mutex);
+		}
+	}
+
 }
 
 void DEBUG_VOID_println()
@@ -72,7 +97,13 @@ void DEBUG_VOID_println()
 
 void str_write(const char *s)
 {
-	io_write(&USART_DEBUG.io, (const uint8_t *)s, strlen(s));
+	while(io_write(&USART_DEBUG.io, (const uint8_t *)s, strlen(s)) == ERR_NO_RESOURCE)
+	{
+		//TO-DO: Need to see if there is a better way to do this..
+		// Even though the Mutex is freed does not mean that the USART
+		// is ready to accept another buffer to output
+		;//wait for the usart to free up
+	}
 }
 
 char char_read()
@@ -90,7 +121,6 @@ void task_Debug(void *p)
 	(void)p;
 	char ch = 0;
 
-	vTaskDelay(5/portTICK_PERIOD_MS);
 	DEBUG_PRINTLN("DEBUG TASK STARTED \r\n");
 
 	for(;;)

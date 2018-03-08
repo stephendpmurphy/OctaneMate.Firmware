@@ -33,7 +33,7 @@ static TaskHandle_t xUISender_Task;
 
 /****************************************
 * Name: main
-* Arg: void 
+* Arg: void
 * Return: void
 * Notes: main entry to program
 *****************************************/
@@ -44,13 +44,16 @@ int main(void)
 	DEBUG_initTask();
 	UI_initTask();
 	BLE_initTask();
+	
+	STARTUP_PRINTLN("=============================\r\n");
+	STARTUP_PRINTLN("Murphy Technology 2018\r\n");
+	STARTUP_PRINTLN("OctaneMate v%d.%d.%d\r\n", FW_MAJOR, FW_MINOR, FW_BUILD);
+	STARTUP_PRINTLN("OctaneMate v%d.%d.%d\r\n", 69, 69, 69);
+	STARTUP_PRINTLN("=============================\r\n\n");
 
 	if (xTaskCreate(_task_UI_Sender, "UI Sender Task", TASK_UISender_STACK_SIZE, NULL, TASK_UISender_STACK_PRIORITY, xUISender_Task) != pdPASS) {
 		while (1) {;}
 	}
-
-	DEBUG_PRINTLN("OctaneMate v%d.%d.%d\r\n", FW_MAJOR, FW_MINOR, FW_BUILD);
-	delay_ms(2000);
 	vTaskStartScheduler();
 }
 
@@ -69,7 +72,7 @@ static void _task_UI_Sender(void *p)
 		xQueueSend( xUI_Queue, ( void * ) &TxMsg, xBlockTime );
 		UI_DEBUG_PRINTLN("FAST SEQUENCE SENT.\r\n");
 		vTaskDelay(5000/portTICK_PERIOD_MS);
-		
+
 		TxMsg.dur = UI_SLOW_FLASH;
 		xQueueSend( xUI_Queue, ( void * ) &TxMsg, xBlockTime );
 		UI_DEBUG_PRINTLN("SLOW SEQUENCE SENT.\r\n");

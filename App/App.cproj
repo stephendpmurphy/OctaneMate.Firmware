@@ -703,12 +703,6 @@
     <Compile Include="hri\hri_wdt_g55.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="rtos_start.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="rtos_start.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="src\ble\BLE_task.c">
       <SubType>compile</SubType>
     </Compile>

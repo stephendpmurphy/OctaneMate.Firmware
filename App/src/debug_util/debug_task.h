@@ -3,7 +3,7 @@
  *
  * Created: 3/2/2018 7:32:28 PM
  *  Author: Steve
- */ 
+ */
 
 
 #ifndef DEBUG_TASK_API_H_
@@ -11,7 +11,9 @@
 
 #include <semphr.h>
 
-#define DEBUG_OUTPUT_ENABLED 0
+#define DEBUG_OUTPUT_ENABLED 1
+
+#define STARTUP_PRINTLN(...) DEBUG_println(__VA_ARGS__)
 
 #if (DEBUG_OUTPUT_ENABLED == 1)
 #define DEBUG_PRINTLN(...) DEBUG_println(__VA_ARGS__)

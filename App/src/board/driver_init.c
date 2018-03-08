@@ -10,11 +10,11 @@
 #include <hpl_usart_base.h>
 
 /*! The buffer size for USART */
-#define USART_BLE_BUFFER_SIZE 16
+#define USART_BLE_BUFFER_SIZE 256
 /*! The buffer size for USART */
-#define USART_STN_BUFFER_SIZE 16
+#define USART_STN_BUFFER_SIZE 256
 /*! The buffer size for USART */
-#define USART_DEBUG_BUFFER_SIZE 16
+#define USART_DEBUG_BUFFER_SIZE 256
 
 struct usart_async_descriptor USART_BLE;
 struct usart_async_descriptor USART_STN;
