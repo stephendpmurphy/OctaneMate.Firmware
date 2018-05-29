@@ -189,6 +189,7 @@ void assert_triggered(const char *file, uint32_t line);
 #endif
 
 #define configPRIO_BITS 3
+
 #define configMAX_TASK_NAME_LEN (8)
 #define configIDLE_SHOULD_YIELD 1
 #define configQUEUE_REGISTRY_SIZE 0

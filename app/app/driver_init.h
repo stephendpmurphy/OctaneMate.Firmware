@@ -21,15 +21,35 @@ extern "C" {
 #include <hal_io.h>
 #include <hal_sleep.h>
 
+#include <hal_crc_sync.h>
+
+#include <hal_flash.h>
+
+#include <hal_calendar.h>
 #include <hal_spi_m_sync.h>
 #include <hal_usart_async.h>
 #include <hal_usart_async.h>
+
+#include <hal_wdt.h>
 #include <hal_can_async.h>
 
+extern struct crc_sync_descriptor CRC_0;
+
+extern struct flash_descriptor FLASH_INSTANCE;
+
+extern struct calendar_descriptor    CALENDAR_0;
 extern struct spi_m_sync_descriptor  SERIAL_FLASH_SPI;
 extern struct usart_async_descriptor DEBUG_UART;
 extern struct usart_async_descriptor BT_UART;
-extern struct can_async_descriptor   CAN_0;
+
+extern struct wdt_descriptor       WDT_0;
+extern struct can_async_descriptor CAN_0;
+
+void FLASH_INSTANCE_init(void);
+void FLASH_INSTANCE_CLOCK_init(void);
+
+void CALENDAR_0_CLOCK_init(void);
+void CALENDAR_0_init(void);
 
 void SERIAL_FLASH_SPI_PORT_init(void);
 void SERIAL_FLASH_SPI_CLOCK_init(void);
@@ -42,6 +62,9 @@ void DEBUG_UART_init(void);
 void BT_UART_PORT_init(void);
 void BT_UART_CLOCK_init(void);
 void BT_UART_init(void);
+
+void WDT_0_CLOCK_init(void);
+void WDT_0_init(void);
 
 /**
  * \brief Perform system initialization, initialize pins and clocks for

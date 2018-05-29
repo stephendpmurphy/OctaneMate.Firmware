@@ -12,9 +12,17 @@
 extern "C" {
 #endif
 
+void CRC_0_example(void);
+
+void FLASH_INSTANCE_example(void);
+
+void CALENDAR_0_example(void);
+
 void DEBUG_UART_example(void);
 
 void BT_UART_example(void);
+
+void WDT_0_example(void);
 
 void CAN_0_example(void);
 

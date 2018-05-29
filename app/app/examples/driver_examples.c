@@ -10,6 +10,114 @@
 #include "driver_init.h"
 #include "utils.h"
 
+/* CRC Data in flash */
+COMPILER_ALIGNED(4)
+static const uint32_t crc_datas[] = {0x00000000,
+                                     0x11111111,
+                                     0x22222222,
+                                     0x33333333,
+                                     0x44444444,
+                                     0x55555555,
+                                     0x66666666,
+                                     0x77777777,
+                                     0x88888888,
+                                     0x99999999};
+
+/**
+ * Example of using CRC_0 to Calculate CRC32 for a buffer.
+ */
+void CRC_0_example(void)
+{
+	/* The initial value used for the CRC32 calculation usually be 0xFFFFFFFF,
+	 * but can be, for example, the result of a previous CRC32 calculation if
+	 * generating a common CRC32 of separate memory blocks.
+	 */
+	uint32_t crc = 0xFFFFFFFF;
+	uint32_t crc2;
+	uint32_t ind;
+
+	crc_sync_enable(&CRC_0);
+	crc_sync_crc32(&CRC_0, (uint32_t *)crc_datas, 10, &crc);
+
+	/* The read value must be complemented to match standard CRC32
+	 * implementations or kept non-inverted if used as starting point for
+	 * subsequent CRC32 calculations.
+	 */
+	crc ^= 0xFFFFFFFF;
+
+	/* Calculate the same data with subsequent CRC32 calculations, the result
+	 * should be same as previous way.
+	 */
+	crc2 = 0xFFFFFFFF;
+	for (ind = 0; ind < 10; ind++) {
+		crc_sync_crc32(&CRC_0, (uint32_t *)&crc_datas[ind], 1, &crc2);
+	}
+	crc2 ^= 0xFFFFFFFF;
+
+	/* The calculate result should be same. */
+	while (crc != crc2)
+		;
+}
+
+static uint8_t src_data[512];
+static uint8_t chk_data[512];
+/**
+ * Example of using FLASH_INSTANCE to read and write buffer.
+ */
+void FLASH_INSTANCE_example(void)
+{
+	uint32_t page_size;
+	uint16_t i;
+
+	/* Init source data */
+	page_size = flash_get_page_size(&FLASH_INSTANCE);
+
+	for (i = 0; i < page_size; i++) {
+		src_data[i] = i;
+	}
+
+	/* Write data to flash */
+	flash_write(&FLASH_INSTANCE, 0x3200, src_data, page_size);
+
+	/* Read data from flash */
+	flash_read(&FLASH_INSTANCE, 0x3200, chk_data, page_size);
+}
+
+/**
+ * Example of using CALENDAR_0.
+ */
+static struct calendar_alarm alarm;
+
+static void alarm_cb(struct calendar_descriptor *const descr)
+{
+	/* alarm expired */
+}
+
+void CALENDAR_0_example(void)
+{
+	struct calendar_date date;
+	struct calendar_time time;
+
+	calendar_enable(&CALENDAR_0);
+
+	date.year  = 2000;
+	date.month = 12;
+	date.day   = 31;
+
+	time.hour = 12;
+	time.min  = 59;
+	time.sec  = 59;
+
+	calendar_set_date(&CALENDAR_0, &date);
+	calendar_set_time(&CALENDAR_0, &time);
+
+	alarm.cal_alarm.datetime.time.sec = 4;
+	alarm.cal_alarm.option            = CALENDAR_ALARM_MATCH_SEC;
+	alarm.cal_alarm.mode              = REPEAT;
+
+	calendar_set_alarm(&CALENDAR_0, &alarm, alarm_cb);
+}
+
 /**
  * Example of using SERIAL_FLASH_SPI to write "Hello World" using the IO abstraction.
  */
@@ -80,6 +188,20 @@ void BT_UART_example(void)
 	usart_async_enable(&BT_UART);
 
 	io_write(io, example_BT_UART, 12);
+}
+
+/**
+ * Example of using WDT_0.
+ */
+void WDT_0_example(void)
+{
+	uint32_t clk_rate;
+	uint16_t timeout_period;
+
+	clk_rate       = 1000;
+	timeout_period = 4096;
+	wdt_set_timeout_period(&WDT_0, clk_rate, timeout_period);
+	wdt_enable(&WDT_0);
 }
 
 void CAN_0_tx_callback(struct can_async_descriptor *const descr)

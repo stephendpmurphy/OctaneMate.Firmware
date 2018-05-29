@@ -2,9 +2,9 @@ format_version: '2'
 name: OctaneMate
 versions:
   api: '1.0'
-  backend: 1.2.139
-  commit: release1.2
-  content: 1.0.943
+  backend: 1.2.141
+  commit: ef3c1854b213e6aa6e0248cc11ff619cc7b22278
+  content: 1.0.953
   content_pack_name: unknown
   format: '2'
   frontend: 1.2.1708
@@ -59,6 +59,17 @@ middlewares:
     functionality: FreeRTOS_v10.0.0
     api: RTOS:FreeRTOSv1000:MemMang_2
     dependencies: {}
+  PERSISTENT_STORAGE_0:
+    user_label: PERSISTENT_STORAGE_0
+    configuration:
+      conf_max_item_number: 10
+      conf_sector_size: 4096
+      conf_storage_memory_start: 65536
+    definition: Atmel:PERSISTENT_STORAGE:0.0.1::Internal_Flash_Persistent_storage
+    functionality: Persistent_Storage
+    api: Persistent-Storage:Internal-Flash-Ultra:Core
+    dependencies:
+      Flash instance: FLASH_INSTANCE
 drivers:
   DMAC:
     user_label: DMAC
@@ -596,6 +607,16 @@ drivers:
     variant: null
     clocks:
       domain_group: null
+  CRC_0:
+    user_label: CRC_0
+    definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::DSU::driver_config_definition::CRC~28DSU~29::HAL:Driver:CRC
+    functionality: CRC
+    api: HAL:Driver:CRC
+    configuration: {}
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group: null
   GCLK:
     user_label: GCLK
     definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::GCLK::driver_config_definition::GCLK::HAL:HPL:GCLK
@@ -735,6 +756,19 @@ drivers:
         - name: CPU
           input: CPU
         configuration: {}
+  FLASH_INSTANCE:
+    user_label: FLASH_INSTANCE
+    definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::NVMCTRL::driver_config_definition::Flash::HAL:Driver:FLASH
+    functionality: Flash
+    api: HAL:Driver:FLASH
+    configuration:
+      nvm_arch_cache0: false
+      nvm_arch_cache1: false
+      nvm_arch_sleepprm: Wake On Access
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group: null
   OSC32KCTRL:
     user_label: OSC32KCTRL
     definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::OSC32KCTRL::driver_config_definition::OSC32KCTRL::HAL:HPL:OSC32KCTRL
@@ -854,6 +888,37 @@ drivers:
     variant: null
     clocks:
       domain_group: null
+  CALENDAR_0:
+    user_label: CALENDAR_0
+    definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::RTC::driver_config_definition::Calendar::HAL:Driver:Calendar
+    functionality: Calendar
+    api: HAL:Driver:Calendar
+    configuration:
+      rtc_arch_init_reset: true
+      rtc_arch_prescaler: Peripheral clock divided by 1
+      rtc_cmpeo0: false
+      rtc_cmpeo1: false
+      rtc_event_control: false
+      rtc_ovfeo: false
+      rtc_pereo0: false
+      rtc_pereo1: false
+      rtc_pereo2: false
+      rtc_pereo3: false
+      rtc_pereo4: false
+      rtc_pereo5: false
+      rtc_pereo6: false
+      rtc_pereo7: false
+      rtc_tampereo: false
+      rtc_tampevei: false
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: RTC
+          input: RTC source
+        configuration:
+          rtc_clk_selection: RTC source
   SERIAL_FLASH_SPI:
     user_label: SERIAL_FLASH_SPI
     definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::SERCOM0::driver_config_definition::SPI.Master::HAL:Driver:SPI.Master.Sync
@@ -984,6 +1049,19 @@ drivers:
         configuration:
           core_gclk_selection: Generic clock generator 0
           slow_gclk_selection: Generic clock generator 3
+  WDT_0:
+    user_label: WDT_0
+    definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::WDT::driver_config_definition::WDT::HAL:Driver:WDT
+    functionality: WDT
+    api: HAL:Driver:WDT
+    configuration:
+      wdt_arch_per: 8 clock cycles
+      wdt_arch_window: 8 clock cycles
+      wdt_arch_window_en: false
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group: null
   CAN_0:
     user_label: CAN_0
     definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::CAN0::driver_config_definition::CAN::HAL:Driver:CAN.Async

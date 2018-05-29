@@ -1,10 +1,9 @@
-
 /**
  * \file
  *
- * \brief SAM Power manager
+ * \brief SAM WDT
  *
- * Copyright (c) 2016-2018 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2015-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
@@ -29,40 +28,45 @@
  * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
- *
  */
 
-#include <hpl_sleep.h>
-#include <hpl_init.h>
+#ifndef _HPL_WDT_BASE_H_INCLUDED
+#define _HPL_WDT_BASE_H_INCLUDED
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
- * \brief Set the sleep mode for the device
+ * \brief The register value of PER which SAMD21/SAMR21 supports
  */
-int32_t _set_sleep_mode(const uint8_t mode)
-{
-	uint8_t delay = 10;
-
-	switch (mode) {
-	case 2:
-	case 4:
-	case 5:
-	case 6:
-	case 7:
-		hri_pm_write_SLEEPCFG_reg(PM, mode);
-		/* A small latency happens between the store instruction and actual
-		 * writing of the SLEEPCFG register due to bridges. Software has to make
-		 * sure the SLEEPCFG register reads the wanted value before issuing WFI
-		 * instruction.
-		 */
-		do {
-			if (hri_pm_read_SLEEPCFG_reg(PM) == mode) {
-				break;
-			}
-		} while (--delay);
-		break;
-	default:
-		return ERR_INVALID_ARG;
-	}
-
-	return ERR_NONE;
+enum wdt_period_reg {
+	/** Corresponding to 8 clock cycles */
+	WDT_PERIOD_8CYCLE,
+	/** Corresponding to 16 clock cycles */
+	WDT_PERIOD_16CYCLE,
+	/** Corresponding to 32 clock cycles */
+	WDT_PERIOD_32CYCLE,
+	/** Corresponding to 64 clock cycles */
+	WDT_PERIOD_64CYCLE,
+	/** Corresponding to 128 clock cycles */
+	WDT_PERIOD_128CYCLE,
+	/** Corresponding to 256 clock cycles */
+	WDT_PERIOD_256CYCLE,
+	/** Corresponding to 512 clock cycles */
+	WDT_PERIOD_512CYCLE,
+	/** Corresponding to 1024 clock cycles */
+	WDT_PERIOD_1024CYCLE,
+	/** Corresponding to 2048 clock cycles */
+	WDT_PERIOD_2048CYCLE,
+	/** Corresponding to 4096 clock cycles */
+	WDT_PERIOD_4096CYCLE,
+	/** Corresponding to 8192 clock cycles */
+	WDT_PERIOD_8192CYCLE,
+	/** Corresponding to 16384 clock cycles */
+	WDT_PERIOD_16384CYCLE
+};
+#ifdef __cplusplus
 }
+#endif
+#endif /* _HPL_WDT_BASE_H_INCLUDED */

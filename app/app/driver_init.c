@@ -17,6 +17,7 @@
 /*! The buffer size for USART */
 #define BT_UART_BUFFER_SIZE 16
 
+struct crc_sync_descriptor    CRC_0;
 struct spi_m_sync_descriptor  SERIAL_FLASH_SPI;
 struct usart_async_descriptor DEBUG_UART;
 struct usart_async_descriptor BT_UART;
@@ -24,6 +25,46 @@ struct can_async_descriptor   CAN_0;
 
 static uint8_t DEBUG_UART_buffer[DEBUG_UART_BUFFER_SIZE];
 static uint8_t BT_UART_buffer[BT_UART_BUFFER_SIZE];
+
+struct flash_descriptor FLASH_INSTANCE;
+
+struct calendar_descriptor CALENDAR_0;
+
+struct wdt_descriptor WDT_0;
+
+/**
+ * \brief CRC initialization function
+ *
+ * Enables CRC peripheral, clocks and initializes CRC driver
+ */
+void CRC_0_init(void)
+{
+	hri_mclk_set_APBBMASK_DSU_bit(MCLK);
+	crc_sync_init(&CRC_0, DSU);
+}
+
+void FLASH_INSTANCE_CLOCK_init(void)
+{
+
+	hri_mclk_set_AHBMASK_NVMCTRL_bit(MCLK);
+}
+
+void FLASH_INSTANCE_init(void)
+{
+	FLASH_INSTANCE_CLOCK_init();
+	flash_init(&FLASH_INSTANCE, NVMCTRL);
+}
+
+void CALENDAR_0_CLOCK_init(void)
+{
+	hri_mclk_set_APBAMASK_RTC_bit(MCLK);
+}
+
+void CALENDAR_0_init(void)
+{
+	CALENDAR_0_CLOCK_init();
+	calendar_init(&CALENDAR_0, RTC);
+}
 
 void SERIAL_FLASH_SPI_PORT_init(void)
 {
@@ -157,6 +198,17 @@ void BT_UART_init(void)
 	BT_UART_CLOCK_init();
 	usart_async_init(&BT_UART, SERCOM2, BT_UART_buffer, BT_UART_BUFFER_SIZE, (void *)NULL);
 	BT_UART_PORT_init();
+}
+
+void WDT_0_CLOCK_init(void)
+{
+	hri_mclk_set_APBAMASK_WDT_bit(MCLK);
+}
+
+void WDT_0_init(void)
+{
+	WDT_0_CLOCK_init();
+	wdt_init(&WDT_0, WDT);
 }
 
 void CAN_0_PORT_init(void)
@@ -397,8 +449,16 @@ void system_init(void)
 
 	gpio_set_pin_function(MCU_STATUS_LED, GPIO_PIN_FUNCTION_OFF);
 
+	CRC_0_init();
+
+	FLASH_INSTANCE_init();
+
+	CALENDAR_0_init();
+
 	SERIAL_FLASH_SPI_init();
 	DEBUG_UART_init();
 	BT_UART_init();
+
+	WDT_0_init();
 	CAN_0_init();
 }

@@ -114,13 +114,7 @@
 		    (uint16_t)(CONF_SERCOM_##n##_USART_BAUD_RATE), CONF_SERCOM_##n##_USART_FRACTIONAL,                         \
 		    CONF_SERCOM_##n##_USART_RECEIVE_PULSE_LENGTH, CONF_SERCOM_##n##_USART_DEBUG_STOP_MODE,                     \
 	}
-/* The priority of the peripheral should be between the low and high interrupt priority set by chosen RTOS,
-  * Otherwise, some of the RTOS APIs may fail to work inside interrupts
-  * In case of FreeRTOS,the Lowest Interrupt priority is set by configLIBRARY_LOWEST_INTERRUPT_PRIORITY and
-  * Maximum interrupt priority by configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY, So Interrupt Priority of the peripheral
- * should be between
-  * configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY andconfigLIBRARY_LOWEST_INTERRUPT_PRIORITY */
-#define SERCOM_INTERRUPT_PRIORITY 6
+
 /**
  * \brief SERCOM USART configuration type
  */
@@ -224,7 +218,6 @@ int32_t _usart_async_init(struct _usart_async_device *const device, void *const 
 		NVIC_EnableIRQ((IRQn_Type)irq);
 		irq++;
 	}
-
 	return ERR_NONE;
 }
 
@@ -434,9 +427,17 @@ uint8_t _usart_sync_read_byte(const struct _usart_sync_device *const device)
 /**
  * \brief Check if USART is ready to send next byte
  */
-bool _usart_sync_is_byte_sent(const struct _usart_sync_device *const device)
+bool _usart_sync_is_ready_to_send(const struct _usart_sync_device *const device)
 {
 	return hri_sercomusart_get_interrupt_DRE_bit(device->hw);
+}
+
+/**
+ * \brief Check if USART transmission complete
+ */
+bool _usart_sync_is_transmit_done(const struct _usart_sync_device *const device)
+{
+	return hri_sercomusart_get_interrupt_TXC_bit(device->hw);
 }
 
 /**

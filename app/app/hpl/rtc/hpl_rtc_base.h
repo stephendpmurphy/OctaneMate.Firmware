@@ -1,8 +1,7 @@
-
 /**
  * \file
  *
- * \brief SAM Power manager
+ * \brief RTC
  *
  * Copyright (c) 2016-2018 Microchip Technology Inc. and its subsidiaries.
  *
@@ -29,40 +28,25 @@
  * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
- *
  */
 
-#include <hpl_sleep.h>
-#include <hpl_init.h>
+#ifndef _HPL_RTC2_V200_H_INCLUDED
+#define _HPL_RTC2_V200_H_INCLUDED
+
+#include <hpl_timer.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
- * \brief Set the sleep mode for the device
+ * \brief Retrieve timer helper functions
+ *
+ * \return A pointer to set of timer helper functions
  */
-int32_t _set_sleep_mode(const uint8_t mode)
-{
-	uint8_t delay = 10;
+struct _timer_hpl_interface *_rtc_get_timer(void);
 
-	switch (mode) {
-	case 2:
-	case 4:
-	case 5:
-	case 6:
-	case 7:
-		hri_pm_write_SLEEPCFG_reg(PM, mode);
-		/* A small latency happens between the store instruction and actual
-		 * writing of the SLEEPCFG register due to bridges. Software has to make
-		 * sure the SLEEPCFG register reads the wanted value before issuing WFI
-		 * instruction.
-		 */
-		do {
-			if (hri_pm_read_SLEEPCFG_reg(PM) == mode) {
-				break;
-			}
-		} while (--delay);
-		break;
-	default:
-		return ERR_INVALID_ARG;
-	}
-
-	return ERR_NONE;
+#ifdef __cplusplus
 }
+#endif
+#endif /* _HPL_RTC2_V200_H_INCLUDED */
