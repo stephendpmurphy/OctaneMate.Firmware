@@ -2,9 +2,9 @@ format_version: '2'
 name: OctaneMate
 versions:
   api: '1.0'
-  backend: 1.2.141
+  backend: 1.2.142
   commit: ef3c1854b213e6aa6e0248cc11ff619cc7b22278
-  content: 1.0.953
+  content: 1.0.964
   content_pack_name: unknown
   format: '2'
   frontend: 1.2.1708
@@ -888,37 +888,6 @@ drivers:
     variant: null
     clocks:
       domain_group: null
-  CALENDAR_0:
-    user_label: CALENDAR_0
-    definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::RTC::driver_config_definition::Calendar::HAL:Driver:Calendar
-    functionality: Calendar
-    api: HAL:Driver:Calendar
-    configuration:
-      rtc_arch_init_reset: true
-      rtc_arch_prescaler: Peripheral clock divided by 1
-      rtc_cmpeo0: false
-      rtc_cmpeo1: false
-      rtc_event_control: false
-      rtc_ovfeo: false
-      rtc_pereo0: false
-      rtc_pereo1: false
-      rtc_pereo2: false
-      rtc_pereo3: false
-      rtc_pereo4: false
-      rtc_pereo5: false
-      rtc_pereo6: false
-      rtc_pereo7: false
-      rtc_tampereo: false
-      rtc_tampevei: false
-    optional_signals: []
-    variant: null
-    clocks:
-      domain_group:
-        nodes:
-        - name: RTC
-          input: RTC source
-        configuration:
-          rtc_clk_selection: RTC source
   SERIAL_FLASH_SPI:
     user_label: SERIAL_FLASH_SPI
     definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::SERCOM0::driver_config_definition::SPI.Master::HAL:Driver:SPI.Master.Sync
@@ -1049,19 +1018,6 @@ drivers:
         configuration:
           core_gclk_selection: Generic clock generator 0
           slow_gclk_selection: Generic clock generator 3
-  WDT_0:
-    user_label: WDT_0
-    definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::WDT::driver_config_definition::WDT::HAL:Driver:WDT
-    functionality: WDT
-    api: HAL:Driver:WDT
-    configuration:
-      wdt_arch_per: 8 clock cycles
-      wdt_arch_window: 8 clock cycles
-      wdt_arch_window_en: false
-    optional_signals: []
-    variant: null
-    clocks:
-      domain_group: null
   CAN_0:
     user_label: CAN_0
     definition: Atmel:SAME51_Drivers:0.0.1::SAME51J20A-AF::CAN0::driver_config_definition::CAN::HAL:Driver:CAN.Async

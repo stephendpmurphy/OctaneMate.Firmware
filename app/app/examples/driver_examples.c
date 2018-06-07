@@ -84,41 +84,6 @@ void FLASH_INSTANCE_example(void)
 }
 
 /**
- * Example of using CALENDAR_0.
- */
-static struct calendar_alarm alarm;
-
-static void alarm_cb(struct calendar_descriptor *const descr)
-{
-	/* alarm expired */
-}
-
-void CALENDAR_0_example(void)
-{
-	struct calendar_date date;
-	struct calendar_time time;
-
-	calendar_enable(&CALENDAR_0);
-
-	date.year  = 2000;
-	date.month = 12;
-	date.day   = 31;
-
-	time.hour = 12;
-	time.min  = 59;
-	time.sec  = 59;
-
-	calendar_set_date(&CALENDAR_0, &date);
-	calendar_set_time(&CALENDAR_0, &time);
-
-	alarm.cal_alarm.datetime.time.sec = 4;
-	alarm.cal_alarm.option            = CALENDAR_ALARM_MATCH_SEC;
-	alarm.cal_alarm.mode              = REPEAT;
-
-	calendar_set_alarm(&CALENDAR_0, &alarm, alarm_cb);
-}
-
-/**
  * Example of using SERIAL_FLASH_SPI to write "Hello World" using the IO abstraction.
  */
 static uint8_t example_SERIAL_FLASH_SPI[12] = "Hello World!";
@@ -188,20 +153,6 @@ void BT_UART_example(void)
 	usart_async_enable(&BT_UART);
 
 	io_write(io, example_BT_UART, 12);
-}
-
-/**
- * Example of using WDT_0.
- */
-void WDT_0_example(void)
-{
-	uint32_t clk_rate;
-	uint16_t timeout_period;
-
-	clk_rate       = 1000;
-	timeout_period = 4096;
-	wdt_set_timeout_period(&WDT_0, clk_rate, timeout_period);
-	wdt_enable(&WDT_0);
 }
 
 void CAN_0_tx_callback(struct can_async_descriptor *const descr)
