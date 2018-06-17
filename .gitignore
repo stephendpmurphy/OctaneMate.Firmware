@@ -23,6 +23,7 @@
 
 #User Specific Files
 *.atsuo
+*.log
 
 
 # End of https://www.gitignore.io/api/atmelstudio
