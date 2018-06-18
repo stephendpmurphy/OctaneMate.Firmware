@@ -1,0 +1,3 @@
+[submodule "application/application/submodules/FreeRTOS"]
+	path = application/application/submodules/FreeRTOS
+	url = https://github.com/murphtech/FreeRTOS.git
