@@ -9,11 +9,19 @@
 
 #include "driver_init.h"
 #include "FreeRTOS_API.h"
+#include "debug_API.h"
+
+/*-------------- DEFINITIONS -------------------------------------------------*/
+/*-------------- TYPEDEFS ----------------------------------------------------*/
+/*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
+/*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
 int main(void)
 {
 	/* Initializes MCU, drivers and middleware */
 	system_init();
+
+	DEBUG_println("This is a test %d", 1);
 
 	/* Replace with your application code */
 	while (1) {
