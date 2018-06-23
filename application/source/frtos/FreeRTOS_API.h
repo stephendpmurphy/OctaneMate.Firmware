@@ -1,11 +1,11 @@
-/*
- * FreeRTOS.h
- *
- * Created: 6/17/2018 6:41:05 PM
- *  Author: Steve
- */ 
-
-
+//------------------------------------------------------------------------------
+// Copyright(c)2018 Murphy Technology as an unpublished work.
+//
+// The information contained herein is confidential property of Murphy Technology.
+// All rights reserved. Reproduction, adaptation, or translation without the
+// express written consent of Murphy Technology is prohibited, except as allowed
+// under the copyright laws.
+//------------------------------------------------------------------------------
 #ifndef FREERTOS_H_
 #define FREERTOS_H_
 
@@ -24,7 +24,5 @@
 #include "stack_macros.h"
 #include "task.h"
 #include "timers.h"
-
-
 
 #endif /* FREERTOS_H_ */

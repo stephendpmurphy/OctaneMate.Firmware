@@ -7,7 +7,9 @@
 //  under the copyright laws.
 //------------------------------------------------------------------------------
 
+#include <stdbool.h>
 #include "driver_init.h"
+#include "tasksAPI.h"
 #include "FreeRTOS_API.h"
 #include "debug_API.h"
 
@@ -18,10 +20,19 @@
 
 int main(void)
 {
+	bool retVal = false;
+
 	/* Initializes MCU, drivers and middleware */
 	system_init();
 
 	DEBUG_println("This is a test %d", 1);
+
+	retVal = tasks_CreateTask();
+
+	if(retVal)
+	{
+		vTaskStartScheduler();
+	}
 
 	/* Replace with your application code */
 	while (1) {

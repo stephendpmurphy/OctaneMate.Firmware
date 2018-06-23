@@ -214,7 +214,7 @@
   <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
   <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
   <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
-  <armgcc.compiler.directories.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../ASF/hal/include</Value><Value>../ASF/hal/utils/include</Value><Value>../ASF/hpl/can</Value><Value>../ASF/hpl/core</Value><Value>../ASF/hpl/dmac</Value><Value>../ASF/hpl/gclk</Value><Value>../ASF/hpl/mclk</Value><Value>../ASF/hpl/osc32kctrl</Value><Value>../ASF/hpl/oscctrl</Value><Value>../ASF/hpl/pm</Value><Value>../ASF/hpl/port</Value><Value>../ASF/hpl/ramecc</Value><Value>../ASF/hpl/sercom</Value><Value>../ASF/hri</Value><Value>../ASF/config</Value><Value>../source</Value><Value>../source/board</Value><Value>../source/frtos</Value><Value>../source/main</Value><Value>../source/debug</Value><Value>../submodules/FreeRTOS/include</Value><Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value></ListValues></armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.directories.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../ASF/hal/include</Value><Value>../ASF/hal/utils/include</Value><Value>../ASF/hpl/can</Value><Value>../ASF/hpl/core</Value><Value>../ASF/hpl/dmac</Value><Value>../ASF/hpl/gclk</Value><Value>../ASF/hpl/mclk</Value><Value>../ASF/hpl/osc32kctrl</Value><Value>../ASF/hpl/oscctrl</Value><Value>../ASF/hpl/pm</Value><Value>../ASF/hpl/port</Value><Value>../ASF/hpl/ramecc</Value><Value>../ASF/hpl/sercom</Value><Value>../ASF/hri</Value><Value>../ASF/config</Value><Value>../source</Value><Value>../source/board</Value><Value>../source/frtos</Value><Value>../source/main</Value><Value>../source/debug</Value><Value>../source/devMgr</Value><Value>../submodules/FreeRTOS/include</Value><Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value></ListValues></armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
@@ -239,7 +239,7 @@
   <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
   <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
   <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
-  <armgcc.compiler.directories.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../ASF/hal/include</Value><Value>../ASF/hal/utils/include</Value><Value>../ASF/hpl/can</Value><Value>../ASF/hpl/core</Value><Value>../ASF/hpl/dmac</Value><Value>../ASF/hpl/gclk</Value><Value>../ASF/hpl/mclk</Value><Value>../ASF/hpl/osc32kctrl</Value><Value>../ASF/hpl/oscctrl</Value><Value>../ASF/hpl/pm</Value><Value>../ASF/hpl/port</Value><Value>../ASF/hpl/ramecc</Value><Value>../ASF/hpl/sercom</Value><Value>../ASF/hri</Value><Value>../ASF/config</Value><Value>../source</Value><Value>../source/board</Value><Value>../source/frtos</Value><Value>../source/main</Value><Value>../source/debug</Value><Value>../submodules/FreeRTOS/include</Value><Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value></ListValues></armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.directories.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../ASF/hal/include</Value><Value>../ASF/hal/utils/include</Value><Value>../ASF/hpl/can</Value><Value>../ASF/hpl/core</Value><Value>../ASF/hpl/dmac</Value><Value>../ASF/hpl/gclk</Value><Value>../ASF/hpl/mclk</Value><Value>../ASF/hpl/osc32kctrl</Value><Value>../ASF/hpl/oscctrl</Value><Value>../ASF/hpl/pm</Value><Value>../ASF/hpl/port</Value><Value>../ASF/hpl/ramecc</Value><Value>../ASF/hpl/sercom</Value><Value>../ASF/hri</Value><Value>../ASF/config</Value><Value>../source</Value><Value>../source/board</Value><Value>../source/frtos</Value><Value>../source/main</Value><Value>../source/debug</Value><Value>../source/devMgr</Value><Value>../submodules/FreeRTOS/include</Value><Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value></ListValues></armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
@@ -284,6 +284,7 @@
     <Folder Include="device_startup\" />
     <Folder Include="source\" />
     <Folder Include="source\board\" />
+    <Folder Include="source\devMgr\" />
     <Folder Include="source\frtos\" />
     <Folder Include="source\main\" />
     <Folder Include="source\debug" />
@@ -718,10 +719,25 @@
     <Compile Include="source\debug\debug_API.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="source\devMgr\devMgr.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\devMgr\devMgrAPI.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="source\frtos\FreeRTOS_API.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\frtos\FreeRTOSConfig.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\frtos\tasksAPI.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\frtos\tasksAPI.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\frtos\tasksConfig.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\main\main.c">
