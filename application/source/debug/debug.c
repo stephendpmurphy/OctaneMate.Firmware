@@ -14,7 +14,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#include "debug_API.h"
+#include "debugAPI.h"
 #include "FreeRTOS_API.h"
 #include "driver_init.h"
 
@@ -79,4 +79,12 @@ void str_write(const char *s)
 		// is ready to accept another buffer to output
 		;//wait for the usart to free up
 	}
+}
+
+void task_debug(void* params)
+{
+    while(1)
+    {
+        
+    }
 }

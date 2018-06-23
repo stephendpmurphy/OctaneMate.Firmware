@@ -12,6 +12,11 @@
 #include "tasksConfig.h"
 #include "FreeRTOS_API.h"
 #include "devMgrAPI.h"
+#include "bleAPI.h"
+#include "vehIntfAPI.h"
+#include "uiAPI.h"
+#include "configAPI.h"
+#include "debugAPI.h"
 
 //-------------- DEFINITIONS ---------------------------------------------------
 //-------------- TYPEDEFS ------------------------------------------------------
@@ -31,6 +36,41 @@ bool tasks_CreateTask(void)
                                                         NULL,
                                                         TASK_PRIORITY_DEV_MANAGER,
                                                         &taskHandles[kTASK_DEV_MANAGER] );
+
+    taskCreationResult[kTASK_BLE] =         xTaskCreate(task_ble,
+                                                        TASK_NAME_BLE,
+                                                        TASK_STACK_SIZE_BLE,
+                                                        NULL,
+                                                        TASK_PRIORITY_BLE,
+                                                        &taskHandles[kTASK_BLE] );
+
+    taskCreationResult[kTASK_VEH_INTF] =    xTaskCreate(task_vehIntf,
+                                                        TASK_NAME_VEH_INTF,
+                                                        TASK_STACK_SIZE_VEH_INTF,
+                                                        NULL,
+                                                        TASK_PRIORITY_VEH_INTF,
+                                                        &taskHandles[kTASK_VEH_INTF] );
+
+    taskCreationResult[kTASK_UI] =          xTaskCreate(task_ui,
+                                                        TASK_NAME_UI,
+                                                        TASK_STACK_SIZE_UI,
+                                                        NULL,
+                                                        TASK_PRIORITY_UI,
+                                                        &taskHandles[kTASK_UI] );
+
+    taskCreationResult[kTASK_CONFIG] =      xTaskCreate(task_config,
+                                                        TASK_NAME_CONFIG,
+                                                        TASK_STACK_SIZE_CONFIG,
+                                                        NULL,
+                                                        TASK_PRIORITY_CONFIG,
+                                                        &taskHandles[kTASK_CONFIG] );
+
+    taskCreationResult[kTASK_DEBUG] =       xTaskCreate(task_debug,
+                                                        TASK_NAME_DEBUG,
+                                                        TASK_STACK_SIZE_DEBUG,
+                                                        NULL,
+                                                        TASK_PRIORITY_DEBUG,
+                                                        &taskHandles[kTASK_DEBUG] );
 
     for(uint8_t x=0;x<kTASK_MAX;x++)
     {

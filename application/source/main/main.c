@@ -11,7 +11,7 @@
 #include "driver_init.h"
 #include "tasksAPI.h"
 #include "FreeRTOS_API.h"
-#include "debug_API.h"
+#include "debugAPI.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
