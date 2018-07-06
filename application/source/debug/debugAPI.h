@@ -13,6 +13,7 @@
 void DEBUG_initTask(void);
 void DEBUG_println(const char *frmt, ...);
 
+void debug_init(void);
 void task_debug(void* params);
 
 #endif /* DEBUG_TASK_H_ */

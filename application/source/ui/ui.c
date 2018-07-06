@@ -9,6 +9,7 @@
 
 #include "uiAPI.h"
 #include "FreeRTOS_API.h"
+#include "debugAPI.h"
 #include "pins.h"
 
 //-------------- DEFINITIONS ---------------------------------------------------
@@ -18,6 +19,7 @@
 
 void task_ui(void* params)
 {
+	DEBUG_println("UI Task Started\n\r");
     //Device Manager Code
     while(1)
     {

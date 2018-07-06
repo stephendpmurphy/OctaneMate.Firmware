@@ -9,6 +9,7 @@
 
 #include "devMgrAPI.h"
 #include "FreeRTOS_API.h"
+#include "debugAPI.h"
 
 //-------------- DEFINITIONS ---------------------------------------------------
 //-------------- TYPEDEFS ------------------------------------------------------
@@ -17,6 +18,7 @@
 
 void task_devMgr(void* params)
 {
+	DEBUG_println("Device Manager Task Started\n\r");
     //Device Manager Code
     while(1)
     {

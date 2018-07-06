@@ -23,22 +23,16 @@ int main(void)
 
 	/* Initializes MCU, drivers and middleware */
 	system_init();
+	debug_init();
 
 	gpio_set_pin_level(EXT_FLASH_NEN,false);
 	gpio_set_pin_level(BT_NEN,false);
 
-	DEBUG_println("This is a test %d", 1);
+	DEBUG_println("This is a test %d\n\r", 1);
 
 	retVal = tasks_CreateTask();
 
-	//while(1)
-	//{
-		//gpio_set_pin_level(MCU_STATUS_LED, true);
-		//delay_ms(500/portTICK_PERIOD_MS);
-		//gpio_set_pin_level(MCU_STATUS_LED, false);
-		//delay_ms(500/portTICK_PERIOD_MS);
-	//}
-
+                       
 	if(retVal)
 	{
 		vTaskStartScheduler();

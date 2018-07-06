@@ -9,6 +9,7 @@
 
 #include "configAPI.h"
 #include "FreeRTOS_API.h"
+#include "debugAPI.h"
 
 //-------------- DEFINITIONS ---------------------------------------------------
 //-------------- TYPEDEFS ------------------------------------------------------
@@ -17,7 +18,8 @@
 
 void task_config(void* params)
 {
-    //Device Manager Code
+	DEBUG_println("Config Task Started\n\r");
+    //Config Manager Code
     while(1)
     {
 		vTaskDelay(1000/portTICK_PERIOD_MS);
