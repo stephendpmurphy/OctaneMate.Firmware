@@ -24,9 +24,20 @@ int main(void)
 	/* Initializes MCU, drivers and middleware */
 	system_init();
 
+	gpio_set_pin_level(EXT_FLASH_NEN,false);
+	gpio_set_pin_level(BT_NEN,false);
+
 	DEBUG_println("This is a test %d", 1);
 
 	retVal = tasks_CreateTask();
+
+	//while(1)
+	//{
+		//gpio_set_pin_level(MCU_STATUS_LED, true);
+		//delay_ms(500/portTICK_PERIOD_MS);
+		//gpio_set_pin_level(MCU_STATUS_LED, false);
+		//delay_ms(500/portTICK_PERIOD_MS);
+	//}
 
 	if(retVal)
 	{
@@ -35,5 +46,19 @@ int main(void)
 
 	/* Replace with your application code */
 	while (1) {
+	}
+}
+
+void HardFault_Handler()
+{
+	while(1){
+
+	}
+}
+
+void vApplicationStackOverflowHook( xTaskHandle pxTask, signed char *pcTaskName )
+{
+	while(1){
+		
 	}
 }

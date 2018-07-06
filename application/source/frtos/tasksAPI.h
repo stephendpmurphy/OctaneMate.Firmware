@@ -10,6 +10,8 @@
 #ifndef TASKSAPI_H_
 #define TASKSAPI_H_
 
+#include <stdbool.h>
+
 bool tasks_CreateTask(void);
 
 #endif //TASKSAPI_H_

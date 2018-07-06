@@ -8,6 +8,8 @@
 //------------------------------------------------------------------------------
 
 #include "uiAPI.h"
+#include "FreeRTOS_API.h"
+#include "pins.h"
 
 //-------------- DEFINITIONS ---------------------------------------------------
 //-------------- TYPEDEFS ------------------------------------------------------
@@ -19,6 +21,9 @@ void task_ui(void* params)
     //Device Manager Code
     while(1)
     {
-
+		gpio_set_pin_level(MCU_STATUS_LED, true);
+		vTaskDelay(500/portTICK_PERIOD_MS);
+		gpio_set_pin_level(MCU_STATUS_LED, false);
+		vTaskDelay(500/portTICK_PERIOD_MS);
     }
 }

@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 #include "vehIntfAPI.h"
+#include "FreeRTOS_API.h"
 
 //-------------- DEFINITIONS ---------------------------------------------------
 //-------------- TYPEDEFS ------------------------------------------------------
@@ -19,6 +20,6 @@ void task_vehIntf(void* params)
     //Device Manager Code
     while(1)
     {
-
+		vTaskDelay(1000/portTICK_PERIOD_MS);
     }
 }
