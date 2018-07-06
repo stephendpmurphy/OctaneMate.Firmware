@@ -22,8 +22,8 @@ void task_ui(void* params)
     while(1)
     {
 		gpio_set_pin_level(MCU_STATUS_LED, true);
-		vTaskDelay(500/portTICK_PERIOD_MS);
+		vTaskDelay(1000/portTICK_PERIOD_MS);
 		gpio_set_pin_level(MCU_STATUS_LED, false);
-		vTaskDelay(500/portTICK_PERIOD_MS);
+		vTaskDelay(1000/portTICK_PERIOD_MS);
     }
 }

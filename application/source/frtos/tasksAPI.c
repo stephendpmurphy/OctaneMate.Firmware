@@ -74,10 +74,10 @@ bool tasks_CreateTask(void)
 
     for(uint8_t x=0;x<kTASK_MAX;x++)
     {
-        if(taskCreationResult[x] != pdPASS)
-        {
-            return false;
-        }
+	    if(taskCreationResult[x] != pdPASS)
+	    {
+		    return false;
+	    }
     }
 
     return true;
