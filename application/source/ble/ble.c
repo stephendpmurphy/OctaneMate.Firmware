@@ -16,6 +16,11 @@
 //-------------- FUNCTION PROTOTYPES -------------------------------------------
 //-------------- VARIABLE DEFINITIONS ------------------------------------------
 
+bool ble_init(void)
+{
+	return true;
+}
+
 void task_ble(void* params)
 {
 	DEBUG_println("BLE Task Started\n\r");

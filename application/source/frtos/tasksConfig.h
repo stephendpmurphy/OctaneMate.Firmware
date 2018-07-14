@@ -23,7 +23,7 @@
 #define TASK_STACK_SIZE_VEH_INTF    256
 #define TASK_STACK_SIZE_UI          256
 #define TASK_STACK_SIZE_CONFIG      256
-#define TASK_STACK_SIZE_DEBUG       4096
+#define TASK_STACK_SIZE_DEBUG       256
 
 //Task Priority
 #define TASK_PRIORITY_DEV_MANAGER   3

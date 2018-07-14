@@ -7,19 +7,12 @@
 //  under the copyright laws.
 //------------------------------------------------------------------------------
 
-#ifndef DEBUG_TASK_H_
-#define DEBUG_TASK_H_
 
-#define RESET_println(...)	_println(__VA_ARGS__);
+#ifndef BM71_H_
+#define BM71_H_
 
-#ifdef DEBUG_BUILD
-#define DEBUG_println(...)	_println(__VA_ARGS__);
-#else
-#define DEBUG_println(...) 
-#endif
 
-void _println(const char *frmt, ...);
-void debug_init(void);
-void task_debug(void* params);
 
-#endif /* DEBUG_TASK_H_ */
+
+
+#endif /* BM71_H_ */

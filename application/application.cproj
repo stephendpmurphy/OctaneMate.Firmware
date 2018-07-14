@@ -217,6 +217,7 @@
   <armgcc.compiler.symbols.DefSymbols>
     <ListValues>
       <Value>NDEBUG</Value>
+      <Value>RELEASE_BUILD</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
@@ -330,6 +331,7 @@
   <armgcc.compiler.symbols.DefSymbols>
     <ListValues>
       <Value>DEBUG</Value>
+      <Value>DEBUG_BUILD</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
@@ -890,6 +892,12 @@
     <Compile Include="source\ble\bleAPI.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="source\ble\BM71.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\ble\BM71.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="source\board\driver_init.c">
       <SubType>compile</SubType>
     </Compile>
@@ -897,6 +905,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\board\pins.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\board\version.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="source\config\config.c">

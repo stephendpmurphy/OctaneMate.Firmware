@@ -9,6 +9,6 @@
 #ifndef EVENTQUEUEAPI_H_
 #define EVENTQUEUEAPI_H_
 
-
+bool eventQueue_CreateQueues(void);
 
 #endif /* EVENTQUEUEAPI_H_ */

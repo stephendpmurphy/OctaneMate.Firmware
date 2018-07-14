@@ -7,19 +7,17 @@
 //  under the copyright laws.
 //------------------------------------------------------------------------------
 
-#ifndef DEBUG_TASK_H_
-#define DEBUG_TASK_H_
+#include <stdint.h>
+#include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
+#include <stdbool.h>
 
-#define RESET_println(...)	_println(__VA_ARGS__);
+#include "BM71.h"
+#include "FreeRTOS_API.h"
+#include "driver_init.h"
 
-#ifdef DEBUG_BUILD
-#define DEBUG_println(...)	_println(__VA_ARGS__);
-#else
-#define DEBUG_println(...) 
-#endif
-
-void _println(const char *frmt, ...);
-void debug_init(void);
-void task_debug(void* params);
-
-#endif /* DEBUG_TASK_H_ */
+/*-------------- DEFINITIONS -------------------------------------------------*/
+/*-------------- TYPEDEFS ----------------------------------------------------*/
+/*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
+/*-------------- VARIABLE DEFINITIONS ----------------------------------------*/

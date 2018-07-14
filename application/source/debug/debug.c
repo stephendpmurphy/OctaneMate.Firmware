@@ -43,7 +43,7 @@ void debug_init(void)
 	}
 }
 
-void DEBUG_println(const char * frmt, ...)
+void _println(const char * frmt, ...)
 {
 	char buf[255] = {0};
 	va_list args;
@@ -67,7 +67,6 @@ void DEBUG_println(const char * frmt, ...)
 			xSemaphoreGive(printf_mutex);
 		}
 	}
-
 }
 
 void str_write(const char *s)
