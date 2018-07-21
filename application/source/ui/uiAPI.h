@@ -10,6 +10,13 @@
 #ifndef UIAPI_H_
 #define UIAPI_H_
 
+/************ DEFINITIONS ***************/
+
+/************** TYPEDEFS ****************/
+
+/********* FUNCTION PROTOTYPES **********/
 void task_ui(void* params);
+
+/******* EXTERN / GLOBAL VARIABLE *******/
 
 #endif //UIAPI_H_

@@ -10,6 +10,13 @@
 #ifndef DEVMGRAPI_H_
 #define DEVMGRAPI_H_
 
+/************ DEFINITIONS ***************/
+
+/************** TYPEDEFS ****************/
+
+/********* FUNCTION PROTOTYPES **********/
 void task_devMgr(void* params);
+
+/******* EXTERN / GLOBAL VARIABLE *******/
 
 #endif //DEVMGRAPI_H_

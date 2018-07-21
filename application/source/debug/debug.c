@@ -22,13 +22,9 @@
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 void str_write(const char *s);
-
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 static SemaphoreHandle_t printf_mutex;
 struct io_descriptor *io;
-char g_debug_recv_buff[5] = "";
-uint8_t recv_buff_index = 0;
-
 
 void debug_init(void)
 {

@@ -90,10 +90,10 @@ void EXT_FLASH_SPI_init(void)
 void BT_UART_CLOCK_init()
 {
 
-	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM3_GCLK_ID_CORE, CONF_GCLK_SERCOM3_CORE_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
-	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM3_GCLK_ID_SLOW, CONF_GCLK_SERCOM3_SLOW_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM2_GCLK_ID_CORE, CONF_GCLK_SERCOM2_CORE_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM2_GCLK_ID_SLOW, CONF_GCLK_SERCOM2_SLOW_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
 
-	hri_mclk_set_APBBMASK_SERCOM3_bit(MCLK);
+	hri_mclk_set_APBBMASK_SERCOM2_bit(MCLK);
 }
 
 /**
@@ -103,10 +103,9 @@ void BT_UART_CLOCK_init()
  */
 void BT_UART_PORT_init()
 {
+	gpio_set_pin_function(BT_UART_TX, PINMUX_PA12C_SERCOM2_PAD0);
 
-	gpio_set_pin_function(BT_UART_TX, PINMUX_PA24C_SERCOM3_PAD2);
-
-	gpio_set_pin_function(BT_UART_RX, PINMUX_PA21D_SERCOM3_PAD3);
+	gpio_set_pin_function(BT_UART_RX, PINMUX_PA13C_SERCOM2_PAD1);
 }
 
 /**
@@ -117,7 +116,7 @@ void BT_UART_PORT_init()
 void BT_UART_init(void)
 {
 	BT_UART_CLOCK_init();
-	usart_async_init(&BT_UART, SERCOM3, BT_UART_buffer, BT_UART_BUFFER_SIZE, (void *)NULL);
+	usart_async_init(&BT_UART, SERCOM2, BT_UART_buffer, BT_UART_BUFFER_SIZE, (void *)NULL);
 	BT_UART_PORT_init();
 }
 

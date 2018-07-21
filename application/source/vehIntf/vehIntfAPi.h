@@ -10,6 +10,13 @@
 #ifndef VEHINTFAPI_H_
 #define VEHINTFAPI_H_
 
+/************ DEFINITIONS ***************/
+
+/************** TYPEDEFS ****************/
+
+/********* FUNCTION PROTOTYPES **********/
 void task_vehIntf(void* params);
+
+/******* EXTERN / GLOBAL VARIABLE *******/
 
 #endif //VEHINTFAPI_H_

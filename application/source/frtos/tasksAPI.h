@@ -12,6 +12,13 @@
 
 #include <stdbool.h>
 
+/************ DEFINITIONS ***************/
+
+/************** TYPEDEFS ****************/
+
+/********* FUNCTION PROTOTYPES **********/
 bool tasks_CreateTask(void);
+
+/******* EXTERN / GLOBAL VARIABLE *******/
 
 #endif //TASKSAPI_H_

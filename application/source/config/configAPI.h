@@ -10,6 +10,12 @@
 #ifndef CONFIGAPI_H_
 #define CONFIGAPI_H_
 
+/************ DEFINITIONS ***************/
+
+/************** TYPEDEFS ****************/
+
+/********* FUNCTION PROTOTYPES **********/
 void task_config(void* params);
+/******* EXTERN / GLOBAL VARIABLE *******/
 
 #endif //CONFIGAPI_H_

@@ -12,6 +12,7 @@
 #include "FreeRTOS_API.h"
 #include "debugAPI.h"
 #include "version.h"
+#include "BM71.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
@@ -24,12 +25,15 @@ int main(void)
 
 	/* Initializes MCU, drivers and middleware */
 	system_init();
+
 	debug_init();
+
+	RESET_println("MurphyTechnology OctaneMate v%d.%d.%d - %s %s\n\n\r", PRODUCT_VERSION, HW_VERSION, FW_VERSION, __DATE__, __TIME__);
 
 	gpio_set_pin_level(EXT_FLASH_NEN,false);
 	gpio_set_pin_level(BT_NEN,false);
 
-	RESET_println("MurphyTechnology OctaneMate v%d.%d.%d - %s %s\n\n\r", PRODUCT_VERSION, HW_VERSION, FW_VERSION, __DATE__, __TIME__);
+	BM71_init();
 
 	retVal = tasks_CreateTask();
 

@@ -10,16 +10,22 @@
 #ifndef DEBUG_TASK_H_
 #define DEBUG_TASK_H_
 
+/************ DEFINITIONS ***************/
 #define RESET_println(...)	_println(__VA_ARGS__);
 
 #ifdef DEBUG_BUILD
 #define DEBUG_println(...)	_println(__VA_ARGS__);
 #else
-#define DEBUG_println(...) 
+#define DEBUG_println(...)
 #endif
 
+/************** TYPEDEFS ****************/
+
+/********* FUNCTION PROTOTYPES **********/
 void _println(const char *frmt, ...);
 void debug_init(void);
 void task_debug(void* params);
+
+/******* EXTERN / GLOBAL VARIABLE *******/
 
 #endif /* DEBUG_TASK_H_ */

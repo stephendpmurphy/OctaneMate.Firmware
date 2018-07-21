@@ -25,7 +25,6 @@ extern "C" {
 
 #include <hal_spi_m_sync.h>
 #include <hal_usart_async.h>
-#include <hal_usart_async.h>
 #include <hal_can_async.h>
 
 extern struct spi_m_sync_descriptor  EXT_FLASH_SPI;
