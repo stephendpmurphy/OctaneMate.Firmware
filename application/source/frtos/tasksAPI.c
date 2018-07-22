@@ -18,15 +18,15 @@
 #include "configAPI.h"
 #include "debugAPI.h"
 
-//-------------- DEFINITIONS ---------------------------------------------------
-//-------------- TYPEDEFS ------------------------------------------------------
-//-------------- FUNCTION PROTOTYPES -------------------------------------------
-//-------------- VARIABLE DEFINITIONS ------------------------------------------
+/*-------------- DEFINITIONS -------------------------------------------------*/
+/*-------------- TYPEDEFS ----------------------------------------------------*/
+/*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
+/*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 TaskHandle_t taskHandles[kTASK_MAX];
 bool taskCreationResult[kTASK_MAX];
 
 
-bool tasks_CreateTask(void)
+bool tasks_CreateTasks(void)
 {
 
     /* Create the task, storing the handle. */

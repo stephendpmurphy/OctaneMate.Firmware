@@ -103,6 +103,7 @@ void BT_UART_CLOCK_init()
  */
 void BT_UART_PORT_init()
 {
+
 	gpio_set_pin_function(BT_UART_TX, PINMUX_PA12C_SERCOM2_PAD0);
 
 	gpio_set_pin_function(BT_UART_RX, PINMUX_PA13C_SERCOM2_PAD1);

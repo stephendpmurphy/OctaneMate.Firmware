@@ -17,6 +17,7 @@
 #include "debugAPI.h"
 #include "FreeRTOS_API.h"
 #include "driver_init.h"
+#include "delay.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
@@ -50,7 +51,7 @@ void _println(const char * frmt, ...)
 	if(xTaskGetSchedulerState() != taskSCHEDULER_RUNNING)
 	{
 		str_write(buf);
-		delay_ms(10);
+		brd_MsDelay(10);
 		//It seems like the processor is running faster than the USART can grab the data from the buf variable
 		//So we end up overwriting the buffer with a new printf before we can finish the previous write.. So a short delay is added
 		//Doesn't seem to be a problem below when Tasks are actually running.

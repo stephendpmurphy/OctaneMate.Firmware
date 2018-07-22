@@ -13,41 +13,31 @@
 #include "debugAPI.h"
 #include "version.h"
 #include "BM71.h"
+#include "extFlash.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
+static void FreeRTOS_init(void);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
 int main(void)
 {
-	bool retVal = false;
-
-	/* Initializes MCU, drivers and middleware */
+	//Board init
 	system_init();
 
-	debug_init();
-
-	RESET_println("MurphyTechnology OctaneMate v%d.%d.%d - %s %s\n\n\r", PRODUCT_VERSION, HW_VERSION, FW_VERSION, __DATE__, __TIME__);
-
 	gpio_set_pin_level(EXT_FLASH_NEN,false);
-	gpio_set_pin_level(BT_NEN,false);
-
+	
+	//Enable Debug Messages
+	debug_init();
+	RESET_println("MurphyTechnology OctaneMate v%d.%d.%d - %s %s\n\n\r", PRODUCT_VERSION, HW_VERSION, FW_VERSION, __DATE__, __TIME__);
+	
+	//Module init
 	BM71_init();
+	extFlash_init();
 
-	retVal = tasks_CreateTask();
-
-	if(retVal)
-	{
-		retVal = eventQueue_CreateQueues();
-	}
-	               
-	if(retVal)
-	{
-		vTaskStartScheduler();
-	}
-
-	RESET_println("Scheduler returned. Fault in main!");
+	//Initialize FreeRTOS and start the scheduler.. Should not return from this function call.
+	FreeRTOS_init();
 
 	//Something went wrong.. Stop here.
 	while (1) {
@@ -67,4 +57,29 @@ void vApplicationStackOverflowHook( xTaskHandle pxTask, signed char *pcTaskName 
 	RESET_println("%s overflowed its stack!", pcTaskName);
 	while(1){
 	}
+}
+
+static void FreeRTOS_init(void)
+{
+	//Init all of the Module Tasks
+	if( !tasks_CreateTasks() )
+	{
+		RESET_println("Failed to create task(s)");
+		while(1)
+		;
+	}
+	
+	//Init all of the Module Queues
+	if( !eventQueue_CreateQueues() )
+	{
+		RESET_println("Failed to create task(s)");
+		while(1)
+		;
+	}
+	
+	//Start the FreeRTOS scheduler.. 
+	vTaskStartScheduler();
+
+	//Should never have returned from the above call..
+	RESET_println("!!! ERROR !!! Scheduler returned...");
 }

@@ -10,13 +10,10 @@
 #ifndef BLEAPI_H_
 #define BLEAPI_H_
 
-/************ DEFINITIONS ***************/
-
-/************** TYPEDEFS ****************/
-
-/********* FUNCTION PROTOTYPES **********/
+/*-------------- DEFINITIONS -------------------------------------------------*/
+/*-------------- TYPEDEFS ----------------------------------------------------*/
+/*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 void task_ble(void* params);
-
-/******* EXTERN / GLOBAL VARIABLE *******/
+/*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
 #endif //BLEAPI_H_

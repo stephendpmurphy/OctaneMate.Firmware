@@ -8,71 +8,56 @@
 //------------------------------------------------------------------------------
 
 #include <stdint.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include <string.h>
 #include <stdbool.h>
 
 #include "BM71.h"
 #include "FreeRTOS_API.h"
 #include "driver_init.h"
 #include "debugAPI.h"
+#include "delay.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-static void tx_comp(const struct usart_async_descriptor *const io_descr);
-static void rx_comp(const struct usart_async_descriptor *const io_descr);
-static void err_cb(const struct usart_async_descriptor *const io_descr);
+static void BM77_setResetPin(bool en);
+static void BM71_setPowerEn(bool en);
+static void BM71_setConfigPin(bool en);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
-struct io_descriptor *io;
+static struct io_descriptor *BT_io;
 BM71_Command_t RxMsg;
 
-static void tx_comp(const struct usart_async_descriptor *const io_descr)
-{
-	RESET_println("Tx Complete!");
-}
-
-static void rx_comp(const struct usart_async_descriptor *const io_descr)
-{
-	RESET_println("Tx Complete!");
-}
-
-static void err_cb(const struct usart_async_descriptor *const io_descr)
-{
-	RESET_println("Error!");
-}
 
 void BM71_init(void)
 {
-	usart_async_get_io_descriptor(&BT_UART, &io);
-	usart_async_register_callback(&BT_UART,USART_ASYNC_ERROR_CB, err_cb);
-	usart_async_register_callback(&BT_UART,USART_ASYNC_TXC_CB, tx_comp);
-	usart_async_register_callback(&BT_UART,USART_ASYNC_RXC_CB, rx_comp);
-	usart_async_enable(&BT_UART);	
+	usart_async_get_io_descriptor(&BT_UART, &BT_io);
+	usart_async_enable(&BT_UART);
 
-	delay_ms(500);
-	
+	//Put the BM71 into app mode
 	BM71_enterAppMode();
-	BM71_writeCommand();
 }
 
 void BM71_enterAppMode(void)
 {
-	//Set Conf P2_0 to High
-	gpio_set_pin_level(BT_CONF, true);
+	//Turn the BM71 chip on
+	BM71_setPowerEn(true);
 
-	//Pull the reset line low for 1ms
-	gpio_set_pin_level(BT_NRST, false);
+	//Allow the BM71 to power up
+	brd_MsDelay(100);
+
+	//Set Conf P2_0 to High
+	BM71_setConfigPin(true);
+
+	//Place module in reset for 1ms
+	BM77_setResetPin(true);
 
 	//Hold it low for 1ms
-	delay_ms(3);
+	brd_MsDelay(1);
 
-	//Pull the chip back out of reset
-	gpio_set_pin_level(BT_NRST, true);
+	//Pull module back out of reset
+	BM77_setResetPin(false);
 
 	//Wait for the chip to start up and enter application mode
-	delay_ms(25);
+	brd_MsDelay(25);
 }
 
 void BM71_writeCommand(void)
@@ -98,16 +83,27 @@ void BM71_writeCommand(void)
 	{
 		;
 	}
-	//buffer[0] = 0x69;
-	delay_ms(2000);
+
+	brd_MsDelay(2000);
 	io_read(&BT_UART.io, recBuff, 3);
 
 	RESET_println("Received back byte: %x\n\n\r", recBuff[0]);
-	//while(io_write(&BT_UART.io, (const uint8_t *)s, strlen(s)) == ERR_NO_RESOURCE)
-	//{
-		//TO-DO: Need to see if there is a better way to do this..
-		// Even though the Mutex is freed does not mean that the USART
-		// is ready to accept another buffer to output
-		//;//wait for the usart to free up
-	//}
+}
+
+static void BM77_setResetPin(bool en)
+{
+	//BM71 reset is Active Low.. So invert the bool logic
+	gpio_set_pin_level(BT_NRST, !en);
+}
+
+static void BM71_setPowerEn(bool en)
+{
+	//BM71 Power FET is Active Low.. So invert the bool logic
+	gpio_set_pin_level(BT_NEN,!en);
+}
+
+static void BM71_setConfigPin(bool en)
+{
+	//BM71 placed in Conf mode when Conf is low after a reset
+	gpio_set_pin_level(BT_CONF, en);
 }

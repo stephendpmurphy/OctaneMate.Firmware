@@ -7,13 +7,16 @@
 // under the copyright laws.
 //------------------------------------------------------------------------------
 
-#ifndef DEVMGRAPI_H_
-#define DEVMGRAPI_H_
+
+#ifndef EXTFLASH_H_
+#define EXTFLASH_H_
+
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-void task_devMgr(void* params);
+void extFlash_init(void);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
-#endif //DEVMGRAPI_H_
+
+#endif /* EXTFLASH_H_ */

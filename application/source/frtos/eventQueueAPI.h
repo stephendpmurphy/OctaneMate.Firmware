@@ -9,13 +9,11 @@
 #ifndef EVENTQUEUEAPI_H_
 #define EVENTQUEUEAPI_H_
 
-/************ DEFINITIONS ***************/
 
-/************** TYPEDEFS ****************/
-
-/********* FUNCTION PROTOTYPES **********/
+/*-------------- DEFINITIONS -------------------------------------------------*/
+/*-------------- TYPEDEFS ----------------------------------------------------*/
+/*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 bool eventQueue_CreateQueues(void);
-
-/******* EXTERN / GLOBAL VARIABLE *******/
+/*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
 #endif /* EVENTQUEUEAPI_H_ */

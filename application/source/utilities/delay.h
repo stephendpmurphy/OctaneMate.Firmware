@@ -7,13 +7,17 @@
 // under the copyright laws.
 //------------------------------------------------------------------------------
 
-#ifndef DEVMGRAPI_H_
-#define DEVMGRAPI_H_
+#ifndef DELAY_H_
+#define DELAY_H_
+
+#include <stdint.h>
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-void task_devMgr(void* params);
+void brd_MsDelay(uint16_t delay);
+void brd_UsDelay(uint16_t delay);
+
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
-#endif //DEVMGRAPI_H_
+#endif /* DELAY_H_ */

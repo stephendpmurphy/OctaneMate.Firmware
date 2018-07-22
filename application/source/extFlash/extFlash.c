@@ -7,13 +7,24 @@
 // under the copyright laws.
 //------------------------------------------------------------------------------
 
-#ifndef DEVMGRAPI_H_
-#define DEVMGRAPI_H_
+#include <stdint.h>
+#include <stdbool.h>
+#include "extFlash.h"
+#include "driver_init.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-void task_devMgr(void* params);
+static void extFlash_setPowerEn(bool en);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
-#endif //DEVMGRAPI_H_
+void extFlash_init(void)
+{
+	extFlash_setPowerEn(true);
+}
+
+static void extFlash_setPowerEn(bool en)
+{
+	//External Flash Power FET is Active Low.. So invert the bool logic
+	gpio_set_pin_level(BT_NEN,!en);
+}
