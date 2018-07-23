@@ -68,7 +68,6 @@ void BM71_enterAppMode(void)
 
 void BM71_writeCommand(void)
 {
-	BM71_Command_t TxMsg;
 	uint8_t buffer[10] = {0};
 	uint8_t recBuff[10] = {0};
 
@@ -90,7 +89,6 @@ void BM71_writeCommand(void)
 		;
 	}
 
-	brd_MsDelay(2000);
 	io_read(&BT_UART.io, recBuff, 3);
 
 	RESET_println("Received back byte: %x\n\n\r", recBuff[0]);
@@ -112,14 +110,4 @@ static void BM71_setConfigPin(bool en)
 {
 	//BM71 placed in Conf mode when Conf is low after a reset
 	gpio_set_pin_level(BT_CONF, en);
-}
-
-void SERCOM2_0_Handler(void)
-{
-	//If we have an interrupt because of the DRE bit, then disable the interrupt and clear the bit
-	if(hri_sercomusart_get_INTFLAG_DRE_bit(BT_UART.device.hw))
-	{
-		hri_sercomusart_write_INTEN_DRE_bit(BT_UART.device.hw, false);
-		hri_sercomusart_clear_INTFLAG_DRE_bit(BT_UART.device.hw);
-	}
 }
