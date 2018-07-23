@@ -28,6 +28,7 @@
  */
 
 #include "same51.h"
+#include "hpl_irq.h"
 
 /* Initialize segments */
 extern uint32_t _sfixed;
@@ -543,8 +544,8 @@ void Reset_Handler(void)
  */
 void Dummy_Handler(void)
 {
-	volatile uint32_t phantomISR = 9999;
+		volatile uint32_t phantomISR = 9999;
         while (1) {
-			phantomISR = __get_IPSR();
+			phantomISR = _irq_get_current();
         }
 }
