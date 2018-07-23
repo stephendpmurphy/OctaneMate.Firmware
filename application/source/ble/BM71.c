@@ -23,17 +23,23 @@ static void BM77_setResetPin(bool en);
 static void BM71_setPowerEn(bool en);
 static void BM71_setConfigPin(bool en);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
-static struct io_descriptor *BT_io;
+struct io_descriptor *io;
 BM71_Command_t RxMsg;
 
+static void txc_cb(const struct usart_async_descriptor *const io_descr)
+{
+	//Do nothing.. This better fucking work
+}
 
 void BM71_init(void)
 {
-	usart_async_get_io_descriptor(&BT_UART, &BT_io);
+	usart_async_register_callback(&BT_UART, USART_ASYNC_TXC_CB, txc_cb);
+	usart_async_get_io_descriptor(&BT_UART, &io);
 	usart_async_enable(&BT_UART);
 
 	//Put the BM71 into app mode
 	BM71_enterAppMode();
+	BM71_writeCommand();
 }
 
 void BM71_enterAppMode(void)
@@ -106,4 +112,14 @@ static void BM71_setConfigPin(bool en)
 {
 	//BM71 placed in Conf mode when Conf is low after a reset
 	gpio_set_pin_level(BT_CONF, en);
+}
+
+void SERCOM2_0_Handler(void)
+{
+	//If we have an interrupt because of the DRE bit, then disable the interrupt and clear the bit
+	if(hri_sercomusart_get_INTFLAG_DRE_bit(BT_UART.device.hw))
+	{
+		hri_sercomusart_write_INTEN_DRE_bit(BT_UART.device.hw, false);
+		hri_sercomusart_clear_INTFLAG_DRE_bit(BT_UART.device.hw);
+	}
 }

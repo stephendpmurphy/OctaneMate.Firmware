@@ -27,8 +27,14 @@ void str_write(const char *s);
 static SemaphoreHandle_t printf_mutex;
 struct io_descriptor *io;
 
+static void txc_cb(const struct usart_async_descriptor *const io_descr)
+{
+	//Do nothing.. This better fucking work
+}
+
 void debug_init(void)
 {
+	usart_async_register_callback(&DEBUG_UART, USART_ASYNC_TXC_CB, txc_cb);
 	usart_async_get_io_descriptor(&DEBUG_UART, &io);
 	usart_async_enable(&DEBUG_UART);
 

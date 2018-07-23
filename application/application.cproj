@@ -214,20 +214,111 @@
   <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
   <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
   <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
-  <armgcc.compiler.directories.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../ASF/hal/include</Value><Value>../ASF/hal/utils/include</Value><Value>../ASF/hpl/can</Value><Value>../ASF/hpl/core</Value><Value>../ASF/hpl/dmac</Value><Value>../ASF/hpl/gclk</Value><Value>../ASF/hpl/mclk</Value><Value>../ASF/hpl/osc32kctrl</Value><Value>../ASF/hpl/oscctrl</Value><Value>../ASF/hpl/pm</Value><Value>../ASF/hpl/port</Value><Value>../ASF/hpl/ramecc</Value><Value>../ASF/hpl/sercom</Value><Value>../ASF/hri</Value><Value>../ASF/config</Value><Value>../submodules/FreeRTOS/include</Value><Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value><Value>../source</Value><Value>../source/board</Value><Value>../source/frtos</Value><Value>../source/main</Value><Value>../source/debug</Value><Value>../source/devMgr</Value><Value>../source/ble</Value><Value>../source/config</Value><Value>../source/ui</Value><Value>../source/vehIntf</Value><Value>../source/utilities</Value><Value>../source/extFlash</Value></ListValues></armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>NDEBUG</Value>
+      <Value>RELEASE_BUILD</Value>
+    </ListValues>
+  </armgcc.compiler.symbols.DefSymbols>
+  <armgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>../ASF/hal/include</Value>
+      <Value>../ASF/hal/utils/include</Value>
+      <Value>../ASF/hpl/can</Value>
+      <Value>../ASF/hpl/core</Value>
+      <Value>../ASF/hpl/dmac</Value>
+      <Value>../ASF/hpl/gclk</Value>
+      <Value>../ASF/hpl/mclk</Value>
+      <Value>../ASF/hpl/osc32kctrl</Value>
+      <Value>../ASF/hpl/oscctrl</Value>
+      <Value>../ASF/hpl/pm</Value>
+      <Value>../ASF/hpl/port</Value>
+      <Value>../ASF/hpl/ramecc</Value>
+      <Value>../ASF/hpl/sercom</Value>
+      <Value>../ASF/hri</Value>
+      <Value>../ASF/config</Value>
+      <Value>../submodules/FreeRTOS/include</Value>
+      <Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value>
+      <Value>../source</Value>
+      <Value>../source/board</Value>
+      <Value>../source/frtos</Value>
+      <Value>../source/main</Value>
+      <Value>../source/debug</Value>
+      <Value>../source/devMgr</Value>
+      <Value>../source/ble</Value>
+      <Value>../source/config</Value>
+      <Value>../source/ui</Value>
+      <Value>../source/vehIntf</Value>
+      <Value>../source/utilities</Value>
+      <Value>../source/extFlash</Value>
+    </ListValues>
+  </armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
   <armgcc.linker.general.UseNewlibNano>True</armgcc.linker.general.UseNewlibNano>
-  <armgcc.linker.libraries.Libraries><ListValues><Value>libm</Value></ListValues></armgcc.linker.libraries.Libraries>
-  <armgcc.linker.libraries.LibrarySearchPaths><ListValues><Value>%24(ProjectDir)\Device_Startup</Value></ListValues></armgcc.linker.libraries.LibrarySearchPaths>
+  <armgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </armgcc.linker.libraries.Libraries>
+  <armgcc.linker.libraries.LibrarySearchPaths>
+    <ListValues>
+      <Value>%24(ProjectDir)\Device_Startup</Value>
+    </ListValues>
+  </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
   <armgcc.linker.memorysettings.ExternalRAM>False</armgcc.linker.memorysettings.ExternalRAM>
   <armgcc.linker.miscellaneous.LinkerFlags>-Tsame51j20a_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
-  <armgcc.assembler.general.IncludePaths><ListValues><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/can</Value><Value>../hpl/core</Value><Value>../hpl/dmac</Value><Value>../hpl/gclk</Value><Value>../hpl/mclk</Value><Value>../hpl/osc32kctrl</Value><Value>../hpl/oscctrl</Value><Value>../hpl/pm</Value><Value>../hpl/port</Value><Value>../hpl/ramecc</Value><Value>../hpl/sercom</Value><Value>../hri</Value></ListValues></armgcc.assembler.general.IncludePaths>
-  <armgcc.preprocessingassembler.general.IncludePaths><ListValues><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/can</Value><Value>../hpl/core</Value><Value>../hpl/dmac</Value><Value>../hpl/gclk</Value><Value>../hpl/mclk</Value><Value>../hpl/osc32kctrl</Value><Value>../hpl/oscctrl</Value><Value>../hpl/pm</Value><Value>../hpl/port</Value><Value>../hpl/ramecc</Value><Value>../hpl/sercom</Value><Value>../hri</Value></ListValues></armgcc.preprocessingassembler.general.IncludePaths>
-  <armgcc.compiler.symbols.DefSymbols><ListValues><Value>NDEBUG</Value><Value>RELEASE_BUILD</Value></ListValues></armgcc.compiler.symbols.DefSymbols>
-  <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
+  <armgcc.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/can</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/dmac</Value>
+      <Value>../hpl/gclk</Value>
+      <Value>../hpl/mclk</Value>
+      <Value>../hpl/osc32kctrl</Value>
+      <Value>../hpl/oscctrl</Value>
+      <Value>../hpl/pm</Value>
+      <Value>../hpl/port</Value>
+      <Value>../hpl/ramecc</Value>
+      <Value>../hpl/sercom</Value>
+      <Value>../hri</Value>
+    </ListValues>
+  </armgcc.assembler.general.IncludePaths>
+  <armgcc.preprocessingassembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/can</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/dmac</Value>
+      <Value>../hpl/gclk</Value>
+      <Value>../hpl/mclk</Value>
+      <Value>../hpl/osc32kctrl</Value>
+      <Value>../hpl/oscctrl</Value>
+      <Value>../hpl/pm</Value>
+      <Value>../hpl/port</Value>
+      <Value>../hpl/ramecc</Value>
+      <Value>../hpl/sercom</Value>
+      <Value>../hri</Value>
+    </ListValues>
+  </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
     </ToolchainSettings>
   </PropertyGroup>
@@ -239,22 +330,113 @@
   <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
   <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
   <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
-  <armgcc.compiler.directories.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../ASF/hal/include</Value><Value>../ASF/hal/utils/include</Value><Value>../ASF/hpl/can</Value><Value>../ASF/hpl/core</Value><Value>../ASF/hpl/dmac</Value><Value>../ASF/hpl/gclk</Value><Value>../ASF/hpl/mclk</Value><Value>../ASF/hpl/osc32kctrl</Value><Value>../ASF/hpl/oscctrl</Value><Value>../ASF/hpl/pm</Value><Value>../ASF/hpl/port</Value><Value>../ASF/hpl/ramecc</Value><Value>../ASF/hpl/sercom</Value><Value>../ASF/hri</Value><Value>../ASF/config</Value><Value>../submodules/FreeRTOS/include</Value><Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value><Value>../source</Value><Value>../source/board</Value><Value>../source/frtos</Value><Value>../source/main</Value><Value>../source/debug</Value><Value>../source/devMgr</Value><Value>../source/ble</Value><Value>../source/config</Value><Value>../source/ui</Value><Value>../source/vehIntf</Value><Value>../source/utilities</Value><Value>../source/extFlash</Value></ListValues></armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>DEBUG</Value>
+      <Value>DEBUG_BUILD</Value>
+    </ListValues>
+  </armgcc.compiler.symbols.DefSymbols>
+  <armgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>../ASF/hal/include</Value>
+      <Value>../ASF/hal/utils/include</Value>
+      <Value>../ASF/hpl/can</Value>
+      <Value>../ASF/hpl/core</Value>
+      <Value>../ASF/hpl/dmac</Value>
+      <Value>../ASF/hpl/gclk</Value>
+      <Value>../ASF/hpl/mclk</Value>
+      <Value>../ASF/hpl/osc32kctrl</Value>
+      <Value>../ASF/hpl/oscctrl</Value>
+      <Value>../ASF/hpl/pm</Value>
+      <Value>../ASF/hpl/port</Value>
+      <Value>../ASF/hpl/ramecc</Value>
+      <Value>../ASF/hpl/sercom</Value>
+      <Value>../ASF/hri</Value>
+      <Value>../ASF/config</Value>
+      <Value>../submodules/FreeRTOS/include</Value>
+      <Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value>
+      <Value>../source</Value>
+      <Value>../source/board</Value>
+      <Value>../source/frtos</Value>
+      <Value>../source/main</Value>
+      <Value>../source/debug</Value>
+      <Value>../source/devMgr</Value>
+      <Value>../source/ble</Value>
+      <Value>../source/config</Value>
+      <Value>../source/ui</Value>
+      <Value>../source/vehIntf</Value>
+      <Value>../source/utilities</Value>
+      <Value>../source/extFlash</Value>
+    </ListValues>
+  </armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+  <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
   <armgcc.linker.general.UseNewlibNano>True</armgcc.linker.general.UseNewlibNano>
-  <armgcc.linker.libraries.Libraries><ListValues><Value>libm</Value></ListValues></armgcc.linker.libraries.Libraries>
-  <armgcc.linker.libraries.LibrarySearchPaths><ListValues><Value>%24(ProjectDir)\Device_Startup</Value></ListValues></armgcc.linker.libraries.LibrarySearchPaths>
+  <armgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </armgcc.linker.libraries.Libraries>
+  <armgcc.linker.libraries.LibrarySearchPaths>
+    <ListValues>
+      <Value>%24(ProjectDir)\Device_Startup</Value>
+    </ListValues>
+  </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
   <armgcc.linker.memorysettings.ExternalRAM>False</armgcc.linker.memorysettings.ExternalRAM>
   <armgcc.linker.miscellaneous.LinkerFlags>-Tsame51j20a_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
-  <armgcc.assembler.general.IncludePaths><ListValues><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/can</Value><Value>../hpl/core</Value><Value>../hpl/dmac</Value><Value>../hpl/gclk</Value><Value>../hpl/mclk</Value><Value>../hpl/osc32kctrl</Value><Value>../hpl/oscctrl</Value><Value>../hpl/pm</Value><Value>../hpl/port</Value><Value>../hpl/ramecc</Value><Value>../hpl/sercom</Value><Value>../hri</Value></ListValues></armgcc.assembler.general.IncludePaths>
-  <armgcc.preprocessingassembler.general.IncludePaths><ListValues><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/can</Value><Value>../hpl/core</Value><Value>../hpl/dmac</Value><Value>../hpl/gclk</Value><Value>../hpl/mclk</Value><Value>../hpl/osc32kctrl</Value><Value>../hpl/oscctrl</Value><Value>../hpl/pm</Value><Value>../hpl/port</Value><Value>../hpl/ramecc</Value><Value>../hpl/sercom</Value><Value>../hri</Value></ListValues></armgcc.preprocessingassembler.general.IncludePaths>
-  <armgcc.compiler.symbols.DefSymbols><ListValues><Value>DEBUG</Value><Value>DEBUG_BUILD</Value></ListValues></armgcc.compiler.symbols.DefSymbols>
-  <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
-  <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
+  <armgcc.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/can</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/dmac</Value>
+      <Value>../hpl/gclk</Value>
+      <Value>../hpl/mclk</Value>
+      <Value>../hpl/osc32kctrl</Value>
+      <Value>../hpl/oscctrl</Value>
+      <Value>../hpl/pm</Value>
+      <Value>../hpl/port</Value>
+      <Value>../hpl/ramecc</Value>
+      <Value>../hpl/sercom</Value>
+      <Value>../hri</Value>
+    </ListValues>
+  </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
+  <armgcc.preprocessingassembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/can</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/dmac</Value>
+      <Value>../hpl/gclk</Value>
+      <Value>../hpl/mclk</Value>
+      <Value>../hpl/osc32kctrl</Value>
+      <Value>../hpl/oscctrl</Value>
+      <Value>../hpl/pm</Value>
+      <Value>../hpl/port</Value>
+      <Value>../hpl/ramecc</Value>
+      <Value>../hpl/sercom</Value>
+      <Value>../hri</Value>
+    </ListValues>
+  </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
 </ArmGcc>
     </ToolchainSettings>
