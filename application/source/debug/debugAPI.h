@@ -11,9 +11,10 @@
 #define DEBUG_TASK_H_
 
 #include "hpl_reset.h"
+#include "FreeRTOS_API.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
-#define RESET_println(...)	_println(__VA_ARGS__);
+#define RESET_println(...)  _println(__VA_ARGS__);
 
 #ifdef DEBUG_BUILD
 #define DEBUG_println(...)	_println(__VA_ARGS__);

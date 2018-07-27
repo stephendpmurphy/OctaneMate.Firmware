@@ -898,6 +898,9 @@
     <Compile Include="source\ble\bleAPI.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="source\ble\BM71_app_commands.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="source\ble\BM71_flash_commands.c">
       <SubType>compile</SubType>
     </Compile>

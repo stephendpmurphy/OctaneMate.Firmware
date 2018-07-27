@@ -31,7 +31,6 @@ int main(void)
 	RESET_println("MurphyTechnology OctaneMate v%d.%d.%d - %s %s\n\n\r", PRODUCT_VERSION, HW_VERSION, FW_VERSION, __DATE__, __TIME__);
 
 	//Module init
-	BM71_init();
 	extFlash_init();
 
 	//Initialize FreeRTOS and start the scheduler.. Should not return from this function call.

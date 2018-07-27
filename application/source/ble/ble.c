@@ -10,6 +10,7 @@
 #include "bleAPI.h"
 #include "FreeRTOS_API.h"
 #include "debugAPI.h"
+#include "BM71.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
@@ -24,6 +25,9 @@ bool ble_init(void)
 void task_ble(void* params)
 {
 	DEBUG_println("BLE Task Started\n\r");
+
+    BM71_init();
+    
     //BLE Task Code
     while(1)
     {
