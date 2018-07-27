@@ -13,7 +13,7 @@
 #include <hal_init.h>
 
 /*! The buffer size for USART */
-#define BT_UART_BUFFER_SIZE 16
+#define BT_UART_BUFFER_SIZE 256
 
 /*! The buffer size for USART */
 #define DEBUG_UART_BUFFER_SIZE 16
@@ -103,9 +103,10 @@ void BT_UART_CLOCK_init()
  */
 void BT_UART_PORT_init()
 {
+	gpio_set_pin_level(BT_UART_TX, false);
+	gpio_set_pin_level(BT_UART_RX, false);
 
 	gpio_set_pin_function(BT_UART_TX, PINMUX_PA12C_SERCOM2_PAD0);
-
 	gpio_set_pin_function(BT_UART_RX, PINMUX_PA13C_SERCOM2_PAD1);
 }
 

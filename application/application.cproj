@@ -716,6 +716,15 @@
     <Compile Include="source\ble\bleAPI.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="source\ble\BM71_flash_commands.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\ble\BM71_flash_commands.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\ble\BM71_flash_data.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="source\ble\BM71.c">
       <SubType>compile</SubType>
     </Compile>

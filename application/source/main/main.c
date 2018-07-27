@@ -46,7 +46,6 @@ int main(void)
 
 void HardFault_Handler()
 {
-	RESET_println("!!! Hard fault !!!");
 	while(1){
 
 	}
