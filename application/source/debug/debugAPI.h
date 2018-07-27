@@ -10,6 +10,7 @@
 #ifndef DEBUG_TASK_H_
 #define DEBUG_TASK_H_
 
+#include "hpl_reset.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 #define RESET_println(...)	_println(__VA_ARGS__);
@@ -18,6 +19,12 @@
 #define DEBUG_println(...)	_println(__VA_ARGS__);
 #else
 #define DEBUG_println(...)
+#endif
+
+#ifdef DEBUG_BUILD
+#define DEBUG_halt()	__asm__("BKPT")
+#else
+#define DEBUG_halt()	RESET_println("DEBUG HALT - %s %s\n\n\r", __FILE__, __LINE__); while(1);
 #endif
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/

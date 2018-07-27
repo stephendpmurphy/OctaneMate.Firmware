@@ -26,12 +26,10 @@ int main(void)
 	//Board init
 	system_init();
 
-	gpio_set_pin_level(EXT_FLASH_NEN,false);
-	
-	//Enable Debug Messages
+	//Debug init
 	debug_init();
 	RESET_println("MurphyTechnology OctaneMate v%d.%d.%d - %s %s\n\n\r", PRODUCT_VERSION, HW_VERSION, FW_VERSION, __DATE__, __TIME__);
-	
+
 	//Module init
 	BM71_init();
 	extFlash_init();
@@ -40,22 +38,19 @@ int main(void)
 	FreeRTOS_init();
 
 	//Something went wrong.. Stop here.
-	while (1) {
-	}
+	DEBUG_halt();
 }
 
 void HardFault_Handler()
 {
-	while(1){
-
-	}
+	RESET_println("!!! Hard fault !!!");
+	DEBUG_halt();
 }
 
 void vApplicationStackOverflowHook( xTaskHandle pxTask, signed char *pcTaskName )
 {
 	RESET_println("%s overflowed its stack!", pcTaskName);
-	while(1){
-	}
+	DEBUG_halt();
 }
 
 static void FreeRTOS_init(void)
@@ -64,19 +59,17 @@ static void FreeRTOS_init(void)
 	if( !tasks_CreateTasks() )
 	{
 		RESET_println("Failed to create task(s)");
-		while(1)
-		;
+		DEBUG_halt();
 	}
-	
+
 	//Init all of the Module Queues
 	if( !eventQueue_CreateQueues() )
 	{
-		RESET_println("Failed to create task(s)");
-		while(1)
-		;
+		RESET_println("Failed to create queue(s)");
+		DEBUG_halt();
 	}
-	
-	//Start the FreeRTOS scheduler.. 
+
+	//Start the FreeRTOS scheduler..
 	vTaskStartScheduler();
 
 	//Should never have returned from the above call..

@@ -14,9 +14,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License.
  * You may obtain a copy of the Licence at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,6 +28,7 @@
  */
 
 #include "same51.h"
+#include "hpl_irq.h"
 
 /* Initialize segments */
 extern uint32_t _sfixed;
@@ -543,8 +544,8 @@ void Reset_Handler(void)
  */
 void Dummy_Handler(void)
 {
-	//volatile uint32_t phantomISR = 9999;
+    //volatile uint32_t phantomISR = 9999;
     while (1) {
-		//phantomISR = __get_IPSR();
+    	//phantomISR = _irq_get_current();
     }
 }
