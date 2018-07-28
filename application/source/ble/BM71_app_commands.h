@@ -15,9 +15,9 @@
 * Read Local Information (OPCODE - 0x01)
 *********************************************/
 #define BM71_FIRMWARE_VERSION_OFFSET                            0x06
-#define BM71_FIRMWARE_VERSION_LEN                               0x04
+#define BM71_FIRMWARE_VERSION_LEN                               0x0C
 #define BM71_BLUETOOTH_ADDRESS_OFFSET                           0x0A
-#define BM71_BLUETOOTH_ADDRESS_LEN                              0x06
+#define BM71_BLUETOOTH_ADDRESS_LEN                              0x12
 #define BM71_SILICON_ID_OFFSET                                  0x10
 #define BM71_SILICON_ID_LEN                                     0x01
 

@@ -25,7 +25,7 @@
 void str_write(const char *s);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 static SemaphoreHandle_t printf_mutex;
-struct io_descriptor *io;
+static struct io_descriptor *io;
 
 static void txc_cb(const struct usart_async_descriptor *const io_descr)
 {
@@ -48,6 +48,7 @@ void debug_init(void)
 
 void _println(const char * frmt, ...)
 {
+	
 	char buf[255] = {0};
 	va_list args;
 	va_start(args, frmt);

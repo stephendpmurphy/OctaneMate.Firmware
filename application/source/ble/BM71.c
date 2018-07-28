@@ -7,6 +7,7 @@
 //  under the copyright laws.
 //------------------------------------------------------------------------------
 
+#include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
@@ -26,13 +27,14 @@
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
-struct io_descriptor *io;
+static struct io_descriptor *io;
+static char BM71_Firmware_Ver[BM71_FIRMWARE_VERSION_LEN] = {0};
+static char BM71_Address[BM71_BLUETOOTH_ADDRESS_LEN] = {0};
+static uint8_t BM71_Silicon_ID = 0;
+static bool initialized = false;
+
 uint8_t BM71_writeBuffer[147];
 uint8_t BM71_readBuffer[147];
-uint8_t BM71_Firmware_Ver[BM71_FIRMWARE_VERSION_LEN] = {0};
-uint8_t BM71_Address[BM71_BLUETOOTH_ADDRESS_LEN] = {0};
-uint8_t BM71_Silicon_ID = 0;
-static bool initialized = false;
 
 static void rx_cb(const struct usart_async_descriptor *const io_desc)
 {
@@ -50,7 +52,7 @@ void BM71_init(void)
     //Turn the BM71 chip on
     BM71_setPowerEn(true);
     //Allow the BM71 to power up
-    brd_MsDelay(50);
+    brd_MsDelay(15);
 
     //Check BM71 config and see if it needs updated
     retVal = CheckAndUpdateFlash();
@@ -73,9 +75,26 @@ void BM71_readLocalInfo(void)
     //Send the command out, adding one to the length for the CRC
     BM71_sendAppCommand(sizeof(CMD_readLocalInfo));
 
-    memcpy(BM71_Firmware_Ver, BM71_readBuffer+BM71_FIRMWARE_VERSION_OFFSET, BM71_FIRMWARE_VERSION_LEN);
-    memcpy(BM71_Address, BM71_readBuffer+BM71_BLUETOOTH_ADDRESS_OFFSET, BM71_BLUETOOTH_ADDRESS_LEN);
+	snprintf(BM71_Firmware_Ver, BM71_FIRMWARE_VERSION_LEN, 
+								"%02d%02d%02d%02d", 
+								BM71_readBuffer[BM71_FIRMWARE_VERSION_OFFSET],
+								BM71_readBuffer[BM71_FIRMWARE_VERSION_OFFSET+1],
+								BM71_readBuffer[BM71_FIRMWARE_VERSION_OFFSET+2],
+								BM71_readBuffer[BM71_FIRMWARE_VERSION_OFFSET+3]);
+
+    snprintf(BM71_Address, BM71_BLUETOOTH_ADDRESS_LEN,
+							"%02X%02X%02X%02X%02X%02X",
+							BM71_readBuffer[BM71_BLUETOOTH_ADDRESS_OFFSET],
+							BM71_readBuffer[BM71_BLUETOOTH_ADDRESS_OFFSET+1],
+							BM71_readBuffer[BM71_BLUETOOTH_ADDRESS_OFFSET+2],
+							BM71_readBuffer[BM71_BLUETOOTH_ADDRESS_OFFSET+3],
+							BM71_readBuffer[BM71_BLUETOOTH_ADDRESS_OFFSET+4],
+							BM71_readBuffer[BM71_BLUETOOTH_ADDRESS_OFFSET+5]);
+
     BM71_Silicon_ID = BM71_readBuffer[BM71_SILICON_ID_OFFSET];
+
+	//Print out the retrieved moduel info
+	DEBUG_println("BM71 Silicoin ID: %d   Address: %s   FW Ver: %s", BM71_Silicon_ID, BM71_Address, BM71_Firmware_Ver);
 }
 
 void BM71_sendAppCommand(uint8_t sendSize)
@@ -99,12 +118,6 @@ void BM71_sendAppCommand(uint8_t sendSize)
     msgLen = ((uint16_t)BM71_readBuffer[CMD_LEN_MSB_INDEX] << 8) + BM71_readBuffer[CMD_LEN_LSB_INDEX];
     //Grab the remaining data from the ring buffer
     io_read(&BT_UART.io, BM71_readBuffer+3, msgLen+1);
-    //Print out the retrieved command
-    for(uint16_t x=0;x<msgLen+4;x++)
-    {
-        DEBUG_println("%x ", BM71_readBuffer[x]);
-    }
-    DEBUG_println("\n\n\r");
 }
 
 void BM71_calculateCRC(uint8_t *buffer, uint8_t len)
