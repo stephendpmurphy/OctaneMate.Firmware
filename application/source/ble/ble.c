@@ -33,7 +33,7 @@ bool ble_init(void)
 void task_ble(void* params)
 {
 	DEBUG_println("BLE Task Started\n\r");
-	(void)BM71_readStatus();
+
     //BLE Task Code
     while(1)
     {

@@ -27,6 +27,22 @@
 #define BM71_STATUS_OFFSET                                      0x04
 #define BM71_STATUS_LEN                                         0x01
 
+/********************************************
+* Read Device Name (OPCODE - 0x07)
+*********************************************/
+#define BM71_READ_DEVICE_NAME_OFFSET							0x06
+#define BM71_MAX_DEVICE_NAME_LEN								0x20
+
+/********************************************
+* Write Device Name (OPCODE - 0x08)
+*********************************************/
+#define BM71_WRITE_DEVICE_NAME_OFFSET							0x05
+
+/********************************************
+* Set Advertising Enable (OPCODE - 0x1C)
+*********************************************/
+#define BM71_SET_ADVERTISING_EN_OFFSET							0x04
+
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 typedef enum{
 	READ_LOCAL_INFORMATION =									0x01,
@@ -160,6 +176,8 @@ typedef enum {
 // SOM  -  LMSB  -  LLSB  -  OP CODE  -  PARAMTER  -  CRC
 const uint8_t CMD_readLocalInfo[4] = {0xAA, 0x00, 0x01, 0x01};
 const uint8_t CMD_readBM71Status[4] = {0xAA, 0x00, 0x01, 0x03};
-
+const uint8_t CMD_readDeviceName[4] = {0xAA, 0x00, 0x01, 0x07};
+const uint8_t CMD_writeDeviceName[5] = {0xAA, 0x00, 0x00, 0x08, 0x00};
+const uint8_t CMD_setAdvertisingEnable[5] = {0xAA, 0x00, 0x02, 0x1C, 0x00};
 
 #endif	/* BLUETOOTH_APP_COMMANDS */

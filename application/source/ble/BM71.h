@@ -25,12 +25,16 @@
 void BM71_init(void);
 void BM71_readLocalInfo(void);
 uint8_t BM71_readStatus(void);
+void BM71_readDeviceName(void);
+void BM71_writeDeviceName(void);
+void BM71_setAdvertisingEnable(uint8_t val);
+
 void BM71_PulseRSTPin(void);
 void BM71_Reset(void);
 void BM71_ResetToTestMode(void);
 void BM71_ResetToAppMode(void);
 void BM71_enterAppMode(void);
-void BM71_sendAppCommand(uint8_t sendSize);
+uint16_t BM71_sendAppCommand(uint8_t sendSize);
 void BM71_calculateCRC(uint8_t *buffer, uint8_t len);
 void BM71_clearWriteBuffer(void);
 void BM71_clearReadBuffer(void);

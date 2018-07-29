@@ -9,7 +9,6 @@
 #ifndef VERSION_H_
 #define VERSION_H_
 
-//This 
 #define HW_VERSION	2 //This will eventually be replaced by a personality resistor to indicate board version
 #define PRODUCT_VERSION 1 //TODO: This will eventually be a compile time macro to indicate which product it is
 #define FW_VERSION	1 //TODO: This will eventually be replaced by an actual build number from VSTS

@@ -25,6 +25,8 @@
 /*-------------- DEFINITIONS -------------------------------------------------*/
 #define CMD_LEN_MSB_INDEX       0x01
 #define CMD_LEN_LSB_INDEX       0x02
+
+#define OCTANEMATE_DEVICE_NAME	"OctaneMate Mini"
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
@@ -32,6 +34,7 @@ static char BM71_Firmware_Ver[BM71_FIRMWARE_VERSION_LEN] = {0};
 static char BM71_Address[BM71_BLUETOOTH_ADDRESS_LEN] = {0};
 static uint8_t BM71_Silicon_ID = 0;
 static uint8_t BM71_Status = 0x00;
+static char BM71_DeviceName[BM71_MAX_DEVICE_NAME_LEN] = {0};
 static bool initialized = false;
 
 uint8_t BM71_writeBuffer[BM71_MAX_COMMAND_LENGTH];
@@ -59,6 +62,15 @@ void BM71_init(void)
         BM71_ResetToAppMode();
         //Read local info from the BM71
         BM71_readLocalInfo();
+		BM71_readDeviceName();
+		if(strcmp(BM71_DeviceName, OCTANEMATE_DEVICE_NAME))
+		{
+			BM71_writeDeviceName();
+		}
+		if(IDLE_MODE == BM71_readStatus())
+		{
+			BM71_setAdvertisingEnable(0x01);
+		}
         //Set the BM71 init flag to true
         initialized = true;
     }
@@ -72,7 +84,7 @@ void BM71_readLocalInfo(void)
 {
     //Load the Read Local Info command into the writeBuffer
     BM71_loadWriteBuffer(CMD_readLocalInfo, sizeof(CMD_readLocalInfo));
-    //Send the command out, adding one to the length for the CRC
+    //Send the command out
     BM71_sendAppCommand(sizeof(CMD_readLocalInfo));
 
 	snprintf(BM71_Firmware_Ver, BM71_FIRMWARE_VERSION_LEN,
@@ -103,42 +115,42 @@ void BM71_readLocalInfo(void)
 *******************************************************************************/
 uint8_t BM71_readStatus(void)
 {
-    //Load the Read Local Info command into the writeBuffer
+    //Load the Read Status command into the writeBuffer
     BM71_loadWriteBuffer(CMD_readBM71Status, sizeof(CMD_readBM71Status));
-    //Send the command out, adding one to the length for the CRC
+    //Send the command out
     BM71_sendAppCommand(sizeof(CMD_readBM71Status));
 
     BM71_Status = BM71_readBuffer[BM71_STATUS_OFFSET];
 #ifdef DEBUG
-    DEBUG_println("BM71 Status: ");
+    DEBUG_println("BLE Status: ");
     switch(BM71_Status)
     {
         case SCANNING_MODE:
-            DEBUG_println("SCANNING MODE\n\r");
+            DEBUG_println("SCANNING MODE\n\n\r");
             break;
         case CONNECTING_MODE:
-            DEBUG_println("CONNECTING MODE\n\r");
+            DEBUG_println("CONNECTING MODE\n\n\r");
             break;
         case STANDBY_MODE:
-            DEBUG_println("STANDBY MODE\n\r");
+            DEBUG_println("STANDBY MODE\n\n\r");
             break;
         case BROADCAST_MODE:
-            DEBUG_println("BROADCAST MODE\n\r");
+            DEBUG_println("BROADCAST MODE\n\n\r");
             break;
         case TRANSPARENT_SERVICE_ENABLED_MODE:
-            DEBUG_println("TRANSPARENT SERVICE ENABLED MODE\n\r");
+            DEBUG_println("TRANSPARENT SERVICE ENABLED MODE\n\n\r");
             break;
         case IDLE_MODE:
-            DEBUG_println("IDLE MODE\n\r");
+            DEBUG_println("IDLE MODE\n\n\r");
             break;
         case SHUTDOWN_MODE:
-            DEBUG_println("SHUTDOWN MODE\n\r");
+            DEBUG_println("SHUTDOWN MODE\n\n\r");
             break;
         case CONFIGURE_MODE:
-            DEBUG_println("CONFIGURE MODE\n\r");
+            DEBUG_println("CONFIGURE MODE\n\n\r");
             break;
         case BLE_CONNECTED_MODE:
-            DEBUG_println("BLE CONNECTED MODE\n\r");
+            DEBUG_println("BLE CONNECTED MODE\n\n\r");
             break;
         default:
             break;
@@ -148,10 +160,64 @@ uint8_t BM71_readStatus(void)
 }
 
 /*******************************************************************************
+* Description: Read the BM71 Device Name.
+*
+*******************************************************************************/
+void BM71_readDeviceName(void)
+{
+	uint16_t msgLen = 0;
+	//Clear our the current name we have before reading
+	memset(BM71_DeviceName, 0x00, sizeof(BM71_DeviceName));
+	//Load the Read Device Name command into the writeBuffer
+	BM71_loadWriteBuffer(CMD_readDeviceName, sizeof(CMD_readDeviceName));
+	//Send the command out
+	msgLen = BM71_sendAppCommand(sizeof(CMD_readDeviceName));
+	//We only want to copy the device name.. So subtract bytes for SOM,LENMSB,LENLSB,EVENT,OPCODE,STATUS
+	msgLen -= 7;
+	//Copy the device name from the readBuffer into our DeviceName var
+	memcpy(BM71_DeviceName, (char*)BM71_readBuffer+BM71_READ_DEVICE_NAME_OFFSET, msgLen);
+	//Print out the retrieved module info
+	DEBUG_println("BLE Device Name: %s\n\n\r", BM71_DeviceName);
+}
+
+/*******************************************************************************
+* Description: Write the BM71 Device Name.
+*
+*******************************************************************************/
+void BM71_writeDeviceName(void)
+{
+	DEBUG_println("Writing new device name...\n\r");	
+	//Load the Write Device Name command into the writeBuffer
+	BM71_loadWriteBuffer(CMD_writeDeviceName, sizeof(CMD_writeDeviceName));
+	//Write the length of the command which is the length of device name plus 1 for the opcode and reserved byte
+	BM71_writeBuffer[CMD_LEN_LSB_INDEX] = strlen(OCTANEMATE_DEVICE_NAME) + 2;
+	//Copy the Device name into the buffer at the correct spot
+	memcpy(BM71_writeBuffer+BM71_WRITE_DEVICE_NAME_OFFSET, OCTANEMATE_DEVICE_NAME, strlen(OCTANEMATE_DEVICE_NAME));
+	//Send the command out
+	(void)BM71_sendAppCommand(sizeof(CMD_writeDeviceName) + strlen(OCTANEMATE_DEVICE_NAME));
+	//Now read the device name back out
+	BM71_readDeviceName();
+}
+
+/*******************************************************************************
+* Description: Set Advertising Enable/Disable
+*
+*******************************************************************************/
+void BM71_setAdvertisingEnable(uint8_t val)
+{
+	//Load the Set Advertising Enable/Disable command into the writeBuffer
+	BM71_loadWriteBuffer(CMD_setAdvertisingEnable, sizeof(CMD_setAdvertisingEnable));
+	//Copy the Device name into the buffer at the correct spot
+	BM71_writeBuffer[BM71_SET_ADVERTISING_EN_OFFSET] = val;
+	//Send the command out
+	(void)BM71_sendAppCommand(sizeof(CMD_setAdvertisingEnable));
+}
+
+/*******************************************************************************
 * Description: Send an App command to BM71 and wait back for a response.
 *
 *******************************************************************************/
-void BM71_sendAppCommand(uint8_t sendSize)
+uint16_t BM71_sendAppCommand(uint8_t sendSize)
 {
 	uint8_t readVal = 0;
 	uint8_t rxCnt = 0;
@@ -192,6 +258,8 @@ void BM71_sendAppCommand(uint8_t sendSize)
 			rxCnt += readVal;
 		}
 	}
+
+	return msgLen+3;
 }
 
 /*******************************************************************************
