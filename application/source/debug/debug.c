@@ -18,23 +18,14 @@
 #include "FreeRTOS_API.h"
 #include "driver_init.h"
 #include "delay.h"
+#include "board_debug.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-void str_write(const char *s);
+static void str_write(const char *s);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 static SemaphoreHandle_t printf_mutex;
-static struct io_descriptor *io;
-
-/*******************************************************************************
-* Description: Transmission complete callback for the debug UART.
-*
-*******************************************************************************/
-static void txc_cb(const struct usart_async_descriptor *const io_descr)
-{
-	//Do nothing..
-}
 
 /*******************************************************************************
 * Description: All init needed for the debug.
@@ -42,15 +33,11 @@ static void txc_cb(const struct usart_async_descriptor *const io_descr)
 *******************************************************************************/
 void debug_init(void)
 {
-	usart_async_register_callback(&DEBUG_UART, USART_ASYNC_TXC_CB, txc_cb);
-	usart_async_get_io_descriptor(&DEBUG_UART, &io);
-	usart_async_enable(&DEBUG_UART);
-
 	printf_mutex = xSemaphoreCreateMutex();
 
 	if(printf_mutex == NULL)
 	{
-		while(1) {;}
+		DEBUG_halt();
 	}
 }
 
@@ -70,7 +57,7 @@ void _println(const char * frmt, ...)
 	if(xTaskGetSchedulerState() != taskSCHEDULER_RUNNING)
 	{
 		str_write(buf);
-		brd_MsDelay(10);
+		BRD_MsDelay(10);
 		//It seems like the processor is running faster than the USART can grab the data from the buf variable
 		//So we end up overwriting the buffer with a new printf before we can finish the previous write.. So a short delay is added
 		//Doesn't seem to be a problem below when Tasks are actually running.
@@ -89,7 +76,7 @@ void _println(const char * frmt, ...)
 * Description: Low level function that actually sends a passed in string out the
 * debug UART.
 *******************************************************************************/
-void str_write(const char *s)
+static void str_write(const char *s)
 {
 	while(io_write(&DEBUG_UART.io, (const uint8_t *)s, strlen(s)) == ERR_NO_RESOURCE)
 	{

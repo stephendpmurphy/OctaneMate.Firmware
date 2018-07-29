@@ -916,6 +916,24 @@
     <Compile Include="source\ble\BM71.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="source\board\board_BM71.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\board\board_BM71.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\board\board_debug.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\board\board_debug.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\board\board_extFlash.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\board\board_extFlash.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="source\board\driver_init.c">
       <SubType>compile</SubType>
     </Compile>

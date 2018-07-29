@@ -90,7 +90,7 @@ static bool Send128Bytes(uint16_t address, const uint8_t *data)
     BM71_clearReadBuffer();
 
     //We first add the 19 byte write command to the beginning of the buffer
-    BM71_loadSendBuffer(write_Transmit, sizeof(write_Transmit));
+    BM71_loadWriteBuffer(write_Transmit, sizeof(write_Transmit));
 
     //We then update the buffer with the specified address to write 128 bytes to
     SetBufferAddress(address, 11, 12);
@@ -126,7 +126,7 @@ static bool Read128Bytes(uint16_t address)
     BM71_clearReadBuffer();
 
     //Populate the read command in the buffer
-    BM71_loadSendBuffer(read_Transmit, sizeof(read_Transmit));
+    BM71_loadWriteBuffer(read_Transmit, sizeof(read_Transmit));
 
     //Update the address of the read command in the buffer
     SetBufferAddress(address, 11, 12);
@@ -212,7 +212,7 @@ static bool EraseFlashMemory(void)
 		}
 	}
 
-    brd_MsDelay(25);
+    BRD_MsDelay(25);
 
     return  true;
 }
@@ -406,7 +406,7 @@ static void SendFlashCommand(const uint8_t *sendPacket, uint8_t sendSize, uint8_
 		; //Wait until the UART is ready to write more data
 	}
 	//Wait a bit before checking the buffer for any response
-	brd_MsDelay(15);
+	BRD_MsDelay(25);
 	//Read out the response into the receive packet
 	io_read(&BT_UART.io, recievePacket, readSize);
 }

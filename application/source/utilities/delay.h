@@ -15,8 +15,8 @@
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-void brd_MsDelay(uint16_t delay);
-void brd_UsDelay(uint16_t delay);
+void BRD_MsDelay(uint16_t delay);
+void BRD_UsDelay(uint16_t delay);
 
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 

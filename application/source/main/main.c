@@ -14,6 +14,8 @@
 #include "version.h"
 #include "BM71.h"
 #include "extFlash.h"
+#include "board_BM71.h"
+#include "board_debug.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
@@ -29,12 +31,16 @@ int main(void)
 {
 	//Board init
 	system_init();
-
-	//Debug init
+    BRD_BM71_init();
+    BRD_debug_init();
+    //BRD_extFlash_init();
+    
+    //Debug init
 	debug_init();
 	RESET_println("MurphyTechnology OctaneMate v%d.%d.%d - %s %s\n\n\r", PRODUCT_VERSION, HW_VERSION, FW_VERSION, __DATE__, __TIME__);
 
 	//Module init
+    BM71_init();
 	extFlash_init();
 
 	//Initialize FreeRTOS and start the scheduler.. Should not return from this function call.

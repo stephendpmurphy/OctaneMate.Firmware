@@ -34,8 +34,6 @@ void task_ble(void* params)
 {
 	DEBUG_println("BLE Task Started\n\r");
 
-    BM71_init();
-    //BM71_readLocalInfo();
     //BLE Task Code
     while(1)
     {
