@@ -13,7 +13,7 @@
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-bool CheckAndUpdateFlash(void);
+bool BM71_checkAndUpdateFlash(void);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
 #endif	/* BLUETOOTH_FLASH_COMMANDS */

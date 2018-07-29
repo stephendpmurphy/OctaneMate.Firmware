@@ -416,7 +416,7 @@ static void SendFlashCommand(const uint8_t *sendPacket, uint8_t sendSize, uint8_
 * matches what we have stored in our flash. If not, then we begin the process
 * of deleting the BM71 flash, and then writing the new config.
 *******************************************************************************/
-bool CheckAndUpdateFlash(void)
+bool BM71_checkAndUpdateFlash(void)
 {
 	bool retVal = false;
     //First enter test mode so we can access the BM71 Memory

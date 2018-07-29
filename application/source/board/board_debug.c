@@ -19,14 +19,18 @@
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-static void txc_cb(const struct usart_async_descriptor *const io_descr);
+static void rxc_cb(const struct usart_async_descriptor *const io_descr);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 static struct io_descriptor *io;
 
+/*******************************************************************************
+* Description: Debug board level init.
+*
+*******************************************************************************/
 void BRD_debug_init(void)
 {
     //Debug UART init
-    usart_async_register_callback(&DEBUG_UART, USART_ASYNC_TXC_CB, txc_cb);
+    usart_async_register_callback(&DEBUG_UART, USART_ASYNC_RXC_CB, rxc_cb);
     usart_async_get_io_descriptor(&DEBUG_UART, &io);
     usart_async_enable(&DEBUG_UART);
 }
@@ -35,7 +39,7 @@ void BRD_debug_init(void)
 * Description: Transmission complete callback for the debug UART.
 *
 *******************************************************************************/
-static void txc_cb(const struct usart_async_descriptor *const io_descr)
+static void rxc_cb(const struct usart_async_descriptor *const io_descr)
 {
 	//Do nothing..
 }

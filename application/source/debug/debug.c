@@ -14,18 +14,25 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "same51j20a.h"
+#include "core_cm4.h"
 #include "debugAPI.h"
 #include "FreeRTOS_API.h"
 #include "driver_init.h"
 #include "delay.h"
 #include "board_debug.h"
+#include "BM71_flash_commands.h"
+#include "BM71.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 static void str_write(const char *s);
+static void debug_gets(uint8_t* buff, uint8_t len);
+static void debug_processCmd(uint8_t* command);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 static SemaphoreHandle_t printf_mutex;
+static uint8_t debugInputBuffer[32];
 
 /*******************************************************************************
 * Description: All init needed for the debug.
@@ -88,6 +95,67 @@ static void str_write(const char *s)
 }
 
 /*******************************************************************************
+* Description: This function gets characters on the debug lines and constructs
+* commands for processing.
+*******************************************************************************/
+static void debug_gets(uint8_t* buff, uint8_t len)
+{
+    uint8_t ch;
+    uint8_t* buff_ptr = buff;
+    uint8_t rx_count = 0;
+    uint8_t string_complete = false;
+    while(!string_complete)
+    {
+        while(0x00 == io_read(&DEBUG_UART.io, &ch, 1))
+    	{
+    		;
+    	}
+        switch(ch)
+        {
+        case '\b':
+            if (buff_ptr > buff)
+            {
+                *--buff_ptr = 0;
+                rx_count--;
+            }
+            break;
+        case '\n':
+        case '\r':
+            *buff_ptr = 0;
+            string_complete = true;
+            break;
+        default:
+            *buff_ptr++ = ch;
+            rx_count++;
+        }
+        if (rx_count >= len)
+        {
+            *buff_ptr = 0;
+            string_complete = true;
+        }
+    }
+}
+
+/*******************************************************************************
+* Description: Command processing for all debug commands is done here.
+*
+*******************************************************************************/
+static void debug_processCmd(uint8_t* command)
+{
+    if(!strcmp((char*)command, "RESET"))
+    {
+        DEBUG_println("MCU Reset command received..\n\n\r");
+		BRD_MsDelay(50);
+		NVIC_SystemReset();
+    }
+	else if(!strcmp((char*)command, "BM71_UPDATE_FLASH"))
+	{
+		BM71_checkAndUpdateFlash();
+		BM71_ResetToAppMode();
+	}
+}
+
+/*******************************************************************************
 * Description: FreeRTOS task for the debug and test input.
 *
 *******************************************************************************/
@@ -95,6 +163,7 @@ void task_debug(void* params)
 {
     while(1)
     {
-        vTaskDelay(1000/portTICK_PERIOD_MS);
+        debug_gets(debugInputBuffer, 32);
+        debug_processCmd(debugInputBuffer);
     }
 }

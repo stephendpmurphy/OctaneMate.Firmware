@@ -50,7 +50,7 @@ void BM71_init(void)
     BRD_MsDelay(15);
 
     //Check BM71 config and see if it needs updated
-    retVal = CheckAndUpdateFlash();
+    retVal = BM71_checkAndUpdateFlash();
 
     if(retVal)
     {

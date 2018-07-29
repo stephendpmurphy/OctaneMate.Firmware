@@ -16,7 +16,7 @@
 #define BT_UART_BUFFER_SIZE 256
 
 /*! The buffer size for USART */
-#define DEBUG_UART_BUFFER_SIZE 256
+#define DEBUG_UART_BUFFER_SIZE 32
 
 struct spi_m_sync_descriptor  EXT_FLASH_SPI;
 struct usart_async_descriptor BT_UART;
