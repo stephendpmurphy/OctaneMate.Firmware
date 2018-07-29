@@ -24,6 +24,7 @@
 /********* FUNCTION PROTOTYPES **********/
 void BM71_init(void);
 void BM71_readLocalInfo(void);
+uint8_t BM71_readStatus(void);
 void BM71_PulseRSTPin(void);
 void BM71_Reset(void);
 void BM71_ResetToTestMode(void);

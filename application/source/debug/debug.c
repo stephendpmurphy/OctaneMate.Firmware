@@ -60,11 +60,9 @@ void _println(const char * frmt, ...)
 	va_start(args, frmt);
 	vsnprintf(buf,255,frmt,args);
 	va_end(args);
-
 	if(xTaskGetSchedulerState() != taskSCHEDULER_RUNNING)
 	{
 		str_write(buf);
-		BRD_MsDelay(10);
 		//It seems like the processor is running faster than the USART can grab the data from the buf variable
 		//So we end up overwriting the buffer with a new printf before we can finish the previous write.. So a short delay is added
 		//Doesn't seem to be a problem below when Tasks are actually running.
@@ -85,12 +83,11 @@ void _println(const char * frmt, ...)
 *******************************************************************************/
 static void str_write(const char *s)
 {
-	while(io_write(&DEBUG_UART.io, (const uint8_t *)s, strlen(s)) == ERR_NO_RESOURCE)
+	io_write(&DEBUG_UART.io, (const uint8_t *)s, strlen(s));
+
+	while(ERR_BUSY == usart_async_get_status(&DEBUG_UART,NULL))
 	{
-		//TO-DO: Need to see if there is a better way to do this..
-		// Even though the Mutex is freed does not mean that the USART
-		// is ready to accept another buffer to output
-		;//wait for the usart to free up
+		; //Wait until transmission has completed before allowing the next print to happen
 	}
 }
 

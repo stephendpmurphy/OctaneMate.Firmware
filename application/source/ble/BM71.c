@@ -31,6 +31,7 @@
 static char BM71_Firmware_Ver[BM71_FIRMWARE_VERSION_LEN] = {0};
 static char BM71_Address[BM71_BLUETOOTH_ADDRESS_LEN] = {0};
 static uint8_t BM71_Silicon_ID = 0;
+static uint8_t BM71_Status = 0x00;
 static bool initialized = false;
 
 uint8_t BM71_writeBuffer[BM71_MAX_COMMAND_LENGTH];
@@ -97,11 +98,63 @@ void BM71_readLocalInfo(void)
 }
 
 /*******************************************************************************
+* Description: Read the BM71 status.
+*
+*******************************************************************************/
+uint8_t BM71_readStatus(void)
+{
+    //Load the Read Local Info command into the writeBuffer
+    BM71_loadWriteBuffer(CMD_readBM71Status, sizeof(CMD_readBM71Status));
+    //Send the command out, adding one to the length for the CRC
+    BM71_sendAppCommand(sizeof(CMD_readBM71Status));
+
+    BM71_Status = BM71_readBuffer[BM71_STATUS_OFFSET];
+#ifdef DEBUG
+    DEBUG_println("BM71 Status: ");
+    switch(BM71_Status)
+    {
+        case SCANNING_MODE:
+            DEBUG_println("SCANNING MODE\n\r");
+            break;
+        case CONNECTING_MODE:
+            DEBUG_println("CONNECTING MODE\n\r");
+            break;
+        case STANDBY_MODE:
+            DEBUG_println("STANDBY MODE\n\r");
+            break;
+        case BROADCAST_MODE:
+            DEBUG_println("BROADCAST MODE\n\r");
+            break;
+        case TRANSPARENT_SERVICE_ENABLED_MODE:
+            DEBUG_println("TRANSPARENT SERVICE ENABLED MODE\n\r");
+            break;
+        case IDLE_MODE:
+            DEBUG_println("IDLE MODE\n\r");
+            break;
+        case SHUTDOWN_MODE:
+            DEBUG_println("SHUTDOWN MODE\n\r");
+            break;
+        case CONFIGURE_MODE:
+            DEBUG_println("CONFIGURE MODE\n\r");
+            break;
+        case BLE_CONNECTED_MODE:
+            DEBUG_println("BLE CONNECTED MODE\n\r");
+            break;
+        default:
+            break;
+    }
+#endif
+    return( BM71_Status );
+}
+
+/*******************************************************************************
 * Description: Send an App command to BM71 and wait back for a response.
 *
 *******************************************************************************/
 void BM71_sendAppCommand(uint8_t sendSize)
 {
+	uint8_t readVal = 0;
+	uint8_t rxCnt = 0;
     uint16_t msgLen = 0;
     //Clear the Ring and Read Buffers
     usart_async_flush_rx_buffer(&BT_UART);
@@ -113,14 +166,32 @@ void BM71_sendAppCommand(uint8_t sendSize)
 	{
 		;
 	}
-	//Wait a bit before checking the buffer for any response
-	BRD_MsDelay(15);
-	//Read out the response length into the receive packet
-	io_read(&BT_UART.io, BM71_readBuffer, 3);
+	//Read out the response length into the read buffer.. 3 is hard coded here since that will get us the
+	//SOM, len MSB, and len LSB
+	while(rxCnt != 0x03)
+	{
+		readVal = io_read(&BT_UART.io, BM71_readBuffer+rxCnt, 0x01);
+		if(readVal > 0)
+		{
+			rxCnt += readVal;
+		}
+	}
     //Calculate the total length that we now need to retrieve from the Ring Buffer
     msgLen = ((uint16_t)BM71_readBuffer[CMD_LEN_MSB_INDEX] << 8) + BM71_readBuffer[CMD_LEN_LSB_INDEX];
-    //Grab the remaining data from the ring buffer
-    io_read(&BT_UART.io, BM71_readBuffer+3, msgLen+1);
+    //Add one to account for the CRC
+	msgLen += 1; 
+	//Reset our index values so we can read the rest of the message
+	readVal = 0;
+	rxCnt = 0;
+	//Read bytes until we receive the rest of the message
+	while(rxCnt != msgLen)
+	{
+		readVal = io_read(&BT_UART.io, BM71_readBuffer+3+rxCnt, 0x01);
+		if(readVal > 0)
+		{
+			rxCnt += readVal;
+		}
+	}
 }
 
 /*******************************************************************************

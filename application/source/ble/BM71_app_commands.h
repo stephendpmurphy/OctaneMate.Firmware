@@ -21,6 +21,12 @@
 #define BM71_SILICON_ID_OFFSET                                  0x10
 #define BM71_SILICON_ID_LEN                                     0x01
 
+/********************************************
+* Read BM7 Status (OPCODE - 0x03)
+*********************************************/
+#define BM71_STATUS_OFFSET                                      0x04
+#define BM71_STATUS_LEN                                         0x01
+
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 typedef enum{
 	READ_LOCAL_INFORMATION =									0x01,
@@ -137,9 +143,23 @@ typedef enum{
 	UART_CHECKSUM_ERROR =										0xFF
 } BM71_CommandCompleteEventParams_t;
 
+
+typedef enum {
+    SCANNING_MODE =                                             0x01,
+    CONNECTING_MODE,
+    STANDBY_MODE,
+    BROADCAST_MODE =                                            0x05,
+    TRANSPARENT_SERVICE_ENABLED_MODE =                          0x08,
+    IDLE_MODE,
+    SHUTDOWN_MODE,
+    CONFIGURE_MODE,
+    BLE_CONNECTED_MODE
+} BM71_StatusReportEventParams_t;
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 // SOM  -  LMSB  -  LLSB  -  OP CODE  -  PARAMTER  -  CRC
 const uint8_t CMD_readLocalInfo[4] = {0xAA, 0x00, 0x01, 0x01};
+const uint8_t CMD_readBM71Status[4] = {0xAA, 0x00, 0x01, 0x03};
+
 
 #endif	/* BLUETOOTH_APP_COMMANDS */
