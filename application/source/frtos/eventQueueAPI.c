@@ -19,6 +19,10 @@
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 QueueHandle_t queueHandles[kQUEUE_MAX];
 
+/*******************************************************************************
+* Description: FreeRTOS queue init for all of our tasks
+*
+*******************************************************************************/
 bool eventQueue_CreateQueues(void)
 {
     queueHandles[kQUEUE_BLE] =          xQueueCreate(QUEUE_LENGTH_BLE,QUEUE_ENTRY_SIZE_BLE);

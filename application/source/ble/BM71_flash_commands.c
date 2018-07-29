@@ -50,7 +50,10 @@ const uint8_t write_Response[19] = {0x04,0x13,0x05,0x01,0xFF,0x0F,0x01,0x00,0x02
 const uint8_t close_Transmit[7] = {0x01,0x06,0x04,0x03,0xFF,0x0F,0x00};
 const uint8_t close_Response[14] = {0x04,0x0F,0x04,0x00,0x01,0x06,0x04,0x04,0x05,0x04,0x00,0xFF,0x0F,0x00};
 
-
+/*******************************************************************************
+* Description: See the FLASH MSB and LSB address inside the write buffer.
+*
+*******************************************************************************/
 static void SetBufferAddress(uint16_t address, uint8_t lowByte, uint8_t highByte)
 {
 	//Set the MSB and LSB of the 2 byte address in the output buffer at the specified indexes
@@ -58,6 +61,10 @@ static void SetBufferAddress(uint16_t address, uint8_t lowByte, uint8_t highByte
 	BM71_writeBuffer[highByte] += (uint8_t) (address >> 8);
 }
 
+/*******************************************************************************
+* Description: BM71 command to open the flash for reading and writing.
+*
+*******************************************************************************/
 static bool OpenFlashMemory(void)
 {
     SendFlashCommand(open_Transmit,sizeof(open_Transmit),BM71_readBuffer, sizeof(open_Response));
@@ -72,6 +79,10 @@ static bool OpenFlashMemory(void)
 	return true;
 }
 
+/*******************************************************************************
+* Description: Writes 128 bytes of data at the address specified.
+*
+*******************************************************************************/
 static bool Send128Bytes(uint16_t address, const uint8_t *data)
 {
     //Clear the buffers
@@ -104,6 +115,10 @@ static bool Send128Bytes(uint16_t address, const uint8_t *data)
 
 }
 
+/*******************************************************************************
+* Description: Reads out 128 bytes of data at the address specified from the
+* BM71 FLASH.
+*******************************************************************************/
 static bool Read128Bytes(uint16_t address)
 {
     //Clear the buffers
@@ -130,6 +145,10 @@ static bool Read128Bytes(uint16_t address)
     return true;
 }
 
+/*******************************************************************************
+* Description: Higher level command which sends 128 bytes, and then reads it back
+* to verify the data was written correctly to the BM71 flash.
+*******************************************************************************/
 static bool Write128BytesToFlash(uint16_t address, const uint8_t *data )
 {
     //Write data to the BM71
@@ -158,6 +177,10 @@ static bool Write128BytesToFlash(uint16_t address, const uint8_t *data )
     return true;
 }
 
+/*******************************************************************************
+* Description: Close access to the BM71 FLASH.
+*
+*******************************************************************************/
 static bool EndFlashMemoryAccess(void)
 {
     //Send the close access to the flash memory command and check the response
@@ -173,6 +196,10 @@ static bool EndFlashMemoryAccess(void)
     return true;
 }
 
+/*******************************************************************************
+* Description: Erase all flash memory of the BM71 in preperation of writing new
+* config.
+*******************************************************************************/
 static bool EraseFlashMemory(void)
 {
     SendFlashCommand(erase_Transmit,sizeof(erase_Transmit),BM71_readBuffer, sizeof(erase_Response));
@@ -190,12 +217,20 @@ static bool EraseFlashMemory(void)
     return  true;
 }
 
+/*******************************************************************************
+* Description: Get the size of the configuration data that needs to be written
+* to flash.
+*******************************************************************************/
 static uint8_t GetSizeOfMemBlock()
 {
 	//Divide the full size of the data memory by the block size to calculate how many blocks are in the struct
     return sizeof(memoryBlock) / 130u;
 }
 
+/*******************************************************************************
+* Description: High level function that checks the size of the config to be
+* written and then begins writing all of the config blocks.
+*******************************************************************************/
 static bool SendConfigToEEPROM(void)
 {
     uint8_t sizeOfMemoryBlock = GetSizeOfMemBlock();
@@ -214,6 +249,10 @@ static bool SendConfigToEEPROM(void)
     return true;
 }
 
+/*******************************************************************************
+* Description: Check if the config currently in FLASH matches the config we have
+* in firmware.
+*******************************************************************************/
 static bool CheckConfig(void)
 {
     uint8_t sizeOfMemoryBlock = GetSizeOfMemBlock();
@@ -293,6 +332,10 @@ static bool CheckConfig(void)
     return true;
 }
 
+/*******************************************************************************
+* Description: Verify that the the data in FLASH has been cleared properly.
+*
+*******************************************************************************/
 static bool CompareEmptyMemory(uint16_t address)
 {
     if(!Read128Bytes(address))
@@ -320,6 +363,10 @@ static bool CompareEmptyMemory(uint16_t address)
     return true;
 }
 
+/*******************************************************************************
+* Description: Compare the data that we just read from the BM71 with what we
+* expected as a response.
+*******************************************************************************/
 static bool CompareMemory(uint16_t address, const uint8_t *expectedData)
 {
     BM71_clearReadBuffer();
@@ -343,9 +390,12 @@ static bool CompareMemory(uint16_t address, const uint8_t *expectedData)
 
     //If the values all matched then return true;
     return true;
-
 }
 
+/*******************************************************************************
+* Description: Low level function for writing a command to the BM71 over UART.
+*
+*******************************************************************************/
 static void SendFlashCommand(const uint8_t *sendPacket, uint8_t sendSize, uint8_t *recievePacket, uint8_t readSize)
 {
     //Make sure the RX ring buffer is empty
@@ -353,14 +403,19 @@ static void SendFlashCommand(const uint8_t *sendPacket, uint8_t sendSize, uint8_
     BM71_clearReadBuffer();
 	while(io_write(&BT_UART.io, (const uint8_t*)sendPacket, sendSize) == ERR_NO_RESOURCE)
 	{
-		; //This prevents us from erroring out before sending a command becuase the UART module is busy
+		; //Wait until the UART is ready to write more data
 	}
 	//Wait a bit before checking the buffer for any response
-	brd_MsDelay(25);
+	brd_MsDelay(15);
 	//Read out the response into the receive packet
 	io_read(&BT_UART.io, recievePacket, readSize);
 }
 
+/*******************************************************************************
+* Description: Main function used to read the flash memory. Verify that it
+* matches what we have stored in our flash. If not, then we begin the process
+* of deleting the BM71 flash, and then writing the new config.
+*******************************************************************************/
 bool CheckAndUpdateFlash(void)
 {
 	bool retVal = false;

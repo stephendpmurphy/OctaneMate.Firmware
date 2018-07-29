@@ -16,6 +16,10 @@
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
+/*******************************************************************************
+* Description: FreeRTOS task for the vehichle interface.
+*
+*******************************************************************************/
 void task_vehIntf(void* params)
 {
 	DEBUG_println("Vehicle Interface Task Started\n\r");

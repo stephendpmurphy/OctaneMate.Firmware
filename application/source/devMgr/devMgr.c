@@ -16,6 +16,10 @@
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
+/*******************************************************************************
+* Description: FreeRTOS task for the Device Manager functionality.
+*
+*******************************************************************************/
 void task_devMgr(void* params)
 {
 	DEBUG_println("Device Manager Task Started\n\r");

@@ -18,11 +18,19 @@
 static void extFlash_setPowerEn(bool en);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
+/*******************************************************************************
+* Description: Init needed for the External Flash.
+*
+*******************************************************************************/
 void extFlash_init(void)
 {
 	extFlash_setPowerEn(true);
 }
 
+/*******************************************************************************
+* Description: Set the power enable pin of the External Flash. This takes into
+* account the fact that the FET enable is active low.
+*******************************************************************************/
 static void extFlash_setPowerEn(bool en)
 {
 	//External Flash Power FET is Active Low.. So invert the bool logic

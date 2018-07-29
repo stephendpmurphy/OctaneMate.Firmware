@@ -25,7 +25,10 @@
 TaskHandle_t taskHandles[kTASK_MAX];
 bool taskCreationResult[kTASK_MAX];
 
-
+/*******************************************************************************
+* Description: FreeRTOS task init for all of the needed functionality
+*
+*******************************************************************************/
 bool tasks_CreateTasks(void)
 {
 

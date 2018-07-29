@@ -21,6 +21,10 @@
 static void FreeRTOS_init(void);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
+/*******************************************************************************
+* Description: Main entry point for the App.
+*
+*******************************************************************************/
 int main(void)
 {
 	//Board init
@@ -40,18 +44,30 @@ int main(void)
 	DEBUG_halt();
 }
 
+/*******************************************************************************
+* Description: Hook for ARM Cortex hard faults.
+*
+*******************************************************************************/
 void HardFault_Handler()
 {
 	RESET_println("!!! Hard fault !!!");
 	DEBUG_halt();
 }
 
+/*******************************************************************************
+* Description: Hook for stack overflows.
+*
+*******************************************************************************/
 void vApplicationStackOverflowHook( xTaskHandle pxTask, signed char *pcTaskName )
 {
 	RESET_println("%s overflowed its stack!", pcTaskName);
 	DEBUG_halt();
 }
 
+/*******************************************************************************
+* Description: This handles all of the FreeRTOS init for queues and tasks. Once
+* finished it also starts the scheduler.
+*******************************************************************************/
 static void FreeRTOS_init(void)
 {
 	//Init all of the Module Tasks

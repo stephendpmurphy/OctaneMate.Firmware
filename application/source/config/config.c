@@ -16,6 +16,10 @@
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
+/*******************************************************************************
+* Description: FreeRTOS task for the config functionality.
+*
+*******************************************************************************/
 void task_config(void* params)
 {
 	DEBUG_println("Config Task Started\n\r");

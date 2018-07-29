@@ -17,6 +17,10 @@
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
+/*******************************************************************************
+* Description: Delay in ms. Uses FreeRTOS delay if the scheduler is running.
+*
+*******************************************************************************/
 void brd_MsDelay(uint16_t delay)
 {
 	if(xTaskGetSchedulerState() != taskSCHEDULER_RUNNING)
@@ -29,6 +33,10 @@ void brd_MsDelay(uint16_t delay)
 	}
 }
 
+/*******************************************************************************
+* Description: Does a hardway delay for the specified duration in us.
+*
+*******************************************************************************/
 void brd_UsDelay(uint16_t delay)
 {
 	delay_us(delay);

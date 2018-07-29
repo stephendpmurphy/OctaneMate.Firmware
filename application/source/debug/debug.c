@@ -27,11 +27,19 @@ void str_write(const char *s);
 static SemaphoreHandle_t printf_mutex;
 static struct io_descriptor *io;
 
+/*******************************************************************************
+* Description: Transmission complete callback for the debug UART.
+*
+*******************************************************************************/
 static void txc_cb(const struct usart_async_descriptor *const io_descr)
 {
-	//Do nothing.. This better fucking work
+	//Do nothing..
 }
 
+/*******************************************************************************
+* Description: All init needed for the debug.
+*
+*******************************************************************************/
 void debug_init(void)
 {
 	usart_async_register_callback(&DEBUG_UART, USART_ASYNC_TXC_CB, txc_cb);
@@ -46,9 +54,13 @@ void debug_init(void)
 	}
 }
 
+/*******************************************************************************
+* Description: Debug print statement which behaves differently if the print
+* happens before or after the FreeRTOS scheduler has started.
+*******************************************************************************/
 void _println(const char * frmt, ...)
 {
-	
+
 	char buf[255] = {0};
 	va_list args;
 	va_start(args, frmt);
@@ -73,6 +85,10 @@ void _println(const char * frmt, ...)
 	}
 }
 
+/*******************************************************************************
+* Description: Low level function that actually sends a passed in string out the
+* debug UART.
+*******************************************************************************/
 void str_write(const char *s)
 {
 	while(io_write(&DEBUG_UART.io, (const uint8_t *)s, strlen(s)) == ERR_NO_RESOURCE)
@@ -84,6 +100,10 @@ void str_write(const char *s)
 	}
 }
 
+/*******************************************************************************
+* Description: FreeRTOS task for the debug and test input.
+*
+*******************************************************************************/
 void task_debug(void* params)
 {
     while(1)
