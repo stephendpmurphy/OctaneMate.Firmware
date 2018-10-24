@@ -5,7 +5,7 @@
  * Please copy examples or other code you want to keep to a separate file
  * to avoid losing it when reconfiguring.
  */
-
+#if 0
 #include "driver_examples.h"
 #include "driver_init.h"
 #include "utils.h"
@@ -125,7 +125,7 @@ void CAN1_INTF_example(void)
 	msg.id  = 0x100000A5;
 	msg.fmt = CAN_FMT_EXTID;
 	/**
-	* remote device should recieve message with ID=0x100000A5
+	 * remote device should recieve message with ID=0x100000A5
 	 */
 	can_async_write(&CAN1_INTF, &msg);
 
@@ -143,3 +143,5 @@ void CAN1_INTF_example(void)
 	filter.mask = 0;
 	can_async_set_filter(&CAN1_INTF, 1, CAN_FMT_EXTID, &filter);
 }
+
+#endif

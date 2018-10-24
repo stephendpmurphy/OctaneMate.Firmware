@@ -5,6 +5,7 @@
  * Please copy examples or other code you want to keep to a separate file
  * to avoid losing it when reconfiguring.
  */
+#if 0
 #ifndef DRIVER_EXAMPLES_H_INCLUDED
 #define DRIVER_EXAMPLES_H_INCLUDED
 
@@ -22,3 +23,4 @@ void CAN1_INTF_example(void);
 }
 #endif
 #endif // DRIVER_EXAMPLES_H_INCLUDED
+#endif
