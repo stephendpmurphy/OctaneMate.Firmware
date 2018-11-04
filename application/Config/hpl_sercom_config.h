@@ -217,7 +217,7 @@
 #define CONF_SERCOM_2_USART_SBMODE 0
 #endif
 
-// <o> Baud rate <1-3000000>
+// <o> Baud rate <1-6250000>
 // <i> USART baud rate setting
 // <id> usart_baud_rate
 #ifndef CONF_SERCOM_2_USART_BAUD
@@ -486,7 +486,7 @@
 #define CONF_SERCOM_5_USART_SBMODE 0
 #endif
 
-// <o> Baud rate <1-3000000>
+// <o> Baud rate <1-6250000>
 // <i> USART baud rate setting
 // <id> usart_baud_rate
 #ifndef CONF_SERCOM_5_USART_BAUD

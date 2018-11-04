@@ -31,8 +31,8 @@ int main(void)
 {
 	//Board init
 	system_init();
-    BRD_BM71_init();
-    BRD_debug_init();
+    brd_BM71_init();
+    brd_debug_init();
     //BRD_extFlash_init();
     
     //Debug init
@@ -40,6 +40,7 @@ int main(void)
 	RESET_println("MurphyTechnology OctaneMate v%d.%d.%d - %s %s\n\n\r", PRODUCT_VERSION, HW_VERSION, FW_VERSION, __DATE__, __TIME__);
 
 	//Module init
+    FLASH_0_init();
     BM71_init();
 	extFlash_init();
 

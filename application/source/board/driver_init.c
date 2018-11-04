@@ -18,13 +18,26 @@
 /*! The buffer size for USART */
 #define DEBUG_UART_BUFFER_SIZE 32
 
-struct spi_m_sync_descriptor  EXT_FLASH_SPI;
-struct usart_async_descriptor BT_UART;
-struct usart_async_descriptor DEBUG_UART;
-struct can_async_descriptor   CAN1_INTF;
+struct spi_m_sync_descriptor    EXT_FLASH_SPI;
+struct usart_async_descriptor   BT_UART;
+struct usart_async_descriptor   DEBUG_UART;
+struct can_async_descriptor     CAN1_INTF;
+struct flash_descriptor         FLASH_0;
 
 static uint8_t BT_UART_buffer[BT_UART_BUFFER_SIZE];
 static uint8_t DEBUG_UART_buffer[DEBUG_UART_BUFFER_SIZE];
+
+void FLASH_0_CLOCK_init(void)
+{
+
+	hri_mclk_set_AHBMASK_NVMCTRL_bit(MCLK);
+}
+
+void FLASH_0_init(void)
+{
+	FLASH_0_CLOCK_init();
+	flash_init(&FLASH_0, NVMCTRL);
+}
 
 void EXT_FLASH_SPI_PORT_init(void)
 {

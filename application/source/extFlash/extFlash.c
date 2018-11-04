@@ -24,5 +24,5 @@
 *******************************************************************************/
 void extFlash_init(void)
 {
-	BRD_extFlash_setPowerEn(true);
+	brd_extFlash_setPowerEn(true);
 }

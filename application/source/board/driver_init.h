@@ -22,15 +22,19 @@ extern "C" {
 #include <hal_init.h>
 #include <hal_io.h>
 #include <hal_sleep.h>
-
+#include <hal_flash.h>
 #include <hal_spi_m_sync.h>
 #include <hal_usart_async.h>
 #include <hal_can_async.h>
 
+extern struct flash_descriptor       FLASH_0;
 extern struct spi_m_sync_descriptor  EXT_FLASH_SPI;
 extern struct usart_async_descriptor BT_UART;
 extern struct usart_async_descriptor DEBUG_UART;
 extern struct can_async_descriptor   CAN1_INTF;
+
+void FLASH_0_init(void);
+void FLASH_0_CLOCK_init(void);
 
 void EXT_FLASH_SPI_PORT_init(void);
 void EXT_FLASH_SPI_CLOCK_init(void);

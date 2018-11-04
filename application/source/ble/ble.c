@@ -23,7 +23,7 @@
 *******************************************************************************/
 bool ble_init(void)
 {
-	return true;
+    return true;
 }
 
 /*******************************************************************************
@@ -32,11 +32,11 @@ bool ble_init(void)
 *******************************************************************************/
 void task_ble(void* params)
 {
-	DEBUG_println("BLE Task Started\n\r");
+    DEBUG_println("BLE Task Started\n\r");
 
     //BLE Task Code
     while(1)
     {
-		vTaskDelay(1000/portTICK_PERIOD_MS);
+        vTaskDelay(1000/portTICK_PERIOD_MS);
     }
 }

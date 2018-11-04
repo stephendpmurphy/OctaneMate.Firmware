@@ -181,19 +181,22 @@ int32_t _can_async_disable(struct _can_async_device *const dev)
 int32_t _can_async_read(struct _can_async_device *const dev, struct can_message *msg)
 {
 	struct _can_rx_fifo_entry *f = NULL;
+	hri_can_rxf0s_reg_t        get_index;
 
 	if (!hri_can_read_RXF0S_F0FL_bf(dev->hw)) {
 		return ERR_NOT_FOUND;
 	}
 
+	get_index = hri_can_read_RXF0S_F0GI_bf(dev->hw);
+
 #ifdef CONF_CAN0_ENABLED
 	if (dev->hw == CAN0) {
-		f = (struct _can_rx_fifo_entry *)(can0_rx_fifo + hri_can_read_RXF0S_F0GI_bf(dev->hw) * CONF_CAN0_F0DS);
+		f = (struct _can_rx_fifo_entry *)(can0_rx_fifo + get_index * CONF_CAN0_F0DS);
 	}
 #endif
 #ifdef CONF_CAN1_ENABLED
 	if (dev->hw == CAN1) {
-		f = (struct _can_rx_fifo_entry *)(can1_rx_fifo + hri_can_read_RXF0S_F0GI_bf(dev->hw) * CONF_CAN1_F0DS);
+		f = (struct _can_rx_fifo_entry *)(can1_rx_fifo + get_index * CONF_CAN1_F0DS);
 	}
 #endif
 
@@ -218,6 +221,9 @@ int32_t _can_async_read(struct _can_async_device *const dev, struct can_message 
 	msg->len                = dlc2len[f->R1.bit.DLC];
 
 	memcpy(msg->data, f->data, msg->len);
+
+	hri_can_write_RXF0A_F0AI_bf(dev->hw, get_index);
+
 	return ERR_NONE;
 }
 

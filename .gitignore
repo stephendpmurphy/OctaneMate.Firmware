@@ -25,5 +25,7 @@ application/Release/
 *.atsuo
 *.log
 
+*.vscode
+
 
 # End of https://www.gitignore.io/api/atmelstudio

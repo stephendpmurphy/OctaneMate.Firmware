@@ -13,7 +13,7 @@
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-void BRD_extFlash_setPowerEn(bool en);
+void brd_extFlash_setPowerEn(bool en);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
 #endif

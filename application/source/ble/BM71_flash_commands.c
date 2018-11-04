@@ -56,9 +56,9 @@ const uint8_t close_Response[14] = {0x04,0x0F,0x04,0x00,0x01,0x06,0x04,0x04,0x05
 *******************************************************************************/
 static void SetBufferAddress(uint16_t address, uint8_t lowByte, uint8_t highByte)
 {
-	//Set the MSB and LSB of the 2 byte address in the output buffer at the specified indexes
-	BM71_writeBuffer[lowByte] = (uint8_t) address;
-	BM71_writeBuffer[highByte] += (uint8_t) (address >> 8);
+    //Set the MSB and LSB of the 2 byte address in the output buffer at the specified indexes
+    BM71_writeBuffer[lowByte] = (uint8_t) address;
+    BM71_writeBuffer[highByte] += (uint8_t) (address >> 8);
 }
 
 /*******************************************************************************
@@ -69,14 +69,14 @@ static bool OpenFlashMemory(void)
 {
     SendFlashCommand(open_Transmit,sizeof(open_Transmit),BM71_readBuffer, sizeof(open_Response));
 
-	for(uint8_t i = 0; i < 19; i++)
-	{
-		if(BM71_readBuffer[i] != open_Response[i])
-		{
-			return false;
-		}
-	}
-	return true;
+    for(uint8_t i = 0; i < 19; i++)
+    {
+        if(BM71_readBuffer[i] != open_Response[i])
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 /*******************************************************************************
@@ -95,20 +95,20 @@ static bool Send128Bytes(uint16_t address, const uint8_t *data)
     //We then update the buffer with the specified address to write 128 bytes to
     SetBufferAddress(address, 11, 12);
 
-	//Place the data to be written after the command
+    //Place the data to be written after the command
     for (uint8_t i = sizeof(write_Transmit); i < 147; i++)
-	{
+    {
         BM71_writeBuffer[i] = *data++;
-	}
+    }
 
     SendFlashCommand(BM71_writeBuffer, sizeof(BM71_writeBuffer), BM71_readBuffer, sizeof(write_Response));
     //Check that the BT device responded with the
     for(uint8_t i = 0; i < 19; i++)
-	{
+    {
         if(BM71_readBuffer[i] != write_Response[i])
-		{
+        {
             return false;
-		}
+        }
     }
     //If the response from the Bluetooth device was what was expected then return a true
     return true;
@@ -135,11 +135,11 @@ static bool Read128Bytes(uint16_t address)
     SendFlashCommand(BM71_writeBuffer, sizeof(read_Transmit), BM71_readBuffer, sizeof(BM71_readBuffer));
 
     for(uint8_t i = 0; i < 19; i++)
-	{
+    {
         if(BM71_readBuffer[i] != read_Response[i])
-		{
+        {
             return false;
-		}
+        }
     }
     //If the response from the Bluetooth device was what was expected then return a true
     return true;
@@ -155,23 +155,23 @@ static bool Write128BytesToFlash(uint16_t address, const uint8_t *data )
     if(!Send128Bytes(address, data))
     {
         return false;
-	}
+    }
 
-	//Read the data back out
+    //Read the data back out
     if(!Read128Bytes(address))
     {
         return false;
-	}
+    }
 
-	//Verify that the data we just read back matches what we wrote
+    //Verify that the data we just read back matches what we wrote
     for(uint8_t i = sizeof(read_Response); i < sizeof(BM71_readBuffer); i++)
-	{
+    {
         //We compare byte by byte between the two buffers
         if(BM71_readBuffer[i] != *data++)
         {
             //if the data does not match, we return a false
             return false;
-		}
+        }
     }
     //If all data matched, we return a true.
     return true;
@@ -188,10 +188,10 @@ static bool EndFlashMemoryAccess(void)
 
     for(uint8_t i = 0; i < 19; i++)
     {
-	    if(BM71_readBuffer[i] != close_Response[i])
-	    {
-		    return false;
-	    }
+        if(BM71_readBuffer[i] != close_Response[i])
+        {
+            return false;
+        }
     }
     return true;
 }
@@ -204,15 +204,15 @@ static bool EraseFlashMemory(void)
 {
     SendFlashCommand(erase_Transmit,sizeof(erase_Transmit),BM71_readBuffer, sizeof(erase_Response));
 
-	for(uint8_t i = 0; i < 19; i++)
-	{
-		if(BM71_readBuffer[i] != erase_Response[i])
-		{
-			return false;
-		}
-	}
+    for(uint8_t i = 0; i < 19; i++)
+    {
+        if(BM71_readBuffer[i] != erase_Response[i])
+        {
+            return false;
+        }
+    }
 
-    BRD_MsDelay(25);
+    brd_MsDelay(25);
 
     return  true;
 }
@@ -223,7 +223,7 @@ static bool EraseFlashMemory(void)
 *******************************************************************************/
 static uint8_t GetSizeOfMemBlock()
 {
-	//Divide the full size of the data memory by the block size to calculate how many blocks are in the struct
+    //Divide the full size of the data memory by the block size to calculate how many blocks are in the struct
     return sizeof(memoryBlock) / 130u;
 }
 
@@ -353,11 +353,11 @@ static bool CompareEmptyMemory(uint16_t address)
     //to read the full 128 bytes.
 
     for(uint8_t i = sizeof(read_Response); i < sizeof(BM71_readBuffer); i++)
-	{
+    {
         if(BM71_readBuffer[i] != 0xFF)
-		{
+        {
             return false;
-		}
+        }
     }
     //If the values all matched then return true;
     return true;
@@ -381,7 +381,7 @@ static bool CompareMemory(uint16_t address, const uint8_t *expectedData)
     //We also use i < sizeof(BM71_readBuffer) to make sure we read all the way to the end of the buffer
     //to read the full 128 bytes.
     for(uint8_t i = sizeof(read_Response); i < sizeof(BM71_readBuffer); i++)
-	{
+    {
         if(BM71_readBuffer[i] != *expectedData++)
         {
             return false;
@@ -401,14 +401,14 @@ static void SendFlashCommand(const uint8_t *sendPacket, uint8_t sendSize, uint8_
     //Make sure the RX ring buffer is empty
     usart_async_flush_rx_buffer(&BT_UART);
     BM71_clearReadBuffer();
-	while(io_write(&BT_UART.io, (const uint8_t*)sendPacket, sendSize) == ERR_NO_RESOURCE)
-	{
-		; //Wait until the UART is ready to write more data
-	}
-	//Wait a bit before checking the buffer for any response
-	BRD_MsDelay(25);
-	//Read out the response into the receive packet
-	io_read(&BT_UART.io, recievePacket, readSize);
+    while(io_write(&BT_UART.io, (const uint8_t*)sendPacket, sendSize) == ERR_NO_RESOURCE)
+    {
+        ; //Wait until the UART is ready to write more data
+    }
+    //Wait a bit before checking the buffer for any response
+    brd_MsDelay(25);
+    //Read out the response into the receive packet
+    io_read(&BT_UART.io, recievePacket, readSize);
 }
 
 /*******************************************************************************
@@ -418,46 +418,46 @@ static void SendFlashCommand(const uint8_t *sendPacket, uint8_t sendSize, uint8_
 *******************************************************************************/
 bool BM71_checkAndUpdateFlash(void)
 {
-	bool retVal = false;
+    bool retVal = false;
     //First enter test mode so we can access the BM71 Memory
     BM71_ResetToTestMode();
 
     DEBUG_println("Checking current BM71 config... ");
-	retVal = OpenFlashMemory();
+    retVal = OpenFlashMemory();
     if(retVal)
-	{
-		retVal = CheckConfig();
-		if(retVal)
-		{
-			DEBUG_println("Config is up to date!\n\r");
-		}
-		else
-		{
-			DEBUG_println("BM71 config is out of date. Starting update... ");
-			retVal = EraseFlashMemory();
-			if(retVal)
-			{
-				retVal = SendConfigToEEPROM();
-				if(retVal)
-				{
-					DEBUG_println("New config applied successfully!\n\r");
-				}
-				else
-				{
-					DEBUG_println("Failed to apply new config\n\r");
-				}
-			}
-			else
-			{
-	            DEBUG_println("Failed to erase flash memory.\n\r");
-			}
-		}
-		EndFlashMemoryAccess();
-	}
-	else
-	{
-		DEBUG_println("Failed to open flash memory!\n\r");
-	}
+    {
+        retVal = CheckConfig();
+        if(retVal)
+        {
+            DEBUG_println("Config is up to date!\n\r");
+        }
+        else
+        {
+            DEBUG_println("BM71 config is out of date. Starting update... ");
+            retVal = EraseFlashMemory();
+            if(retVal)
+            {
+                retVal = SendConfigToEEPROM();
+                if(retVal)
+                {
+                    DEBUG_println("New config applied successfully!\n\r");
+                }
+                else
+                {
+                    DEBUG_println("Failed to apply new config\n\r");
+                }
+            }
+            else
+            {
+                DEBUG_println("Failed to erase flash memory.\n\r");
+            }
+        }
+        EndFlashMemoryAccess();
+    }
+    else
+    {
+        DEBUG_println("Failed to open flash memory!\n\r");
+    }
 
-	return retVal;
+    return retVal;
 }

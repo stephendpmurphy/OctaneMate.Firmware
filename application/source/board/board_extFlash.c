@@ -21,8 +21,8 @@
 * Description: Set the power enable pin of the External Flash. This takes into
 * account the fact that the FET enable is active low.
 *******************************************************************************/
-void BRD_extFlash_setPowerEn(bool en)
+void brd_extFlash_setPowerEn(bool en)
 {
-	//External Flash Power FET is Active Low.. So invert the bool logic
-	gpio_set_pin_level(EXT_FLASH_NEN,false);
+    //External Flash Power FET is Active Low.. So invert the bool logic
+    gpio_set_pin_level(EXT_FLASH_NEN,false);
 }

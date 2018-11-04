@@ -27,7 +27,7 @@ static struct io_descriptor *io;
 * Description: Debug board level init.
 *
 *******************************************************************************/
-void BRD_debug_init(void)
+void brd_debug_init(void)
 {
     //Debug UART init
     usart_async_register_callback(&DEBUG_UART, USART_ASYNC_RXC_CB, rxc_cb);
@@ -41,5 +41,6 @@ void BRD_debug_init(void)
 *******************************************************************************/
 static void rxc_cb(const struct usart_async_descriptor *const io_descr)
 {
-	//Do nothing..
+    //Do nothing..
 }
+

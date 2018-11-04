@@ -142,7 +142,7 @@ static void debug_processCmd(uint8_t* command)
     if(!strcmp((char*)command, "RESET"))
     {
         DEBUG_println("MCU Reset command received..\n\n\r");
-		BRD_MsDelay(50);
+		brd_MsDelay(50);
 		NVIC_SystemReset();
     }
 	else if(!strcmp((char*)command, "BM71_UPDATE_FLASH"))

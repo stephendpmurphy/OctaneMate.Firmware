@@ -54,7 +54,8 @@
           <AcmeProjectActionInfo Action="File" Source="hal/include/hal_cache.h" IsConfig="false" Hash="QZIIDRbUdkb2aDtNopQSOA" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hal_can_async.h" IsConfig="false" Hash="0wqyaYVZ8K3ogjSkpnhF8g" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hal_delay.h" IsConfig="false" Hash="snalDV+S1QGquCV38zAdoA" />
-          <AcmeProjectActionInfo Action="File" Source="hal/include/hal_gpio.h" IsConfig="false" Hash="0bPvDWUqGv5qkRQRzFj7fg" />
+          <AcmeProjectActionInfo Action="File" Source="hal/include/hal_flash.h" IsConfig="false" Hash="/1zTaNTia1qfUqpSN+MhrA" />
+          <AcmeProjectActionInfo Action="File" Source="hal/include/hal_gpio.h" IsConfig="false" Hash="3mBEQ9Ix28YOArddDes83Q" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hal_init.h" IsConfig="false" Hash="OrYSVpF3YA5XrOBImWpdSg" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hal_io.h" IsConfig="false" Hash="XZRSabc39WU/0MFBLYGLvQ" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hal_sleep.h" IsConfig="false" Hash="KuZDwgrLdU+fuMG82ZFTqg" />
@@ -65,6 +66,7 @@
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_core.h" IsConfig="false" Hash="XeEtUlBSwXUmLA41hFYYWg" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_delay.h" IsConfig="false" Hash="3tgjyGPrs0ePCewpMUQPbQ" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_dma.h" IsConfig="false" Hash="DMVS/F8OAyMqEkZkLJMX0g" />
+          <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_flash.h" IsConfig="false" Hash="DGgLGlKFEktLGx+0+woSGw" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_gpio.h" IsConfig="false" Hash="kGeglKjrgbcKZDOsM+XTrw" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_i2c_m_async.h" IsConfig="false" Hash="2YKSxDd++st93P4wS0x3sw" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_i2c_m_sync.h" IsConfig="false" Hash="9PBv4UnwhtkmG2PaLCX74Q" />
@@ -84,10 +86,12 @@
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_spi_s_sync.h" IsConfig="false" Hash="sMWRFDaLQ8YGJ7SKimVlLA" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_spi_sync.h" IsConfig="false" Hash="Qr5slVYsVsngWiAyjLwx8A" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_usart.h" IsConfig="false" Hash="gkIcItnlv0v8NvwxEz9neA" />
+          <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_user_area.h" IsConfig="false" Hash="66YDS0l7ibOrJGOru9ZKVw" />
           <AcmeProjectActionInfo Action="File" Source="hal/src/hal_atomic.c" IsConfig="false" Hash="jOsfB5ZnunjCPnUQXuXi9g" />
           <AcmeProjectActionInfo Action="File" Source="hal/src/hal_cache.c" IsConfig="false" Hash="edUfxCb3WSV4Uu3oKUakCg" />
           <AcmeProjectActionInfo Action="File" Source="hal/src/hal_can_async.c" IsConfig="false" Hash="a+BGopUVkYesWY7ffF3kPQ" />
           <AcmeProjectActionInfo Action="File" Source="hal/src/hal_delay.c" IsConfig="false" Hash="vZ+YYOpHjTcAZaAaTE3Izg" />
+          <AcmeProjectActionInfo Action="File" Source="hal/src/hal_flash.c" IsConfig="false" Hash="mZd7ifxXQdRgAiPkldzRJw" />
           <AcmeProjectActionInfo Action="File" Source="hal/src/hal_gpio.c" IsConfig="false" Hash="wIzN9zQd1b8qd+RDoSkD7Q" />
           <AcmeProjectActionInfo Action="File" Source="hal/src/hal_init.c" IsConfig="false" Hash="bJvq8kpNbbOE2nZfChOGTQ" />
           <AcmeProjectActionInfo Action="File" Source="hal/src/hal_io.c" IsConfig="false" Hash="FYpavzYSxhFzVrBQtcH2ZA" />
@@ -108,54 +112,54 @@
           <AcmeProjectActionInfo Action="File" Source="hal/utils/src/utils_list.c" IsConfig="false" Hash="rW6uwWgOnnMWzJjuYzxzZw" />
           <AcmeProjectActionInfo Action="File" Source="hal/utils/src/utils_ringbuffer.c" IsConfig="false" Hash="MBhQOsuapWaZGq/1E6lcTw" />
           <AcmeProjectActionInfo Action="File" Source="hal/utils/src/utils_syscalls.c" IsConfig="false" Hash="NaBnZufa6Sau3+tzlyR7Kw" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_ac_e51.h" IsConfig="false" Hash="Y9gArsd2YsD07nWnVW3lpg" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_adc_e51.h" IsConfig="false" Hash="88Jv8K7ptxkpsBI+HjHfvA" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_aes_e51.h" IsConfig="false" Hash="DHWkyukexoKXBP0yhlbI3w" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_can_e51.h" IsConfig="false" Hash="fuCh+ytTOcySvvS6Lzax/A" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_ccl_e51.h" IsConfig="false" Hash="MnvnDoktHHJBrP8M6LTTlQ" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_cmcc_e51.h" IsConfig="false" Hash="+eMYaxdSpvjcw1mHvSlOAA" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_dac_e51.h" IsConfig="false" Hash="KJK+37eYnBwgJyk8ykFPWw" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_dmac_e51.h" IsConfig="false" Hash="OiiKO26L5FBYoAcxnUMjJA" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_dsu_e51.h" IsConfig="false" Hash="nrVnRRlWoTwIeI9VRqWxGw" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_ac_e51.h" IsConfig="false" Hash="Ge7LRQVgLMlMrWqlwSkmEg" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_adc_e51.h" IsConfig="false" Hash="qt2zqP9sxOHQ8oQEbtJg/A" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_aes_e51.h" IsConfig="false" Hash="SjUrLBdtd9CWwgyuISEGgg" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_can_e51.h" IsConfig="false" Hash="eaYHhgXmX7u9UnZi1pf1HQ" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_ccl_e51.h" IsConfig="false" Hash="1sIAT2hex7LhP9l5+2FP5A" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_cmcc_e51.h" IsConfig="false" Hash="A8BHCaX04+Bk5HSpsUhvTw" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_dac_e51.h" IsConfig="false" Hash="Ulyc93A1iwHTZz/KffNQiA" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_dmac_e51.h" IsConfig="false" Hash="M/8+frSLkMWBWtjOfn0IGw" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_dsu_e51.h" IsConfig="false" Hash="yLWaTDyyrWbbZ6v/6UYl6A" />
           <AcmeProjectActionInfo Action="File" Source="hri/hri_e51.h" IsConfig="false" Hash="IP0Wepyh3ROXb17fAaAVRw" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_eic_e51.h" IsConfig="false" Hash="fyqXvBpe59fUcT3OPNacEg" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_evsys_e51.h" IsConfig="false" Hash="h9L4xPNAcTFkwGDnm88zxg" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_freqm_e51.h" IsConfig="false" Hash="33bMoxAJbu72qJfaIyWz+Q" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_gclk_e51.h" IsConfig="false" Hash="pzH2RZVfbWk5f306WGdtdA" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_hmatrixb_e51.h" IsConfig="false" Hash="V4/AUGc+OOF5yc1+wHVO3Q" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_i2s_e51.h" IsConfig="false" Hash="O0evcm5QODwz4HZVAMcOLQ" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_icm_e51.h" IsConfig="false" Hash="mh9UFxHf0o1PSE4kvafxJw" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_mclk_e51.h" IsConfig="false" Hash="veb45W7nJ06ujjqtqd8T5A" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_mpu_e51.h" IsConfig="false" Hash="lAz4C6HXV15+50UXnDQp0w" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_nvic_e51.h" IsConfig="false" Hash="pj5b/7TBqeQhJsXiVM4jMw" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_nvmctrl_e51.h" IsConfig="false" Hash="TsmCHo/euAbpiPDXy9jDCA" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_osc32kctrl_e51.h" IsConfig="false" Hash="6ZfAQEBtxsj7gSOmHGIwSA" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_oscctrl_e51.h" IsConfig="false" Hash="9SzUIEPZo5ArC8EUnHqRdw" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_pac_e51.h" IsConfig="false" Hash="yHp/zzLGOfhHczv/6yUtuQ" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_pcc_e51.h" IsConfig="false" Hash="fz4JXMPv7R8F9YRXaphssg" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_pdec_e51.h" IsConfig="false" Hash="Smd9C9nmRWu3dhPFWzmIQg" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_pm_e51.h" IsConfig="false" Hash="VE0R/rzHWRZqUJhiaNIUGQ" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_port_e51.h" IsConfig="false" Hash="Vnf4tc7oPk9HV9a1z0YcwQ" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_qspi_e51.h" IsConfig="false" Hash="vqCXAc47EbjNj40eogrS0g" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_ramecc_e51.h" IsConfig="false" Hash="S9HQwq/hMlEpfDsW98gVXQ" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_rstc_e51.h" IsConfig="false" Hash="X+oMZHCIVgQfxtJYh+CR6A" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_rtc_e51.h" IsConfig="false" Hash="gAFOlwI/6250vXuUo6WlAg" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_sdhc_e51.h" IsConfig="false" Hash="8mdoXfA4wV2+6CpyBqGQJg" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_sercom_e51.h" IsConfig="false" Hash="wpZSzjPes6JB7Z7ecs+gVg" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_supc_e51.h" IsConfig="false" Hash="QZJxg62liEfOg6eHBeL1iw" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_systemcontrol_e51.h" IsConfig="false" Hash="JlMDX5a5TynzD4PT+W6dWQ" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_systick_e51.h" IsConfig="false" Hash="vy6sJ+4JC/zs4XP9c0mvJQ" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_tc_e51.h" IsConfig="false" Hash="UxuXRzSSRQuv/XDvHLUXLA" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_tcc_e51.h" IsConfig="false" Hash="pyyiTXRilxA41/p2EP9Oig" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_trng_e51.h" IsConfig="false" Hash="oxbA/s5kvnb2XCknZ5IgCA" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_usb_e51.h" IsConfig="false" Hash="iET/5TPhrSH8/J/jJhlLew" />
-          <AcmeProjectActionInfo Action="File" Source="hri/hri_wdt_e51.h" IsConfig="false" Hash="hP+PNtks7RTbKo9OBiaCnw" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_eic_e51.h" IsConfig="false" Hash="HujGCvc4JaEW3OomCQDFmw" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_evsys_e51.h" IsConfig="false" Hash="a/tCLF1CVVPL0ZNicLl6NA" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_freqm_e51.h" IsConfig="false" Hash="voHQvJ7tRYru66P2B1ab8Q" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_gclk_e51.h" IsConfig="false" Hash="PJpcRUcQsWz9yinh4QM12w" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_hmatrixb_e51.h" IsConfig="false" Hash="55EMMu4uQ9bZgugxTXb8RA" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_i2s_e51.h" IsConfig="false" Hash="I6LOyaoDJNvrxH6gOApvsg" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_icm_e51.h" IsConfig="false" Hash="H0RqGQAYp6D6axl9SD1DlA" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_mclk_e51.h" IsConfig="false" Hash="/5dCo3tgrXERnzFVjn/U3g" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_mpu_e51.h" IsConfig="false" Hash="3hnCDGyFdR2A1eg2NZmWFg" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_nvic_e51.h" IsConfig="false" Hash="yxZJ3MZm7o8TDFQkBYXQvw" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_nvmctrl_e51.h" IsConfig="false" Hash="tQqmrAmzOWpkBs6/alf/KQ" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_osc32kctrl_e51.h" IsConfig="false" Hash="ViNxKWSBXg6oeXEwpNpjEQ" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_oscctrl_e51.h" IsConfig="false" Hash="EMVuvR7SYiqrKTWapd507g" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_pac_e51.h" IsConfig="false" Hash="lPfsk+/x/xvfeAG7HhPKjw" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_pcc_e51.h" IsConfig="false" Hash="NypkK3qtfVJP45wz6Ym6LQ" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_pdec_e51.h" IsConfig="false" Hash="h4glD77y2Yolj+7mkLxrQw" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_pm_e51.h" IsConfig="false" Hash="M+Kp07ypSlLimKkTODW+gA" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_port_e51.h" IsConfig="false" Hash="d+mH77Kmu7myKxQEtm4LgA" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_qspi_e51.h" IsConfig="false" Hash="KtjnJfrcl0UB5hT0FDMP+w" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_ramecc_e51.h" IsConfig="false" Hash="ctbd/YfRC1XdTwXXAam24g" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_rstc_e51.h" IsConfig="false" Hash="sskXBCsEA6kLw8KLgEIQAg" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_rtc_e51.h" IsConfig="false" Hash="GLx1OFnuGqGhBS7BsTAvCA" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_sdhc_e51.h" IsConfig="false" Hash="KuaZ0yD4tDWY4fbWEOWqpQ" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_sercom_e51.h" IsConfig="false" Hash="ys1/bUOVjxe56RmOUzBPbA" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_supc_e51.h" IsConfig="false" Hash="WdeWiGAZ0TJ+M+pzxR1LBQ" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_systemcontrol_e51.h" IsConfig="false" Hash="dYdVM/4MO17Yd6xgbD3xBg" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_systick_e51.h" IsConfig="false" Hash="bEciPR7JAG0tePSIbaNneQ" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_tc_e51.h" IsConfig="false" Hash="PygB6tNMG4P4g4LrmyKNew" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_tcc_e51.h" IsConfig="false" Hash="Y2SiC3hSv155dqD+EBZRbg" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_trng_e51.h" IsConfig="false" Hash="mIMn5U92QRANdYDX/auQVw" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_usb_e51.h" IsConfig="false" Hash="x6M7vYgNCS2oECqykr5+yw" />
+          <AcmeProjectActionInfo Action="File" Source="hri/hri_wdt_e51.h" IsConfig="false" Hash="o9Rg/hyuMzwOCphVc7uG1w" />
           <AcmeProjectActionInfo Action="File" Source="main.c" IsConfig="false" Hash="k0AH7j+BrmdFhBPzCCMptA" />
-          <AcmeProjectActionInfo Action="File" Source="driver_init.c" IsConfig="false" Hash="x/rCq/OrITF2JV9dvxBCfQ" />
-          <AcmeProjectActionInfo Action="File" Source="driver_init.h" IsConfig="false" Hash="6dZ6dE6cAMxiDPwIT2mdig" />
+          <AcmeProjectActionInfo Action="File" Source="driver_init.c" IsConfig="false" Hash="6uZrm6sgRTjmdHl9Erwz3A" />
+          <AcmeProjectActionInfo Action="File" Source="driver_init.h" IsConfig="false" Hash="+WHSeTbTbjliAkl818KUxw" />
           <AcmeProjectActionInfo Action="File" Source="atmel_start_pins.h" IsConfig="false" Hash="zouE40lf+LBwaHBmGP2JpA" />
-          <AcmeProjectActionInfo Action="File" Source="examples/driver_examples.h" IsConfig="false" Hash="TOKEcvRgmCMygdDNDE1OXw" />
-          <AcmeProjectActionInfo Action="File" Source="examples/driver_examples.c" IsConfig="false" Hash="BA48YJjDsE5xINehgrQ09Q" />
+          <AcmeProjectActionInfo Action="File" Source="examples/driver_examples.h" IsConfig="false" Hash="zkNEAwkC0HQYtK6YCQwOFg" />
+          <AcmeProjectActionInfo Action="File" Source="examples/driver_examples.c" IsConfig="false" Hash="j7sMb12gKePAYLKuhhXIuw" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hal_usart_async.h" IsConfig="false" Hash="km9RyrLcCSavva/oZ2rcOQ" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_missing_features.h" IsConfig="false" Hash="XsAvpgfutzkw0Y5SydYFaw" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_reset.h" IsConfig="false" Hash="WwLFRlBtuZ/qnD1JuDKnRQ" />
@@ -163,7 +167,7 @@
           <AcmeProjectActionInfo Action="File" Source="hal/include/hpl_usart_sync.h" IsConfig="false" Hash="Yj+PoPxG2CqDOy5XoIWkwg" />
           <AcmeProjectActionInfo Action="File" Source="hal/src/hal_usart_async.c" IsConfig="false" Hash="1BPdzHEU8u472rtyf6cIdg" />
           <AcmeProjectActionInfo Action="File" Source="hal/utils/include/parts.h" IsConfig="false" Hash="1yr5IFrXRidwPpotANH1Sw" />
-          <AcmeProjectActionInfo Action="File" Source="hpl/can/hpl_can.c" IsConfig="false" Hash="ImWSv4nwP3SOViyvgECb5g" />
+          <AcmeProjectActionInfo Action="File" Source="hpl/can/hpl_can.c" IsConfig="false" Hash="O50XOQFdr8qDhwk9WTOmXA" />
           <AcmeProjectActionInfo Action="File" Source="hpl/can/hpl_can_base.h" IsConfig="false" Hash="9v4bTQOxw60LEsxftsy/pg" />
           <AcmeProjectActionInfo Action="File" Source="hpl/cmcc/hpl_cmcc.c" IsConfig="false" Hash="xrdKSj3ppVwQWgZ3zrlaRg" />
           <AcmeProjectActionInfo Action="File" Source="hpl/core/hpl_core_m4.c" IsConfig="false" Hash="K1MaGVQJbVod6fUftYh+4g" />
@@ -173,13 +177,14 @@
           <AcmeProjectActionInfo Action="File" Source="hpl/gclk/hpl_gclk.c" IsConfig="false" Hash="5XO/19EedZQ0lq6yB8UTWQ" />
           <AcmeProjectActionInfo Action="File" Source="hpl/gclk/hpl_gclk_base.h" IsConfig="false" Hash="VnaHvu/VnbGvOxrehrp2mQ" />
           <AcmeProjectActionInfo Action="File" Source="hpl/mclk/hpl_mclk.c" IsConfig="false" Hash="XNSKHdNpSWfkSJUMnJUASA" />
+          <AcmeProjectActionInfo Action="File" Source="hpl/nvmctrl/hpl_nvmctrl.c" IsConfig="false" Hash="3PzjeaZTS7FTu42RacF6NQ" />
           <AcmeProjectActionInfo Action="File" Source="hpl/osc32kctrl/hpl_osc32kctrl.c" IsConfig="false" Hash="DhXWWfpRGQtwitQ9mkvXcw" />
           <AcmeProjectActionInfo Action="File" Source="hpl/oscctrl/hpl_oscctrl.c" IsConfig="false" Hash="5M03DGDFwRTEFXtPRflGFA" />
           <AcmeProjectActionInfo Action="File" Source="hpl/pm/hpl_pm.c" IsConfig="false" Hash="bcht9HqY6EFL6gVGYXeVfQ" />
           <AcmeProjectActionInfo Action="File" Source="hpl/pm/hpl_pm_base.h" IsConfig="false" Hash="KOec1StxUZxY/RKBDbMkpg" />
           <AcmeProjectActionInfo Action="File" Source="hpl/port/hpl_gpio_base.h" IsConfig="false" Hash="RI3BbUff9yvrKqEhD9yKQA" />
           <AcmeProjectActionInfo Action="File" Source="hpl/ramecc/hpl_ramecc.c" IsConfig="false" Hash="pMdmwVWBg16VG8HOwA3DPw" />
-          <AcmeProjectActionInfo Action="File" Source="hpl/sercom/hpl_sercom.c" IsConfig="false" Hash="jSMOvQ0Io2Xprxmsw5pxxg" />
+          <AcmeProjectActionInfo Action="File" Source="hpl/sercom/hpl_sercom.c" IsConfig="false" Hash="1f9c95fnyyNISzFvz+k3fw" />
           <AcmeProjectActionInfo Action="File" Source="atmel_start.h" IsConfig="false" Hash="9RBG5E2ViQiSP2Gn4/FGpA" />
           <AcmeProjectActionInfo Action="File" Source="atmel_start.c" IsConfig="false" Hash="1RHIE7zTtYK4DURNPUqF9w" />
           <AcmeProjectActionInfo Action="File" Source="config/hpl_can_config.h" IsConfig="true" Hash="uEZ3f74HsFJCZHAC3lzy9g" />
@@ -187,9 +192,10 @@
           <AcmeProjectActionInfo Action="File" Source="config/hpl_dmac_config.h" IsConfig="true" Hash="mNec32O7w53e4vDmQlvjCA" />
           <AcmeProjectActionInfo Action="File" Source="config/hpl_gclk_config.h" IsConfig="true" Hash="ZRLr5TTlSKxid4BC9lOTUg" />
           <AcmeProjectActionInfo Action="File" Source="config/hpl_mclk_config.h" IsConfig="true" Hash="pxBzoQXTG66x4dbzVzxteg" />
+          <AcmeProjectActionInfo Action="File" Source="config/hpl_nvmctrl_config.h" IsConfig="true" Hash="D4QzCBNwfuDqZiPVu7Xk/g" />
           <AcmeProjectActionInfo Action="File" Source="config/hpl_osc32kctrl_config.h" IsConfig="true" Hash="3MDT7yLwmiaUjP/WI1+yVw" />
           <AcmeProjectActionInfo Action="File" Source="config/hpl_oscctrl_config.h" IsConfig="true" Hash="gAfxtnv8y6HLk4CRInK07w" />
-          <AcmeProjectActionInfo Action="File" Source="config/hpl_sercom_config.h" IsConfig="true" Hash="VLJZCLhYfoeY1F0kGqX3rA" />
+          <AcmeProjectActionInfo Action="File" Source="config/hpl_sercom_config.h" IsConfig="true" Hash="4NUSgeCvusq78O0kM+eThQ" />
           <AcmeProjectActionInfo Action="File" Source="config/peripheral_clk_config.h" IsConfig="true" Hash="mqae7TJHRMGL9ioZduZBQg" />
         </AcmeActionInfos>
       </AcmeProjectConfig>
@@ -219,20 +225,117 @@
   <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
   <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
   <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
-  <armgcc.compiler.directories.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../source/ble</Value><Value>../source/board</Value><Value>../source/config</Value><Value>../source/debug</Value><Value>../source/devMgr</Value><Value>../source/extFlash</Value><Value>../source/frtos</Value><Value>../source/main</Value><Value>../source/ui</Value><Value>../source/utilities</Value><Value>../source/vehIntf</Value><Value>../submodules/FreeRTOS/include</Value><Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/can</Value><Value>../hpl/cmcc</Value><Value>../hpl/core</Value><Value>../hpl/dmac</Value><Value>../hpl/gclk</Value><Value>../hpl/mclk</Value><Value>../hpl/osc32kctrl</Value><Value>../hpl/oscctrl</Value><Value>../hpl/pm</Value><Value>../hpl/port</Value><Value>../hpl/ramecc</Value><Value>../hpl/sercom</Value><Value>../hri</Value></ListValues></armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>NDEBUG</Value>
+    </ListValues>
+  </armgcc.compiler.symbols.DefSymbols>
+  <armgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>../source/ble</Value>
+      <Value>../source/board</Value>
+      <Value>../source/config</Value>
+      <Value>../source/debug</Value>
+      <Value>../source/devMgr</Value>
+      <Value>../source/extFlash</Value>
+      <Value>../source/frtos</Value>
+      <Value>../source/main</Value>
+      <Value>../source/ui</Value>
+      <Value>../source/utilities</Value>
+      <Value>../source/vehIntf</Value>
+      <Value>../submodules/FreeRTOS/include</Value>
+      <Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/can</Value>
+      <Value>../hpl/cmcc</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/dmac</Value>
+      <Value>../hpl/gclk</Value>
+      <Value>../hpl/mclk</Value>
+      <Value>../hpl/nvmctrl</Value>
+      <Value>../hpl/osc32kctrl</Value>
+      <Value>../hpl/oscctrl</Value>
+      <Value>../hpl/pm</Value>
+      <Value>../hpl/port</Value>
+      <Value>../hpl/ramecc</Value>
+      <Value>../hpl/sercom</Value>
+      <Value>../hri</Value>
+    </ListValues>
+  </armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.compiler.miscellaneous.OtherFlags>-std=c99 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
   <armgcc.linker.general.UseNewlibNano>True</armgcc.linker.general.UseNewlibNano>
-  <armgcc.linker.libraries.Libraries><ListValues><Value>libm</Value></ListValues></armgcc.linker.libraries.Libraries>
-  <armgcc.linker.libraries.LibrarySearchPaths><ListValues><Value>%24(ProjectDir)\Device_Startup</Value></ListValues></armgcc.linker.libraries.LibrarySearchPaths>
+  <armgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </armgcc.linker.libraries.Libraries>
+  <armgcc.linker.libraries.LibrarySearchPaths>
+    <ListValues>
+      <Value>%24(ProjectDir)\Device_Startup</Value>
+    </ListValues>
+  </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
   <armgcc.linker.memorysettings.ExternalRAM>False</armgcc.linker.memorysettings.ExternalRAM>
   <armgcc.linker.miscellaneous.LinkerFlags>-Tsame51j20a_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
-  <armgcc.assembler.general.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/can</Value><Value>../hpl/cmcc</Value><Value>../hpl/core</Value><Value>../hpl/dmac</Value><Value>../hpl/gclk</Value><Value>../hpl/mclk</Value><Value>../hpl/osc32kctrl</Value><Value>../hpl/oscctrl</Value><Value>../hpl/pm</Value><Value>../hpl/port</Value><Value>../hpl/ramecc</Value><Value>../hpl/sercom</Value><Value>../hri</Value></ListValues></armgcc.assembler.general.IncludePaths>
-  <armgcc.preprocessingassembler.general.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/can</Value><Value>../hpl/cmcc</Value><Value>../hpl/core</Value><Value>../hpl/dmac</Value><Value>../hpl/gclk</Value><Value>../hpl/mclk</Value><Value>../hpl/osc32kctrl</Value><Value>../hpl/oscctrl</Value><Value>../hpl/pm</Value><Value>../hpl/port</Value><Value>../hpl/ramecc</Value><Value>../hpl/sercom</Value><Value>../hri</Value></ListValues></armgcc.preprocessingassembler.general.IncludePaths>
-  <armgcc.compiler.symbols.DefSymbols><ListValues><Value>NDEBUG</Value></ListValues></armgcc.compiler.symbols.DefSymbols>
-  <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
+  <armgcc.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/can</Value>
+      <Value>../hpl/cmcc</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/dmac</Value>
+      <Value>../hpl/gclk</Value>
+      <Value>../hpl/mclk</Value>
+      <Value>../hpl/nvmctrl</Value>
+      <Value>../hpl/osc32kctrl</Value>
+      <Value>../hpl/oscctrl</Value>
+      <Value>../hpl/pm</Value>
+      <Value>../hpl/port</Value>
+      <Value>../hpl/ramecc</Value>
+      <Value>../hpl/sercom</Value>
+      <Value>../hri</Value>
+    </ListValues>
+  </armgcc.assembler.general.IncludePaths>
+  <armgcc.preprocessingassembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/can</Value>
+      <Value>../hpl/cmcc</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/dmac</Value>
+      <Value>../hpl/gclk</Value>
+      <Value>../hpl/mclk</Value>
+      <Value>../hpl/nvmctrl</Value>
+      <Value>../hpl/osc32kctrl</Value>
+      <Value>../hpl/oscctrl</Value>
+      <Value>../hpl/pm</Value>
+      <Value>../hpl/port</Value>
+      <Value>../hpl/ramecc</Value>
+      <Value>../hpl/sercom</Value>
+      <Value>../hri</Value>
+    </ListValues>
+  </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
     </ToolchainSettings>
   </PropertyGroup>
@@ -244,22 +347,120 @@
   <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
   <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
   <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
-  <armgcc.compiler.directories.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../source/ble</Value><Value>../source/board</Value><Value>../source/config</Value><Value>../source/debug</Value><Value>../source/devMgr</Value><Value>../source/extFlash</Value><Value>../source/frtos</Value><Value>../source/main</Value><Value>../source/ui</Value><Value>../source/utilities</Value><Value>../source/vehIntf</Value><Value>../submodules/FreeRTOS/include</Value><Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/can</Value><Value>../hpl/cmcc</Value><Value>../hpl/core</Value><Value>../hpl/dmac</Value><Value>../hpl/gclk</Value><Value>../hpl/mclk</Value><Value>../hpl/osc32kctrl</Value><Value>../hpl/oscctrl</Value><Value>../hpl/pm</Value><Value>../hpl/port</Value><Value>../hpl/ramecc</Value><Value>../hpl/sercom</Value><Value>../hri</Value></ListValues></armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>DEBUG</Value>
+      <Value>DEBUG_BUILD</Value>
+    </ListValues>
+  </armgcc.compiler.symbols.DefSymbols>
+  <armgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>../source/ble</Value>
+      <Value>../source/board</Value>
+      <Value>../source/config</Value>
+      <Value>../source/debug</Value>
+      <Value>../source/devMgr</Value>
+      <Value>../source/extFlash</Value>
+      <Value>../source/frtos</Value>
+      <Value>../source/main</Value>
+      <Value>../source/ui</Value>
+      <Value>../source/utilities</Value>
+      <Value>../source/vehIntf</Value>
+      <Value>../submodules/FreeRTOS/include</Value>
+      <Value>../submodules/FreeRTOS/portable/GCC/ARM_CM4F</Value>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/can</Value>
+      <Value>../hpl/cmcc</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/dmac</Value>
+      <Value>../hpl/gclk</Value>
+      <Value>../hpl/mclk</Value>
+      <Value>../hpl/nvmctrl</Value>
+      <Value>../hpl/osc32kctrl</Value>
+      <Value>../hpl/oscctrl</Value>
+      <Value>../hpl/pm</Value>
+      <Value>../hpl/port</Value>
+      <Value>../hpl/ramecc</Value>
+      <Value>../hpl/sercom</Value>
+      <Value>../hri</Value>
+    </ListValues>
+  </armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+  <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.compiler.miscellaneous.OtherFlags>-std=c99 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
   <armgcc.linker.general.UseNewlibNano>True</armgcc.linker.general.UseNewlibNano>
-  <armgcc.linker.libraries.Libraries><ListValues><Value>libm</Value></ListValues></armgcc.linker.libraries.Libraries>
-  <armgcc.linker.libraries.LibrarySearchPaths><ListValues><Value>%24(ProjectDir)\Device_Startup</Value></ListValues></armgcc.linker.libraries.LibrarySearchPaths>
+  <armgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </armgcc.linker.libraries.Libraries>
+  <armgcc.linker.libraries.LibrarySearchPaths>
+    <ListValues>
+      <Value>%24(ProjectDir)\Device_Startup</Value>
+    </ListValues>
+  </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
   <armgcc.linker.memorysettings.ExternalRAM>False</armgcc.linker.memorysettings.ExternalRAM>
   <armgcc.linker.miscellaneous.LinkerFlags>-Tsame51j20a_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
-  <armgcc.assembler.general.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/can</Value><Value>../hpl/cmcc</Value><Value>../hpl/core</Value><Value>../hpl/dmac</Value><Value>../hpl/gclk</Value><Value>../hpl/mclk</Value><Value>../hpl/osc32kctrl</Value><Value>../hpl/oscctrl</Value><Value>../hpl/pm</Value><Value>../hpl/port</Value><Value>../hpl/ramecc</Value><Value>../hpl/sercom</Value><Value>../hri</Value></ListValues></armgcc.assembler.general.IncludePaths>
-  <armgcc.preprocessingassembler.general.IncludePaths><ListValues><Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value><Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value><Value>../Config</Value><Value>../</Value><Value>../examples</Value><Value>../hal/include</Value><Value>../hal/utils/include</Value><Value>../hpl/can</Value><Value>../hpl/cmcc</Value><Value>../hpl/core</Value><Value>../hpl/dmac</Value><Value>../hpl/gclk</Value><Value>../hpl/mclk</Value><Value>../hpl/osc32kctrl</Value><Value>../hpl/oscctrl</Value><Value>../hpl/pm</Value><Value>../hpl/port</Value><Value>../hpl/ramecc</Value><Value>../hpl/sercom</Value><Value>../hri</Value></ListValues></armgcc.preprocessingassembler.general.IncludePaths>
-  <armgcc.compiler.symbols.DefSymbols><ListValues><Value>DEBUG</Value><Value>DEBUG_BUILD</Value></ListValues></armgcc.compiler.symbols.DefSymbols>
-  <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
-  <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
+  <armgcc.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/can</Value>
+      <Value>../hpl/cmcc</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/dmac</Value>
+      <Value>../hpl/gclk</Value>
+      <Value>../hpl/mclk</Value>
+      <Value>../hpl/nvmctrl</Value>
+      <Value>../hpl/osc32kctrl</Value>
+      <Value>../hpl/oscctrl</Value>
+      <Value>../hpl/pm</Value>
+      <Value>../hpl/port</Value>
+      <Value>../hpl/ramecc</Value>
+      <Value>../hpl/sercom</Value>
+      <Value>../hri</Value>
+    </ListValues>
+  </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
+  <armgcc.preprocessingassembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\cmsis\5.0.1\CMSIS\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAME51_DFP\1.0.65\include</Value>
+      <Value>../Config</Value>
+      <Value>../</Value>
+      <Value>../examples</Value>
+      <Value>../hal/include</Value>
+      <Value>../hal/utils/include</Value>
+      <Value>../hpl/can</Value>
+      <Value>../hpl/cmcc</Value>
+      <Value>../hpl/core</Value>
+      <Value>../hpl/dmac</Value>
+      <Value>../hpl/gclk</Value>
+      <Value>../hpl/mclk</Value>
+      <Value>../hpl/nvmctrl</Value>
+      <Value>../hpl/osc32kctrl</Value>
+      <Value>../hpl/oscctrl</Value>
+      <Value>../hpl/pm</Value>
+      <Value>../hpl/port</Value>
+      <Value>../hpl/ramecc</Value>
+      <Value>../hpl/sercom</Value>
+      <Value>../hri</Value>
+    </ListValues>
+  </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
 </ArmGcc>
     </ToolchainSettings>
@@ -278,6 +479,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Config\hpl_mclk_config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Config\hpl_nvmctrl_config.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Config\hpl_osc32kctrl_config.h">
@@ -319,6 +523,9 @@
     <Compile Include="hal\include\hal_delay.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="hal\include\hal_flash.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="hal\include\hal_gpio.h">
       <SubType>compile</SubType>
     </Compile>
@@ -353,6 +560,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="hal\include\hpl_dma.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="hal\include\hpl_flash.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="hal\include\hpl_gpio.h">
@@ -424,6 +634,9 @@
     <Compile Include="hal\include\hpl_usart_sync.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="hal\include\hpl_user_area.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="hal\src\hal_atomic.c">
       <SubType>compile</SubType>
     </Compile>
@@ -434,6 +647,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="hal\src\hal_delay.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="hal\src\hal_flash.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="hal\src\hal_gpio.c">
@@ -530,6 +746,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="hpl\mclk\hpl_mclk.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="hpl\nvmctrl\hpl_nvmctrl.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="hpl\osc32kctrl\hpl_osc32kctrl.c">
@@ -904,6 +1123,7 @@
     <Folder Include="hpl\dmac\" />
     <Folder Include="hpl\gclk\" />
     <Folder Include="hpl\mclk\" />
+    <Folder Include="hpl\nvmctrl\" />
     <Folder Include="hpl\osc32kctrl\" />
     <Folder Include="hpl\oscctrl\" />
     <Folder Include="hpl\pm\" />

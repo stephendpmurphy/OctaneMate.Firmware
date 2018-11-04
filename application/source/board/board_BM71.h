@@ -13,9 +13,9 @@
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-void BRD_BM71_init(void);
-void BRD_BM71_setResetPin(bool en);
-void BRD_BM71_setPowerEn(bool en);
+void brd_BM71_init(void);
+void brd_BM71_setResetPin(bool en);
+void brd_BM71_setPowerEn(bool en);
 void BRD_BM71_setConfigPin(bool en);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
