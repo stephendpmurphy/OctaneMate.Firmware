@@ -25,8 +25,6 @@
 /*-------------- DEFINITIONS -------------------------------------------------*/
 #define CMD_LEN_MSB_INDEX       0x01
 #define CMD_LEN_LSB_INDEX       0x02
-
-#define OCTANEMATE_DEVICE_NAME	"OctaneMate Mini"
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
@@ -55,7 +53,6 @@ void BM71_init(void)
 
     //Check BM71 config and see if it needs updated
     retVal = BM71_checkAndUpdateFlash();
-
     if(retVal)
     {
         //Reset the BM71 module to App mode
@@ -108,7 +105,7 @@ void BM71_readLocalInfo(void)
     BM71_Silicon_ID = BM71_readBuffer[BM71_SILICON_ID_OFFSET];
 
 	//Print out the retrieved module info
-	DEBUG_println("BM71 Silicon ID: %d   MAC Address: %s   FW Ver: %s \n\n\r", BM71_Silicon_ID, BM71_Address, BM71_Firmware_Ver);
+	DEBUG_println(BLE, "BM71 Silicon ID: %d   MAC Address: %s   FW Ver: %s \n\n\r", BM71_Silicon_ID, BM71_Address, BM71_Firmware_Ver);
 }
 
 /*******************************************************************************
@@ -123,41 +120,40 @@ uint8_t BM71_readStatus(void)
     BM71_sendAppCommand(sizeof(CMD_readBM71Status));
 
     BM71_Status = BM71_readBuffer[BM71_STATUS_OFFSET];
-#ifdef DEBUG
-    DEBUG_println("BLE Status: ");
+    DEBUG_println(BLE, "BLE Status: ");
     switch(BM71_Status)
     {
         case SCANNING_MODE:
-            DEBUG_println("SCANNING MODE\n\n\r");
+            DEBUG_printNoTimeStamp(BLE, "SCANNING MODE\n\r");
             break;
         case CONNECTING_MODE:
-            DEBUG_println("CONNECTING MODE\n\n\r");
+            DEBUG_printNoTimeStamp(BLE, "CONNECTING MODE\n\r");
             break;
         case STANDBY_MODE:
-            DEBUG_println("STANDBY MODE\n\n\r");
+            DEBUG_printNoTimeStamp(BLE, "STANDBY MODE\n\r");
             break;
         case BROADCAST_MODE:
-            DEBUG_println("BROADCAST MODE\n\n\r");
+            DEBUG_printNoTimeStamp(BLE, "BROADCAST MODE\n\r");
             break;
         case TRANSPARENT_SERVICE_ENABLED_MODE:
-            DEBUG_println("TRANSPARENT SERVICE ENABLED MODE\n\n\r");
+            DEBUG_printNoTimeStamp(BLE, "TRANSPARENT SERVICE ENABLED MODE\n\r");
             break;
         case IDLE_MODE:
-            DEBUG_println("IDLE MODE\n\n\r");
+            DEBUG_printNoTimeStamp(BLE, "IDLE MODE\n\r");
             break;
         case SHUTDOWN_MODE:
-            DEBUG_println("SHUTDOWN MODE\n\n\r");
+            DEBUG_printNoTimeStamp(BLE, "SHUTDOWN MODE\n\r");
             break;
         case CONFIGURE_MODE:
-            DEBUG_println("CONFIGURE MODE\n\n\r");
+            DEBUG_printNoTimeStamp(BLE, "CONFIGURE MODE\n\r");
             break;
         case BLE_CONNECTED_MODE:
-            DEBUG_println("BLE CONNECTED MODE\n\n\r");
+            DEBUG_printNoTimeStamp(BLE, "BLE CONNECTED MODE\n\r");
             break;
         default:
+            DEBUG_printNoTimeStamp(BLE, "!! UNKOWN !!\n\r");
             break;
     }
-#endif
     return( BM71_Status );
 }
 
@@ -179,7 +175,7 @@ void BM71_readDeviceName(void)
     //Copy the device name from the readBuffer into our DeviceName var
     memcpy(BM71_DeviceName, (char*)BM71_readBuffer+BM71_READ_DEVICE_NAME_OFFSET, msgLen);
     //Print out the retrieved module info
-    DEBUG_println("BLE Device Name: %s\n\n\r", BM71_DeviceName);
+    DEBUG_println(BLE, "BLE Device Name: %s\n\n\r", BM71_DeviceName);
 }
 
 /*******************************************************************************
@@ -188,7 +184,7 @@ void BM71_readDeviceName(void)
 *******************************************************************************/
 void BM71_writeDeviceName(void)
 {
-    DEBUG_println("Writing new device name...\n\r");	
+    DEBUG_println(BLE, "Writing new device name...\n\r");	
     //Load the Write Device Name command into the writeBuffer
     BM71_loadWriteBuffer(CMD_writeDeviceName, sizeof(CMD_writeDeviceName));
     //Write the length of the command which is the length of device name plus 1 for the opcode and reserved byte
@@ -274,7 +270,7 @@ void BM71_calculateCRC(uint8_t *buffer, uint8_t len)
 {
     uint8_t crc = 0xFF;
 
-    for(uint8_t x=1;x<len;x++)
+    for(uint16_t x=1;x<len;x++)
     {
         crc -= buffer[x];
     }
@@ -287,7 +283,7 @@ void BM71_calculateCRC(uint8_t *buffer, uint8_t len)
 *******************************************************************************/
 void BM71_clearWriteBuffer(void)
 {
-    for(uint8_t i = 0; i < sizeof(BM71_writeBuffer); i++)
+    for(uint16_t i = 0; i < sizeof(BM71_writeBuffer); i++)
     {
         BM71_writeBuffer[i] = 0x00;
     }
@@ -299,7 +295,7 @@ void BM71_clearWriteBuffer(void)
 *******************************************************************************/
 void BM71_clearReadBuffer(void)
 {
-    for(uint8_t i = 0; i < sizeof(BM71_readBuffer); i++)
+    for(uint16_t i = 0; i < sizeof(BM71_readBuffer); i++)
     {
         BM71_readBuffer[i] = 0x00;
     }

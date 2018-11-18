@@ -7,7 +7,7 @@
 // under the copyright laws.
 //------------------------------------------------------------------------------
 
-#include "devMgrAPI.h"
+#include "vehIntfAPI.h"
 #include "FreeRTOS_API.h"
 #include "debugAPI.h"
 
@@ -17,15 +17,15 @@
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
 /*******************************************************************************
-* Description: FreeRTOS task for the Device Manager functionality.
+* Description: FreeRTOS task for the vehichle interface.
 *
 *******************************************************************************/
-void task_devMgr(void* params)
+void task_vehIntf(void* params)
 {
-	DEBUG_println("Device Manager Task Started\n\r");
-    //Device Manager Code
+	DEBUG_println(VEHINTF, "Vehicle Interface Task Started\n\r");
+    //Vehicle Interface Code
     while(1)
     {
-		vTaskDelay(1000/portTICK_PERIOD_MS);
+		vTaskDelay(100);
     }
 }

@@ -13,4 +13,6 @@
 #define PRODUCT_VERSION 1 //TODO: This will eventually be a compile time macro to indicate which product it is
 #define FW_VERSION	1 //TODO: This will eventually be replaced by an actual build number from VSTS
 
+#define BLUETOOTH_CONFIG_VERSION    1
+
 #endif /* VERSION_H_ */

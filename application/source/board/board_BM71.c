@@ -14,14 +14,14 @@
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-static void rx_cb(const struct usart_async_descriptor *const io_desc);
+static void rxc_cb(const struct usart_async_descriptor *const io_descr);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 static struct io_descriptor *io;
 
 void brd_BM71_init(void)
 {
     //Bluetooth UART init
-    usart_async_register_callback(&BT_UART, USART_ASYNC_RXC_CB, rx_cb);
+    usart_async_register_callback(&BT_UART, USART_ASYNC_RXC_CB, rxc_cb);
     usart_async_get_io_descriptor(&BT_UART, &io);
     usart_async_enable(&BT_UART);
 }
@@ -30,7 +30,7 @@ void brd_BM71_init(void)
 * Description: RX callback for the BM71 UART.
 *
 *******************************************************************************/
-static void rx_cb(const struct usart_async_descriptor *const io_desc)
+static void rxc_cb(const struct usart_async_descriptor *const io_descr)
 {
 
 }

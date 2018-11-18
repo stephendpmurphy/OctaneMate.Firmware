@@ -19,6 +19,8 @@ void assert_triggered(const char *file, uint32_t line);
 #define configCPU_CLOCK_HZ (CONF_CPU_FREQUENCY)
 #endif
 
+#define configUSE_TIME_SLICING 1
+
 // <o> Max Priority for task <5-128>
 // <i> Defines the max priority of task
 // <i> Default: 5
@@ -103,14 +105,14 @@ void assert_triggered(const char *file, uint32_t line);
 // <q> Use idle hook
 // <id> freertos_use_idle_hook
 #ifndef configUSE_IDLE_HOOK
-#define configUSE_IDLE_HOOK 0
+#define configUSE_IDLE_HOOK 1
 #endif
 
 // <q> Use tick hook
 // <i> if open, you must realize vApplicationTickHook function
 // <id> freertos_use_tick_hook
 #ifndef configUSE_TICK_HOOK
-#define configUSE_TICK_HOOK 0
+#define configUSE_TICK_HOOK 1
 #endif
 
 // <q> Use tickless idle
@@ -225,7 +227,7 @@ to exclude the API function. */
 // <q> Include function to resume task from ISR
 // <id> freertos_xresumefromisr
 #ifndef INCLUDE_xResumeFromISR
-#define INCLUDE_xResumeFromISR 0
+#define INCLUDE_xResumeFromISR 1
 #endif
 
 // <q> Include task delay utilities

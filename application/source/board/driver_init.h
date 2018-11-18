@@ -26,7 +26,9 @@ extern "C" {
 #include <hal_spi_m_sync.h>
 #include <hal_usart_async.h>
 #include <hal_can_async.h>
+#include <hal_timer.h>
 
+extern struct timer_descriptor       TIMER_0;
 extern struct flash_descriptor       FLASH_0;
 extern struct spi_m_sync_descriptor  EXT_FLASH_SPI;
 extern struct usart_async_descriptor BT_UART;

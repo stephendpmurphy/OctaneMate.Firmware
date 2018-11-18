@@ -1,28 +1,26 @@
-//------------------------------------------------------------------------------
-//  Copyright(c)2018 Murphy Technology as an unpublished work.
-//
-//  The information contained herein is confidential property of Murphy Technology.
-//  All rights reserved.  Reproduction, adaptation, or translation without the
-//  express written consent of Murphy Technology is prohibited, except as allowed
-//  under the copyright laws.
-//------------------------------------------------------------------------------
+/*
+ * Code generated from Atmel Start.
+ *
+ * This file will be overwritten when reconfiguring your Atmel Start project.
+ * Please copy examples or other code you want to keep to a separate file
+ * to avoid losing it when reconfiguring.
+ */
 
 #include "driver_init.h"
 #include <peripheral_clk_config.h>
 #include <utils.h>
 #include <hal_init.h>
+#include <hpl_rtc_base.h>
 
-/*! The buffer size for USART */
 #define BT_UART_BUFFER_SIZE 256
+#define DEBUG_UART_BUFFER_SIZE 64
 
-/*! The buffer size for USART */
-#define DEBUG_UART_BUFFER_SIZE 32
-
-struct spi_m_sync_descriptor    EXT_FLASH_SPI;
-struct usart_async_descriptor   BT_UART;
-struct usart_async_descriptor   DEBUG_UART;
-struct can_async_descriptor     CAN1_INTF;
-struct flash_descriptor         FLASH_0;
+struct timer_descriptor       TIMER_0;
+struct spi_m_sync_descriptor  EXT_FLASH_SPI;
+struct usart_async_descriptor BT_UART;
+struct usart_async_descriptor DEBUG_UART;
+struct can_async_descriptor   CAN1_INTF;
+struct flash_descriptor FLASH_0;
 
 static uint8_t BT_UART_buffer[BT_UART_BUFFER_SIZE];
 static uint8_t DEBUG_UART_buffer[DEBUG_UART_BUFFER_SIZE];
@@ -39,11 +37,19 @@ void FLASH_0_init(void)
 	flash_init(&FLASH_0, NVMCTRL);
 }
 
+/**
+ * \brief Timer initialization function
+ *
+ * Enables Timer peripheral, clocks and initializes Timer driver
+ */
+static void TIMER_0_init(void)
+{
+	hri_mclk_set_APBAMASK_RTC_bit(MCLK);
+	timer_init(&TIMER_0, RTC, _rtc_get_timer());
+}
+
 void EXT_FLASH_SPI_PORT_init(void)
 {
-
-	// Set pin direction to output
-	gpio_set_pin_direction(EXT_FLASH_MOSI, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_level(EXT_FLASH_MOSI,
 	                   // <y> Initial level
@@ -52,10 +58,10 @@ void EXT_FLASH_SPI_PORT_init(void)
 	                   // <true"> High
 	                   false);
 
-	gpio_set_pin_function(EXT_FLASH_MOSI, PINMUX_PA04D_SERCOM0_PAD0);
-
 	// Set pin direction to output
-	gpio_set_pin_direction(EXT_FLASH_SCK, GPIO_DIRECTION_OUT);
+	gpio_set_pin_direction(EXT_FLASH_MOSI, GPIO_DIRECTION_OUT);
+
+	gpio_set_pin_function(EXT_FLASH_MOSI, PINMUX_PA04D_SERCOM0_PAD0);
 
 	gpio_set_pin_level(EXT_FLASH_SCK,
 	                   // <y> Initial level
@@ -63,6 +69,9 @@ void EXT_FLASH_SPI_PORT_init(void)
 	                   // <false"> Low
 	                   // <true"> High
 	                   false);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(EXT_FLASH_SCK, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_function(EXT_FLASH_SCK, PINMUX_PA05D_SERCOM0_PAD1);
 
@@ -116,10 +125,9 @@ void BT_UART_CLOCK_init()
  */
 void BT_UART_PORT_init()
 {
-	gpio_set_pin_level(BT_UART_TX, false);
-	gpio_set_pin_level(BT_UART_RX, false);
 
 	gpio_set_pin_function(BT_UART_TX, PINMUX_PA12C_SERCOM2_PAD0);
+
 	gpio_set_pin_function(BT_UART_RX, PINMUX_PA13C_SERCOM2_PAD1);
 }
 
@@ -174,7 +182,7 @@ void DEBUG_UART_init(void)
 	DEBUG_UART_PORT_init();
 }
 
-void CAN1_PORT_init(void)
+void CAN1_INTF_PORT_init(void)
 {
 
 	gpio_set_pin_function(CAN1_RX, PINMUX_PB15H_CAN1_RX);
@@ -186,36 +194,19 @@ void CAN1_PORT_init(void)
  *
  * Enables CAN peripheral, clocks and initializes CAN driver
  */
-void CAN1_init(void)
+void CAN1_INTF_init(void)
 {
 	hri_mclk_set_AHBMASK_CAN1_bit(MCLK);
 	hri_gclk_write_PCHCTRL_reg(GCLK, CAN1_GCLK_ID, CONF_GCLK_CAN1_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
 	can_async_init(&CAN1_INTF, CAN1);
-	CAN1_PORT_init();
+	CAN1_INTF_PORT_init();
 }
 
 void system_init(void)
 {
 	init_mcu();
 
-	// GPIO on PA07
-
-	// Set pin direction to output
-	gpio_set_pin_direction(EXT_FLASH_CS, GPIO_DIRECTION_OUT);
-
-	gpio_set_pin_level(EXT_FLASH_CS,
-	                   // <y> Initial level
-	                   // <id> pad_initial_level
-	                   // <false"> Low
-	                   // <true"> High
-	                   true);
-
-	gpio_set_pin_function(EXT_FLASH_CS, GPIO_PIN_FUNCTION_OFF);
-
 	// GPIO on PA14
-
-	// Set pin direction to output
-	gpio_set_pin_direction(BT_CONF, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_level(BT_CONF,
 	                   // <y> Initial level
@@ -223,6 +214,9 @@ void system_init(void)
 	                   // <false"> Low
 	                   // <true"> High
 	                   false);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(BT_CONF, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_function(BT_CONF, GPIO_PIN_FUNCTION_OFF);
 
@@ -258,15 +252,15 @@ void system_init(void)
 
 	// GPIO on PA18
 
-	// Set pin direction to output
-	gpio_set_pin_direction(BT_PAIRING_KEY, GPIO_DIRECTION_OUT);
-
 	gpio_set_pin_level(BT_PAIRING_KEY,
 	                   // <y> Initial level
 	                   // <id> pad_initial_level
 	                   // <false"> Low
 	                   // <true"> High
 	                   false);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(BT_PAIRING_KEY, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_function(BT_PAIRING_KEY, GPIO_PIN_FUNCTION_OFF);
 
@@ -287,9 +281,6 @@ void system_init(void)
 
 	// GPIO on PA22
 
-	// Set pin direction to output
-	gpio_set_pin_direction(BT_LINK_DROP, GPIO_DIRECTION_OUT);
-
 	gpio_set_pin_level(BT_LINK_DROP,
 	                   // <y> Initial level
 	                   // <id> pad_initial_level
@@ -297,12 +288,12 @@ void system_init(void)
 	                   // <true"> High
 	                   false);
 
+	// Set pin direction to output
+	gpio_set_pin_direction(BT_LINK_DROP, GPIO_DIRECTION_OUT);
+
 	gpio_set_pin_function(BT_LINK_DROP, GPIO_PIN_FUNCTION_OFF);
 
 	// GPIO on PA23
-
-	// Set pin direction to output
-	gpio_set_pin_direction(EXT_FLASH_NEN, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_level(EXT_FLASH_NEN,
 	                   // <y> Initial level
@@ -311,12 +302,12 @@ void system_init(void)
 	                   // <true"> High
 	                   true);
 
+	// Set pin direction to output
+	gpio_set_pin_direction(EXT_FLASH_NEN, GPIO_DIRECTION_OUT);
+
 	gpio_set_pin_function(EXT_FLASH_NEN, GPIO_PIN_FUNCTION_OFF);
 
 	// GPIO on PA25
-
-	// Set pin direction to output
-	gpio_set_pin_direction(BT_NEN, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_level(BT_NEN,
 	                   // <y> Initial level
@@ -325,12 +316,12 @@ void system_init(void)
 	                   // <true"> High
 	                   true);
 
+	// Set pin direction to output
+	gpio_set_pin_direction(BT_NEN, GPIO_DIRECTION_OUT);
+
 	gpio_set_pin_function(BT_NEN, GPIO_PIN_FUNCTION_OFF);
 
 	// GPIO on PA27
-
-	// Set pin direction to output
-	gpio_set_pin_direction(MCU_STATUS_LED, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_level(MCU_STATUS_LED,
 	                   // <y> Initial level
@@ -339,12 +330,12 @@ void system_init(void)
 	                   // <true"> High
 	                   false);
 
+	// Set pin direction to output
+	gpio_set_pin_direction(MCU_STATUS_LED, GPIO_DIRECTION_OUT);
+
 	gpio_set_pin_function(MCU_STATUS_LED, GPIO_PIN_FUNCTION_OFF);
 
 	// GPIO on PB09
-
-	// Set pin direction to output
-	gpio_set_pin_direction(EXT_FLASH_NRST, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_level(EXT_FLASH_NRST,
 	                   // <y> Initial level
@@ -353,12 +344,12 @@ void system_init(void)
 	                   // <true"> High
 	                   true);
 
+	// Set pin direction to output
+	gpio_set_pin_direction(EXT_FLASH_NRST, GPIO_DIRECTION_OUT);
+
 	gpio_set_pin_function(EXT_FLASH_NRST, GPIO_PIN_FUNCTION_OFF);
 
 	// GPIO on PB11
-
-	// Set pin direction to output
-	gpio_set_pin_direction(CAN1_STDBY, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_level(CAN1_STDBY,
 	                   // <y> Initial level
@@ -367,12 +358,12 @@ void system_init(void)
 	                   // <true"> High
 	                   false);
 
+	// Set pin direction to output
+	gpio_set_pin_direction(CAN1_STDBY, GPIO_DIRECTION_OUT);
+
 	gpio_set_pin_function(CAN1_STDBY, GPIO_PIN_FUNCTION_OFF);
 
 	// GPIO on PB16
-
-	// Set pin direction to output
-	gpio_set_pin_direction(BT_NRST, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_level(BT_NRST,
 	                   // <y> Initial level
@@ -380,6 +371,9 @@ void system_init(void)
 	                   // <false"> Low
 	                   // <true"> High
 	                   true);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(BT_NRST, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_function(BT_NRST, GPIO_PIN_FUNCTION_OFF);
 
@@ -398,8 +392,12 @@ void system_init(void)
 
 	gpio_set_pin_function(BT_RF_ACTIVE_IND, GPIO_PIN_FUNCTION_OFF);
 
+	FLASH_0_init();
+
+	TIMER_0_init();
+
 	EXT_FLASH_SPI_init();
 	BT_UART_init();
 	DEBUG_UART_init();
-	CAN1_init();
+	CAN1_INTF_init();
 }

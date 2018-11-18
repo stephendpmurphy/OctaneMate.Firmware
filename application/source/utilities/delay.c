@@ -29,7 +29,7 @@ void brd_MsDelay(uint16_t delay)
 	}
 	else
 	{
-		vTaskDelay(delay / portTICK_PERIOD_MS);
+		vTaskDelay(delay);
 	}
 }
 

@@ -17,8 +17,10 @@
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
 /************ DEFINITIONS ***************/
+#define OCTANEMATE_DEVICE_NAME	"OctaneMate Mini"
+
 #define BM71_DEFAULT_BAUD_RATE	115200
-#define BM71_MAX_COMMAND_LENGTH 147
+#define BM71_MAX_COMMAND_LENGTH 255
 
 /************** TYPEDEFS ****************/
 /********* FUNCTION PROTOTYPES **********/

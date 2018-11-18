@@ -13,23 +13,30 @@
 #include "hpl_reset.h"
 #include "FreeRTOS_API.h"
 
+/*-------------- TYPEDEFS ----------------------------------------------------*/
+typedef enum
+{
+    MAIN = 0x00,
+    BLE,
+    CONFIG,
+    DEVMGR,
+    UI,
+    VEHINTF,
+    DEBUG_SRC,
+    DEBUG_SOURCE_NULL,
+    DEBUG_SOURCE_MAX
+} debugSource_t;
+
 /*-------------- DEFINITIONS -------------------------------------------------*/
-#define RESET_println(...)  _println(__VA_ARGS__);
-
-#ifdef DEBUG_BUILD
-#define DEBUG_println(...)	_println(__VA_ARGS__);
-#else
-#define DEBUG_println(...)
-#endif
-
 #ifdef DEBUG_BUILD
 #define DEBUG_halt()	__asm__("BKPT")
 #else
-#define DEBUG_halt()	RESET_println("DEBUG HALT - %s %s\n\n\r", __FILE__, __LINE__); while(1);
+#define DEBUG_halt()	DEBUG_println("DEBUG HALT - %s %s\n\n\r", __FILE__, __LINE__); while(1);
 #endif
-/*-------------- TYPEDEFS ----------------------------------------------------*/
+
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-void _println(const char *frmt, ...);
+void DEBUG_println(debugSource_t source, const char * frmt, ...);
+void DEBUG_printNoTimeStamp(debugSource_t source, const char * frmt, ...);
 void debug_init(void);
 void task_debug(void* params);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/

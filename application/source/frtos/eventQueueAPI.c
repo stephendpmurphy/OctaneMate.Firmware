@@ -7,7 +7,9 @@
 //  under the copyright laws.
 //------------------------------------------------------------------------------
 
+#include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 #include "eventQueueAPI.h"
 #include "eventQueueConfig.h"
 #include "FreeRTOS_API.h"
@@ -41,4 +43,91 @@ bool eventQueue_CreateQueues(void)
     }
 
     return true;
+}
+
+uint8_t eventQueue_sendMsg(event_t mainEvent, event_t subEvent, uint32_t value, uint16_t bufferLen, uint8_t *buffer, queueIndex_t responseQ, queueIndex_t destQ)
+{
+    BaseType_t status = false;
+    eventMsg_t txMsg = {0};
+
+    if( mainEvent > kEVENT_NULL || subEvent > kEVENT_NULL || destQ > kQUEUE_NULL || bufferLen > EVENT_BUFFER_MAX_SIZE)
+    {
+        return false;
+    }
+
+    txMsg.mainEvent = mainEvent;
+    txMsg.subEvent = subEvent;
+    txMsg.value = value;
+    txMsg.bufferLen = bufferLen;
+    memcpy(txMsg.buffer, buffer, bufferLen);
+    txMsg.responseQ = responseQ;
+    txMsg.destQ = destQ;
+
+    if(__get_IPSR())
+    {
+        portBASE_TYPE taskToWake = pdFALSE;
+        if(pdTRUE == xQueueSendFromISR(queueHandles[destQ], (const void*)&txMsg, &taskToWake))
+        {
+            if(taskToWake == pdTRUE)
+            {
+                portYIELD();
+            }
+            status = true;
+        }
+        else
+        {
+            status = false;
+        }
+    }
+    else
+    {
+        if( pdTRUE == xQueueSend(queueHandles[destQ], (const void*)&txMsg, 10) )
+        {
+            status = true;
+        }
+        else
+        {
+            status = false;
+        }
+    }
+
+    return (uint8_t)status;
+}
+
+uint8_t eventQueue_rcvMsg(queueIndex_t qIndex, eventMsg_t* ptr)
+{
+    BaseType_t status = false;
+    
+    if( qIndex < kQUEUE_NULL && ptr )
+    {
+        if(__get_IPSR())
+        {
+            portBASE_TYPE taskToWake = pdFALSE;
+            if (pdTRUE == xQueueReceiveFromISR(queueHandles[qIndex], ptr, &taskToWake))
+            {
+                if (pdTRUE == taskToWake)
+                {
+                    portYIELD(); /*! @Note portYIELD_FROM_ISR( taskToWake ); ???*/
+                }
+                status = true;
+            }
+            else
+            {
+                status = false;
+            }
+        }
+        else
+        {
+            if( pdTRUE == xQueueReceive(queueHandles[qIndex], ptr, portMAX_DELAY) )
+            {
+                status = true;
+            }
+            else
+            {
+                status = false;
+            }
+        }
+    }
+    
+    return (uint8_t)status;
 }

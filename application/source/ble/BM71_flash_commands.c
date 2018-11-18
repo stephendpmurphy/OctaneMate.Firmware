@@ -15,6 +15,7 @@
 #include "delay.h"
 #include "debugAPI.h"
 #include "driver_init.h"
+#include "configAPI.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
@@ -101,7 +102,7 @@ static bool Send128Bytes(uint16_t address, const uint8_t *data)
         BM71_writeBuffer[i] = *data++;
     }
 
-    SendFlashCommand(BM71_writeBuffer, sizeof(BM71_writeBuffer), BM71_readBuffer, sizeof(write_Response));
+    SendFlashCommand(BM71_writeBuffer, 147, BM71_readBuffer, sizeof(write_Response));
     //Check that the BT device responded with the
     for(uint8_t i = 0; i < 19; i++)
     {
@@ -164,7 +165,7 @@ static bool Write128BytesToFlash(uint16_t address, const uint8_t *data )
     }
 
     //Verify that the data we just read back matches what we wrote
-    for(uint8_t i = sizeof(read_Response); i < sizeof(BM71_readBuffer); i++)
+    for(uint8_t i = sizeof(read_Response); i < 128; i++)
     {
         //We compare byte by byte between the two buffers
         if(BM71_readBuffer[i] != *data++)
@@ -185,7 +186,6 @@ static bool EndFlashMemoryAccess(void)
 {
     //Send the close access to the flash memory command and check the response
     SendFlashCommand(close_Transmit,sizeof(close_Transmit),BM71_readBuffer, sizeof(close_Response));
-
     for(uint8_t i = 0; i < 19; i++)
     {
         if(BM71_readBuffer[i] != close_Response[i])
@@ -406,7 +406,7 @@ static void SendFlashCommand(const uint8_t *sendPacket, uint8_t sendSize, uint8_
         ; //Wait until the UART is ready to write more data
     }
     //Wait a bit before checking the buffer for any response
-    brd_MsDelay(25);
+    brd_MsDelay(20);
     //Read out the response into the receive packet
     io_read(&BT_UART.io, recievePacket, readSize);
 }
@@ -419,45 +419,71 @@ static void SendFlashCommand(const uint8_t *sendPacket, uint8_t sendSize, uint8_
 bool BM71_checkAndUpdateFlash(void)
 {
     bool retVal = false;
-    //First enter test mode so we can access the BM71 Memory
-    BM71_ResetToTestMode();
+    uint8_t bluetoothConfigVersion = 0xFF;
 
-    DEBUG_println("Checking current BM71 config... ");
-    retVal = OpenFlashMemory();
-    if(retVal)
+    // Get the Bluetooth Version stored in the NVM Device Config
+    bluetoothConfigVersion = config_getBluetoothConfigVersion();
+    
+    // If the config version is 0xFF, that means this is a new device.
+    // Set the config version to 0x00
+    if(0xFF == bluetoothConfigVersion)
     {
-        retVal = CheckConfig();
+        config_setBluetoothConfigVersion(0x00);
+        // Get the Bluetooth Version stored in the NVM Device Config
+        bluetoothConfigVersion = config_getBluetoothConfigVersion();
+    }
+    
+    if(bluetoothConfigVersion < BLUETOOTH_CONFIG_VERSION)
+    {
+        // Config version stored in NVM is less than the version indicated by the FW.
+        // Attempt to update the BM71 configuration.
+        //First enter test mode so we can access the BM71 Memory
+        BM71_ResetToTestMode();
+
+        DEBUG_println(BLE, "New Bluetooth config available..\n\r");
+        retVal = OpenFlashMemory();
         if(retVal)
         {
-            DEBUG_println("Config is up to date!\n\r");
-        }
-        else
-        {
-            DEBUG_println("BM71 config is out of date. Starting update... ");
-            retVal = EraseFlashMemory();
+            DEBUG_println(BLE, "Comparing against current BM71 config..\n\r");
+            retVal = CheckConfig();
             if(retVal)
             {
-                retVal = SendConfigToEEPROM();
-                if(retVal)
-                {
-                    DEBUG_println("New config applied successfully!\n\r");
-                }
-                else
-                {
-                    DEBUG_println("Failed to apply new config\n\r");
-                }
+                DEBUG_println(BLE, "Bluetooth Config is up to date!\n\r");
+                config_setBluetoothConfigVersion(BLUETOOTH_CONFIG_VERSION);
             }
             else
             {
-                DEBUG_println("Failed to erase flash memory.\n\r");
+                DEBUG_println(BLE, "BM71 config is out of date. Starting update... \n\r");
+                retVal = EraseFlashMemory();
+                if(retVal)
+                {
+                    retVal = SendConfigToEEPROM();
+                    if(retVal)
+                    {
+                        DEBUG_println(BLE, "New config applied successfully!\n\r");
+                        config_setBluetoothConfigVersion(BLUETOOTH_CONFIG_VERSION);
+                    }
+                    else
+                    {
+                        DEBUG_println(BLE, "Failed to apply new config\n\r");
+                    }
+                }
+                else
+                {
+                    DEBUG_println(BLE, "Failed to erase flash memory.\n\r");
+                }
             }
+            EndFlashMemoryAccess();
         }
-        EndFlashMemoryAccess();
+        else
+        {
+            DEBUG_println(BLE, "Failed to open flash memory!\n\r");
+        }
     }
     else
     {
-        DEBUG_println("Failed to open flash memory!\n\r");
+        DEBUG_println(BLE, "Bluetooth Config is up to date!\n\r");
+        retVal = true;
     }
-
     return retVal;
 }

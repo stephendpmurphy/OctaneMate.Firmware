@@ -14,8 +14,11 @@
 #include "version.h"
 #include "BM71.h"
 #include "extFlash.h"
+#include "configAPI.h"
 #include "board_BM71.h"
 #include "board_debug.h"
+#include "board_intFlash.h"
+#include "board_rtc.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
@@ -29,26 +32,28 @@ static void FreeRTOS_init(void);
 *******************************************************************************/
 int main(void)
 {
-	//Board init
-	system_init();
-    brd_BM71_init();
-    brd_debug_init();
-    //BRD_extFlash_init();
+    system_init();
     
+    brd_rtc_init();
     //Debug init
-	debug_init();
-	RESET_println("MurphyTechnology OctaneMate v%d.%d.%d - %s %s\n\n\r", PRODUCT_VERSION, HW_VERSION, FW_VERSION, __DATE__, __TIME__);
+    brd_debug_init();
+    debug_init();
+    DEBUG_println(MAIN, "MurphyTechnology OctaneMate v%d.%d.%d - %s %s\n\n\r", PRODUCT_VERSION, HW_VERSION, FW_VERSION, __DATE__, __TIME__);
+    
+    //Board init
+    brd_BM71_init();
+    brd_intFlash_init();
+    //BRD_extFlash_init();
 
-	//Module init
-    FLASH_0_init();
-    BM71_init();
-	extFlash_init();
+    //Module init
+    config_init();
+    extFlash_init();
 
-	//Initialize FreeRTOS and start the scheduler.. Should not return from this function call.
-	FreeRTOS_init();
+    //Initialize FreeRTOS and start the scheduler.. Should not return from this function call.
+    FreeRTOS_init();
 
-	//Something went wrong.. Stop here.
-	DEBUG_halt();
+    //Something went wrong.. Stop here.
+    DEBUG_halt();
 }
 
 /*******************************************************************************
@@ -57,8 +62,8 @@ int main(void)
 *******************************************************************************/
 void HardFault_Handler()
 {
-	RESET_println("!!! Hard fault !!!");
-	DEBUG_halt();
+    DEBUG_println(MAIN, "!!! Hard fault !!!");
+    DEBUG_halt();
 }
 
 /*******************************************************************************
@@ -67,8 +72,18 @@ void HardFault_Handler()
 *******************************************************************************/
 void vApplicationStackOverflowHook( xTaskHandle pxTask, signed char *pcTaskName )
 {
-	RESET_println("%s overflowed its stack!", pcTaskName);
-	DEBUG_halt();
+    DEBUG_println(MAIN, "%s overflowed its stack!", pcTaskName);
+    DEBUG_halt();
+}
+
+void vApplicationIdleHook( void )
+{
+    //DEBUG_println("!!! IDLE !!!\n\r"); 
+}
+
+void vApplicationTickHook(void)
+{
+    //DEBUG_println("!!! TICK !!!\n\r");
 }
 
 /*******************************************************************************
@@ -77,23 +92,23 @@ void vApplicationStackOverflowHook( xTaskHandle pxTask, signed char *pcTaskName 
 *******************************************************************************/
 static void FreeRTOS_init(void)
 {
-	//Init all of the Module Tasks
-	if( !tasks_CreateTasks() )
-	{
-		RESET_println("Failed to create task(s)");
-		DEBUG_halt();
-	}
+    //Init all of the Module Tasks
+    if( !tasks_CreateTasks() )
+    {
+        DEBUG_println(MAIN, "Failed to create task(s)");
+        DEBUG_halt();
+    }
 
-	//Init all of the Module Queues
-	if( !eventQueue_CreateQueues() )
-	{
-		RESET_println("Failed to create queue(s)");
-		DEBUG_halt();
-	}
+    //Init all of the Module Queues
+    if( !eventQueue_CreateQueues() )
+    {
+        DEBUG_println(MAIN, "Failed to create queue(s)");
+        DEBUG_halt();
+    }
 
-	//Start the FreeRTOS scheduler..
-	vTaskStartScheduler();
+    //Start the FreeRTOS scheduler..
+    vTaskStartScheduler();
 
-	//Should never have returned from the above call..
-	RESET_println("!!! ERROR !!! Scheduler returned...");
+    //Should never have returned from the above call..
+    DEBUG_println(MAIN, "!!! ERROR !!! Scheduler returned...");
 }

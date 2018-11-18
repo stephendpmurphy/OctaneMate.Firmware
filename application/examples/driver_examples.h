@@ -14,6 +14,8 @@ extern "C" {
 
 void FLASH_0_example(void);
 
+void TIMER_0_example(void);
+
 void BT_UART_example(void);
 
 void DEBUG_UART_example(void);

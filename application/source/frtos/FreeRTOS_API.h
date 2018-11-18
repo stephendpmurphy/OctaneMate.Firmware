@@ -26,7 +26,7 @@
 #include "timers.h"
 
 #include "tasksAPI.h"
-#include "eventQueueAPI.h"
 #include "eventDef.h"
+#include "eventQueueAPI.h"
 
 #endif /* FREERTOS_H_ */

@@ -51,10 +51,12 @@ typedef enum
 typedef struct
 {
     event_t mainEvent;
-    QueueHandle_t responseQ;
-    void* dataAddress;
+    event_t subEvent;
+    uint32_t value;
     uint8_t  bufferLen;
     uint8_t  buffer[EVENT_BUFFER_MAX_SIZE];
+    queueIndex_t responseQ;
+    queueIndex_t destQ;
 } eventMsg_t;
 
 #endif //EVENTQUEUECONFIG_H_

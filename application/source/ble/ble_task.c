@@ -7,9 +7,10 @@
 // under the copyright laws.
 //------------------------------------------------------------------------------
 
-#include "vehIntfAPI.h"
+#include "bleAPI.h"
 #include "FreeRTOS_API.h"
 #include "debugAPI.h"
+#include "BM71.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
@@ -17,15 +18,36 @@
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
 /*******************************************************************************
-* Description: FreeRTOS task for the vehichle interface.
+* Description: All module init needed for the BLE
 *
 *******************************************************************************/
-void task_vehIntf(void* params)
+bool ble_init(void)
 {
-	DEBUG_println("Vehicle Interface Task Started\n\r");
-    //Vehicle Interface Code
+    return true;
+}
+
+/*******************************************************************************
+* Description: FreeRTOS task for BLE
+*
+*******************************************************************************/
+void task_ble(void* params)
+{
+    eventMsg_t rxMsg = {0};
+    DEBUG_println(BLE, "BLE Task Started\n\r");
+    eventQueue_sendMsg(kEVENT_INIT,kEVENT_NULL,0x00,0x00,NULL,kQUEUE_NULL,kQUEUE_BLE);
+    
+    //BLE Task Code
     while(1)
     {
-		vTaskDelay(1000/portTICK_PERIOD_MS);
+        xQueueReceive(queueHandles[kQUEUE_BLE], &rxMsg, portMAX_DELAY);
+        
+        switch( rxMsg.mainEvent )
+        {
+            case kEVENT_INIT:
+                BM71_init();
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -7,10 +7,10 @@
 // under the copyright laws.
 //------------------------------------------------------------------------------
 
-#include "bleAPI.h"
+#include "uiAPI.h"
 #include "FreeRTOS_API.h"
 #include "debugAPI.h"
-#include "BM71.h"
+#include "pins.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
@@ -18,25 +18,18 @@
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
 /*******************************************************************************
-* Description: All module init needed for the BLE
+* Description: FreeRTOS task for the UI.
 *
 *******************************************************************************/
-bool ble_init(void)
+void task_ui(void* params)
 {
-    return true;
-}
-
-/*******************************************************************************
-* Description: FreeRTOS task for BLE
-*
-*******************************************************************************/
-void task_ble(void* params)
-{
-    DEBUG_println("BLE Task Started\n\r");
-
-    //BLE Task Code
+	DEBUG_println(UI, "UI Task Started\n\r");
+    //Device Manager Code
     while(1)
     {
-        vTaskDelay(1000/portTICK_PERIOD_MS);
+		gpio_set_pin_level(MCU_STATUS_LED, true);
+		vTaskDelay(1000);
+		gpio_set_pin_level(MCU_STATUS_LED, false);
+		vTaskDelay(1000);
     }
 }

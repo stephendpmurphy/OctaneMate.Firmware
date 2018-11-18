@@ -10,10 +10,19 @@
 #define EVENTDEF_H_
 
 typedef enum{
-    kBLUETOOTH_CONNECTED,
-    kBLUETOOTH_DISCONNECTED,
-    kSTART_LOGGING,
-    kSTOP_LOGGING,
+    // General Events
+    kEVENT_INIT = 0x00,
+    
+    // Bluetooth Events
+    kEVENT_BLUETOOTH_DEVICE_CONNECTED = 0x20,
+    kEVENT_BLUETOOTH_DEVICE_DISCONNECTED,
+    // Device Control
+    kEVENT_DEVICE_START_LOGGING = 0x40,
+    kEVENT_DEVICE_STOP_LOGGING,
+    // Config Module
+    kEVENT_CONFIG_WRITE_NVM = 0x60,
+    kEVENT_CONFIG_READ_NVM,
+    
     kEVENT_MAX,
     kEVENT_NULL
 }event_t;

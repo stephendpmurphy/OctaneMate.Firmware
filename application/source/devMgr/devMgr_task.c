@@ -6,21 +6,26 @@
 // express written consent of Murphy Technology is prohibited, except as allowed
 // under the copyright laws.
 //------------------------------------------------------------------------------
-#ifndef EVENTQUEUEAPI_H_
-#define EVENTQUEUEAPI_H_
 
-#include <stdint.h>
-#include <stdbool.h>
-#include "eventQueueConfig.h"
+#include "devMgrAPI.h"
 #include "FreeRTOS_API.h"
+#include "debugAPI.h"
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
-bool eventQueue_CreateQueues(void);
-uint8_t eventQueue_sendMsg(event_t mainEvent, event_t subEvent, uint32_t value, uint16_t bufferLen, uint8_t *buffer, queueIndex_t responseQ, queueIndex_t destQ);
-uint8_t eventQueue_rcvMsg(queueIndex_t qIndex, eventMsg_t* ptr);
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
-extern QueueHandle_t queueHandles[kQUEUE_MAX];
 
-#endif /* EVENTQUEUEAPI_H_ */
+/*******************************************************************************
+* Description: FreeRTOS task for the Device Manager functionality.
+*
+*******************************************************************************/
+void task_devMgr(void* params)
+{
+	DEBUG_println(DEVMGR, "Device Manager Task Started\n\r");
+    //Device Manager Code
+    while(1)
+    {
+		vTaskDelay(10000);
+    }
+}

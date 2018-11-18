@@ -6,30 +6,18 @@
 // express written consent of Murphy Technology is prohibited, except as allowed
 // under the copyright laws.
 //------------------------------------------------------------------------------
-
-#include "uiAPI.h"
-#include "FreeRTOS_API.h"
-#include "debugAPI.h"
-#include "pins.h"
+#ifndef BOARD_RTC_H_
+#define BOARD_RTC_H_
 
 /*-------------- DEFINITIONS -------------------------------------------------*/
 /*-------------- TYPEDEFS ----------------------------------------------------*/
 /*-------------- FUNCTION PROTOTYPES -----------------------------------------*/
+void brd_rtc_init(void);
+uint16_t brd_rtc_getMsec();
+uint8_t brd_rtc_getSec();
+uint8_t brd_rtc_getMin();
+uint8_t brd_rtc_getHour();
+
 /*-------------- VARIABLE DEFINITIONS ----------------------------------------*/
 
-/*******************************************************************************
-* Description: FreeRTOS task for the UI.
-*
-*******************************************************************************/
-void task_ui(void* params)
-{
-	DEBUG_println("UI Task Started\n\r");
-    //Device Manager Code
-    while(1)
-    {
-		gpio_set_pin_level(MCU_STATUS_LED, true);
-		vTaskDelay(1000/portTICK_PERIOD_MS);
-		gpio_set_pin_level(MCU_STATUS_LED, false);
-		vTaskDelay(1000/portTICK_PERIOD_MS);
-    }
-}
+#endif /* BOARD_RTC_H_ */

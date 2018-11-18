@@ -18,19 +18,19 @@
 #define TASK_NAME_DEBUG             "Debug Interface"
 
 //Task Stack Size
-#define TASK_STACK_SIZE_DEV_MANAGER 256
-#define TASK_STACK_SIZE_BLE         256
-#define TASK_STACK_SIZE_VEH_INTF    256
-#define TASK_STACK_SIZE_UI          256
-#define TASK_STACK_SIZE_CONFIG      256
-#define TASK_STACK_SIZE_DEBUG       256
+#define TASK_STACK_SIZE_DEV_MANAGER 1024
+#define TASK_STACK_SIZE_BLE         2048
+#define TASK_STACK_SIZE_VEH_INTF    1024
+#define TASK_STACK_SIZE_UI          1024
+#define TASK_STACK_SIZE_CONFIG      2048
+#define TASK_STACK_SIZE_DEBUG       1024
 
 //Task Priority
 #define TASK_PRIORITY_DEV_MANAGER   3
-#define TASK_PRIORITY_BLE           5
-#define TASK_PRIORITY_VEH_INTF      4
-#define TASK_PRIORITY_UI            2
-#define TASK_PRIORITY_CONFIG        1
+#define TASK_PRIORITY_BLE           4
+#define TASK_PRIORITY_VEH_INTF      3
+#define TASK_PRIORITY_UI            3
+#define TASK_PRIORITY_CONFIG        2
 #define TASK_PRIORITY_DEBUG         1
 
 typedef enum
